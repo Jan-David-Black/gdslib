@@ -1,8 +1,9 @@
-from gdslib import sweep_simulation
-from gdslib.mmi1x2 import mmi1x2
 from simphony.library import siepic
 from simphony.netlist import Subcircuit
+
+from gdslib import plot_circuit
 from gdslib.autoname import autoname
+from gdslib.components.mmi1x2 import mmi1x2
 
 
 @autoname
@@ -53,4 +54,4 @@ def mzi_gc(L0=1, L1=100, L2=10, y_model_factory=mmi1x2):
 
 if __name__ == "__main__":
     c = mzi_gc()
-    sweep_simulation(c)
+    plot_circuit(c)

@@ -18,21 +18,29 @@ def logscale(x):
     return 20 * np.log10(np.abs(x))
 
 
-def plot_sparameters(
-    c, wavelengths=None, pins=None, label=None, function=magnitude_square_per_cent
+def plot_model(
+    model, wavelengths=None, pins=None, label=None, function=magnitude_square_per_cent
 ):
-    """ plots sparameters from a model
+    """plots simphony model Sparameters
+
+    Args:
+        model: simphony model
+        wavelengths (m):
+        pins: set of pins
+        label: Optional labell
+        function: for plotting
 
     .. plot::
         :include-source:
 
         import gdslib as gl
+        import gdslib.components as gc
 
-        c = gl.mmi1x2()
-        gl.plot_sparameters(c)
+        c = gc.mmi1x2()
+        gl.plot_model(c)
     """
-    if callable(c):
-        c = c()
+    c = model() if callable(model) else model
+
     if wavelengths is None:
         if hasattr(c, "wavelengths"):
             wavelengths = c.wavelengths
@@ -65,6 +73,6 @@ if __name__ == "__main__":
     coupler = siepic.ebeam_dc_halfring_straight(
         gap=200e-9, radius=10e-6, width=500e-9, thickness=220e-9, couple_length=0.0
     )
-    plot_sparameters(coupler, wavelengths)
+    plot_model(coupler, wavelengths)
     plt.legend()
     plt.show()

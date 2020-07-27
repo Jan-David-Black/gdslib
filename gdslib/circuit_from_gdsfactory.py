@@ -1,12 +1,11 @@
-import pp
 from simphony.library import siepic
 from simphony.netlist import Subcircuit
 
-from gdslib.load import load
+from gdslib.components import component_type2factory
 
 
-def load_netlist(component):
-    """load netlist for a gdsfactory component and returns a circuit model
+def circuit_from_gdsfactory(component):
+    """imports netlist from gdsfactory component and returns a Simphony circuit
 
     Args:
         component: component factory or instance
@@ -19,11 +18,11 @@ def load_netlist(component):
 
     for i in n.instances.keys():
         component_type = n.instances[i]["component"]
-        c = pp.c.component_type2factory[component_type]()
-        model = load(c)
+        component_settings = n.instances[i]["settings"]
+        model = component_type2factory[component_type](**component_settings)
         model_name_tuple.append((model, i))
 
-    e = circuit.add(model_name_tuple)
+    circuit.add(model_name_tuple)
 
     for k, v in n.connections.items():
         c1, p1 = k.split(",")
@@ -35,12 +34,13 @@ def load_netlist(component):
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
-    from gdslib import sweep_simulation
+    from gdslib import plot_circuit
+    import pp
 
-    c = pp.c.mzi()
-    cm = load_netlist(c)
+    c = pp.c.mzi(DL=50)
+    cm = circuit_from_gdsfactory(c)
     cm.elements["mmi1x2_12_0"].pins["W0"] = "input"
     cm.elements["mmi1x2_88_0"].pins["W0"] = "output"
 
-    sweep_simulation(cm)
+    plot_circuit(cm)
     plt.show()

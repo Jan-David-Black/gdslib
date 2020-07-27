@@ -2,9 +2,9 @@ import pp
 from simphony.library import siepic
 from simphony.netlist import Subcircuit
 
-from gdslib import sweep_simulation
-from gdslib.coupler_ring import coupler_ring
+from gdslib import plot_circuit
 from gdslib.autoname import autoname
+from gdslib.components.coupler_ring import coupler_ring
 
 
 @autoname
@@ -62,11 +62,15 @@ def ring_double(
         import gdslib as gl
 
         c = gl.ring_double()
-        gl.sweep_simulation(c)
+        gl.plot_circuit(c)
     """
 
     waveguide = waveguide() if callable(waveguide) else waveguide
-    coupler = coupler(length_x=length_x, bend_radius=bend_radius, gap=gap, wg_width=wg_width) if callable(coupler) else coupler
+    coupler = (
+        coupler(length_x=length_x, bend_radius=bend_radius, gap=gap, wg_width=wg_width)
+        if callable(coupler)
+        else coupler
+    )
 
     # Create the circuit, add all individual instances
     circuit = Subcircuit("ring_double")
@@ -94,5 +98,5 @@ if __name__ == "__main__":
     import matplotlib.pyplot as plt
 
     c = ring_double()
-    sweep_simulation(c)
+    plot_circuit(c)
     plt.show()
