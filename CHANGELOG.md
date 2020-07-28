@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.1.1
+## 0.1.2
 
 - adding requirements to setup.py
 
