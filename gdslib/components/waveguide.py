@@ -26,7 +26,7 @@ def waveguide(
     thickness = thickness * 1e3
     length = length * 1e3
 
-    s = Waveguide(width=width, thickness=thickness, sw_angle=sw_angle, length=length,)
+    s = Waveguide(width=width, thickness=thickness, sw_angle=sw_angle, length=length)
     s2 = SimphonyWrapper(s)
     s2.pins = ("W0", "E0")
     return s2

@@ -61,7 +61,7 @@ def ring_single(
     """
 
     waveguide = waveguide(length=length_y) if callable(waveguide) else waveguide
-    bend = bend(width=wg_width, bend_radius=bend_radius) if callable(bend) else bend
+    bend = bend(width=wg_width, radius=bend_radius) if callable(bend) else bend
     coupler = (
         coupler(length_x=length_x, bend_radius=bend_radius, gap=gap, wg_width=wg_width)
         if callable(coupler)
