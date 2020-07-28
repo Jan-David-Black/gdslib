@@ -1,20 +1,27 @@
-import pp
+from SiPANN.scee import HalfRacetrack
+from SiPANN.scee_int import SimphonyWrapper
 
 from gdslib.autoname import autoname
-from gdslib.model_from_gdsfactory import model_from_gdsfactory
 
 
 @autoname
 def coupler_ring(
-    c=pp.c.coupler_ring, wg_width=0.5, length_x=3, gap=0.2, bend_radius=10
+    bend_radius: float = 5,
+    wg_width: float = 0.5,
+    thickness: float = 0.22,
+    gap: float = 0.22,
+    length_x: float = 4.0,
+    sw_angle: float = 90.0,
+    **kwargs
 ):
-    """ coupler for half a ring
+    """coupler for half a ring
 
     Args:
-        wg_width:0.5
-        gap: 0.2
-        length_x: 4
         bend_radius: 5
+        wg_width: float or ndarray Width of the waveguide in um (Valid for 0.4-0.6)
+        thickness : float or ndarray Thickness of waveguide in um (Valid for 0.18-0.24)
+        gap : float or ndarray Minimum distance between the two waveguides edge in um. (Must be > 0.1)
+        length_x: Length of straight portion of ring waveguide in um
 
     .. code::
 
@@ -30,25 +37,36 @@ def coupler_ring(
 
         import gdslib as gl
 
-        c = gl.coupler_ring()
-        gl.plot_model(c)
+        m = gl.c.coupler_ring()
+        gl.plot_model(m)
 
     """
-    if callable(c):
-        c = c(wg_width=wg_width, length_x=length_x, gap=gap, bend_radius=bend_radius)
-    m = model_from_gdsfactory(c)
-    return m
+
+    width = wg_width * 1e3
+    thickness = thickness * 1e3
+    gap = gap * 1e3
+    length = length_x * 1e3
+    radius = bend_radius * 1e3
+    # print(f'ignoring {kwargs}')
+
+    s = HalfRacetrack(
+        radius=radius,
+        width=width,
+        thickness=thickness,
+        gap=gap,
+        length=length,
+        sw_angle=sw_angle,
+    )
+    s2 = SimphonyWrapper(s)
+    s2.pins = ("W0", "W1", "E0", "E1")
+    return s2
 
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
-    import numpy as np
+    from gdslib import plot_model
 
-    wav = np.linspace(1520, 1570, 1024) * 1e-9
-    f = 3e8 / wav
     c = coupler_ring()
-    s = c.s_parameters(freq=f)
-
-    plt.plot(wav, np.abs(s[:, 1] ** 2))
-    print(c.pins)
+    print(c)
+    plot_model(c)
     plt.show()

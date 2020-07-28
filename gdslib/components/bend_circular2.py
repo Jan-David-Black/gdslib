@@ -1,22 +1,27 @@
+from typing import Optional
+
 import numpy as np
-from SiPANN.scee import Waveguide
-from SiPANN.scee_int import SimphonyWrapper
+import pp
+from SiPANN.nn import bentWaveguide_S
 
 from gdslib import plot_model
 from gdslib.autoname import autoname
+from gdslib.model_from_sparameters import model_from_sparameters
 
 
 @autoname
-def bend_circular(
+def bend_circular2(
     radius: float = 10.0,
     width: float = 0.5,
     thickness: float = 0.22,
     angle: int = 90,
     sw_angle: float = 90.0,
+    wavelength: Optional = None,
     **kwargs,
 ):
-    """Returns simphony Model for a bend using a waveguide
-    notice that this is fake bend!
+    """Returns simphony Model for a bend.
+
+    gives lot of ripple in MZI simulation
 
     Args:
         radius: Radius of waveguide in microns.
@@ -28,19 +33,22 @@ def bend_circular(
 
     """
     angle = np.deg2rad(angle)
-    width = width * 1e3
-    thickness = thickness * 1e3
-    length = angle * radius * 1e3
-
-    s = Waveguide(width=width, thickness=thickness, sw_angle=sw_angle, length=length,)
-    s2 = SimphonyWrapper(s)
-    s2.pins = ("W0", "N0")
-    return s2
+    if wavelength is None:
+        wavelength = np.linspace(1200, 1600, 2024) * 1e-9
+    s = bentWaveguide_S(
+        wavelength=wavelength,
+        width=width,
+        thickness=thickness,
+        radius=radius,
+        angle=angle,
+        sw_angle=sw_angle,
+    )
+    return model_from_sparameters(wavelength, s, pins=("W0", "N0"))
 
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
 
-    c = bend_circular()
+    c = bend_circular2()
     plot_model(c)
     plt.show()
