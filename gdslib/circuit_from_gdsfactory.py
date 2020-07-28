@@ -38,9 +38,9 @@ if __name__ == "__main__":
     import pp
 
     c = pp.c.mzi(DL=50)
-    cm = circuit_from_gdsfactory(c)
-    cm.elements["mmi1x2_12_0"].pins["W0"] = "input"
-    cm.elements["mmi1x2_88_0"].pins["W0"] = "output"
+    m = circuit_from_gdsfactory(c)
+    m.elements["mmi1x2_12_0"].pins["W0"] = "input"
+    m.elements["mmi1x2_88_0"].pins["W0"] = "output"
 
-    plot_circuit(cm)
+    plot_circuit(m)
     plt.show()

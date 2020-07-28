@@ -5,14 +5,14 @@ from gdslib.autoname import autoname
 
 
 @autoname
-def coupler(
+def coupler_sipann(
     width: float = 0.5,
     thickness: float = 0.22,
     gap: float = 0.22,
     length: float = 10.0,
     sw_angle: float = 90.0,
-    H: float = 1.5,
-    V: float = 0.0,
+    H: float = 10,
+    V: float = 2.0,
     **kwargs,
 ):
     """Returns simphony Model for Directional coupler
@@ -42,7 +42,7 @@ def coupler(
     H = H * 1e3
     V = V * 1e3
 
-    s = Standard(
+    return Standard(
         width=width,
         thickness=thickness,
         gap=gap,
@@ -51,16 +51,8 @@ def coupler(
         V=V,
         sw_angle=sw_angle,
     )
-    s2 = SimphonyWrapper(s)
-    s2.pins = ("W0", "W1", "E0", "E1")
-    return s2
 
 
 if __name__ == "__main__":
-    import matplotlib.pyplot as plt
-    from gdslib import plot_model
-
-    c = coupler()
-    print(c)
-    plot_model(c)
-    plt.show()
+    hr = coupler_sipann()
+    hr.gds(view=True, extra=0, units="microns")

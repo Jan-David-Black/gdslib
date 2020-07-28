@@ -4,7 +4,6 @@ from simphony.netlist import Subcircuit
 from gdslib import plot_circuit
 from gdslib.autoname import autoname
 from gdslib.components.coupler_ring import coupler_ring
-from gdslib.components.waveguide import waveguide
 
 
 @autoname
@@ -15,7 +14,7 @@ def ring_double(
     bend_radius=5,
     length_y=2,
     coupler=coupler_ring,
-    waveguide=waveguide,
+    waveguide=siepic.ebeam_wg_integral_1550,
 ):
     """ double bus ring made of two couplers (ct: top, cb: bottom)
     connected with two vertical waveguides (wyl: left, wyr: right)
@@ -65,7 +64,7 @@ def ring_double(
         gl.plot_circuit(c)
     """
 
-    waveguide = waveguide(length=length_y) if callable(waveguide) else waveguide
+    waveguide = waveguide() if callable(waveguide) else waveguide
     coupler = (
         coupler(length_x=length_x, bend_radius=bend_radius, gap=gap, wg_width=wg_width)
         if callable(coupler)
@@ -81,10 +80,10 @@ def ring_double(
     # Circuits can be connected using the elements' string names:
     circuit.connect_many(
         [
-            ("cb", "N0", "wl", "E0"),
-            ("wl", "W0", "ct", "N1"),
-            ("ct", "N0", "wr", "E0"),
-            ("wr", "W0", "cb", "N1"),
+            ("cb", "N0", "wl", "n1"),
+            ("wl", "n2", "ct", "N1"),
+            ("ct", "N0", "wr", "n1"),
+            ("wr", "n2", "cb", "N1"),
         ]
     )
     circuit.elements["cb"].pins["W0"] = "input"
