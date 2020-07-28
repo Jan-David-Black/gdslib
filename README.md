@@ -1,4 +1,4 @@
-# gdslib 0.1.1
+# gdslib 0.1.2
 
 Stores GDS geometry, JSON metadata and Sparameters (with models) for the generic `gdsfactory` photonics library
 
