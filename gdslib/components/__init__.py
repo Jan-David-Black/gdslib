@@ -22,7 +22,14 @@ component_type2factory = dict(
 )
 
 
-_elements = ["mmi1x2", "mmi2x2", "coupler_ring", "waveguide", "bend_circular"]
-_circuits = ["mzi"]
+_elements = [
+    "bend_circular",
+    "coupler",
+    "coupler_ring",
+    "mmi1x2",
+    "mmi2x2",
+    "waveguide",
+]
+_circuits = ["mzi", "ring_double"]
 
 __all__ = _elements + _circuits
