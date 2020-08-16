@@ -1,3 +1,5 @@
 gdsfactory
 simphony
 SiPANN
+scipy
+numpy

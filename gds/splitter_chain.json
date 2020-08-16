@@ -1,0 +1,14 @@
+{
+  "json_version": 7,
+  "cells": {
+    "splitter_chain": {
+      "function_name": "splitter_chain",
+      "module": "pp.components.splitter_chain",
+      "n_devices": 3,
+      "name": "splitter_chain"
+    }
+  },
+  "test_protocol": {},
+  "data_analysis_protocol": {},
+  "git_hash": "6b56615f559cccdb5d22e259869a5d93b7c65087"
+}
