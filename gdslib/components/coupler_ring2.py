@@ -11,6 +11,7 @@ def coupler_ring2(
     """ coupler for half a ring based on Lumerical 3D FDTD simulations
 
     Args:
+        c: gdsfactory component
         wg_width:0.5
         gap: 0.2
         length_x: 4

@@ -20,6 +20,7 @@ def waveguide(
         width: Width of the waveguide in um (Valid for 0.4-0.6)
         thickness: Thickness of waveguide in um (Valid for 180nm-240nm)
         sw_angle: optional Sidewall angle of waveguide from horizontal in degrees (Valid for 80-90 degrees). Defaults to 90.
+        kwargs: geometrical args that this model ignores
 
     """
     width = width * 1e3

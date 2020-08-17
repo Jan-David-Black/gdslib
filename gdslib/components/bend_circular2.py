@@ -21,7 +21,7 @@ def bend_circular2(
 ):
     """Returns simphony Model for a bend.
 
-    gives lot of ripple in MZI simulation
+    FIXME! gives lot of ripple in MZI simulation
 
     Args:
         radius: Radius of waveguide in microns.
@@ -29,7 +29,8 @@ def bend_circular2(
         thickness: Thickness of the waveguides in microns
         angle: Number of deg of circle that bent waveguide transverses
         sw_angle: Sidewall angle from horizontal in degrees, ie 90 makes a square. Defaults to 90.
-        wavelength:  Wavelength points to evaluate
+        wavelength: Wavelength (nm) points to evaluate
+        kwargs: geometrical args that this model ignores
 
     """
     angle = np.deg2rad(angle)
@@ -46,9 +47,22 @@ def bend_circular2(
     return model_from_sparameters(wavelength, s, pins=("W0", "N0"))
 
 
-if __name__ == "__main__":
+def demo():
     import matplotlib.pyplot as plt
 
     c = bend_circular2()
     plot_model(c)
     plt.show()
+
+
+def demo_needs_fix():
+    import matplotlib.pyplot as plt
+    from gdslib.mzi import mzi
+
+    c = bend_circular2()
+    plot_model(c)
+    plt.show()
+
+
+if __name__ == "__main__":
+    demo_needs_fix()

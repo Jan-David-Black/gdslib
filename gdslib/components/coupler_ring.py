@@ -22,6 +22,8 @@ def coupler_ring(
         thickness : float or ndarray Thickness of waveguide in um (Valid for 0.18-0.24)
         gap : float or ndarray Minimum distance between the two waveguides edge in um. (Must be > 0.1)
         length_x: Length of straight portion of ring waveguide in um
+        sw_angle: Sidewall angle from horizontal in degrees, ie 90 makes a square. Defaults to 90.
+        kwargs: geometrical args that this model ignores
 
     .. code::
 

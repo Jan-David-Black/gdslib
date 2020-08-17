@@ -5,7 +5,7 @@ from gdslib.model_from_gdsfactory import model_from_gdsfactory
 
 
 @autoname
-def mmi1x2(c=pp.c.mmi1x2, height_nm=220):
+def mmi1x2(c=pp.c.mmi1x2, height_nm=220, **kwargs):
     """ mmi1x2 Sparameter model
 
     .. code::

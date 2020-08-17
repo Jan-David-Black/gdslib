@@ -24,7 +24,7 @@ def bend_circular(
         thickness: Thickness of the waveguides in microns
         angle: Number of deg of circle that bent waveguide transverses
         sw_angle: Sidewall angle from horizontal in degrees, ie 90 makes a square. Defaults to 90.
-        wavelength:  Wavelength points to evaluate
+        kwargs: geometrical args that this model ignores
 
     """
     angle = np.deg2rad(angle)
