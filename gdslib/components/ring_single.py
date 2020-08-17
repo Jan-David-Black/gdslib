@@ -19,8 +19,11 @@ def ring_single(
     waveguide=waveguide,
     bend=bend_circular,
 ):
-    """single bus ring made of a ring couplers (cb: bottom)
-    connected with two vertical waveguides (wl: left, wr: right)
+    """single bus ring made of a ring coupler (cb: bottom)
+    connected with:
+    - 2 vertical waveguides (wl: left, wr: right)
+    - 2 bend90 waveguides (bl: left, br: right)
+    - 1 waveguide at the top (wt)
 
     FIXME! it has some issues
 
@@ -31,8 +34,10 @@ def ring_single(
              /         \
             /           \
            |             |
-           N0           N0
-        wl (left)      wr (right)
+           N1           N0 ___
+                            |
+          wl            wr  | length_y
+                           _|_
            N0            N1
            |             |
             \           /

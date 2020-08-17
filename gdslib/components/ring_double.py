@@ -36,8 +36,10 @@ def ring_double(
              /         \
             /           \
            |             |
-           N1           N0
-
+           N1           N0 ___
+                            |
+          wl            wr  | length_y
+                           _|_
            N0            N1
            |             |
             \           /
