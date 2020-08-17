@@ -17,10 +17,9 @@ def ring_single(
     waveguide=waveguide,
 ):
     """single bus ring made of a ring coupler (cb: bottom)
-    connected with two vertical waveguides (wl: left, wr: right)
+    connected with a waveguide
 
-    FIXME! it has some issues. this file is just for debugging and is a simpler version of ring_single
-    not sure what is the issue because ring_double
+    FIXME! Sparameters are zero
 
     .. code::
 
