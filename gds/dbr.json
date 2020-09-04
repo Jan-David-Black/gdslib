@@ -1,19 +1,18 @@
 {
-  "json_version": 6,
+  "json_version": 7,
   "cells": {
     "dbr": {
-      "name": "dbr",
-      "class": "dbr",
-      "w1": 0.5,
-      "w2": 0.6,
-      "l1": 0.2,
-      "l2": 0.3,
+      "function_name": "dbr",
+      "l1": 0.159,
+      "l2": 0.159,
+      "module": "pp.components.dbr",
       "n": 10,
-      "waveguide_function": "waveguide",
-      "module": "pp.components.dbr"
+      "name": "dbr",
+      "w1": 0.475,
+      "w2": 0.525
     }
   },
   "test_protocol": {},
   "data_analysis_protocol": {},
-  "git_hash": "74cf1ee2bb3e37e7a4d6b01c6e3cadbcd8c0fc77"
+  "git_hash": "4d9f38cd88c6377c201cf6f2bcddcabc39f422cf"
 }
