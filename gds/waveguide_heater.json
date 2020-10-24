@@ -1,8 +1,8 @@
 {
-  "json_version": 6,
+  "json_version": 7,
   "cells": {
     "waveguide_heater": {
-      "class": "waveguide_heater",
+      "function_name": "waveguide_heater",
       "heater_spacing": 1.2,
       "heater_width": 0.5,
       "layer_trench": [
@@ -34,11 +34,10 @@
           "x_start_offset": 0
         }
       ],
-      "waveguide_factory": "waveguide",
       "width": 0.5
     }
   },
   "test_protocol": {},
   "data_analysis_protocol": {},
-  "git_hash": "5826788fc89fd92d70d772195b1baf71adbd3601"
+  "git_hash": "ffb8bdca9e5b05d8cc0fd200258693f029ac1478"
 }

@@ -1,0 +1,21 @@
+{
+  "json_version": 7,
+  "cells": {
+    "via": {
+      "clearance": 1.0,
+      "function_name": "via",
+      "height": 0.7,
+      "layer": [
+        40,
+        0
+      ],
+      "module": "pp.components.electrical.tlm",
+      "name": "via",
+      "period": 2.0,
+      "width": 0.7
+    }
+  },
+  "test_protocol": {},
+  "data_analysis_protocol": {},
+  "git_hash": "728ed39dd5940d3197ccba84c987872f73aada96"
+}

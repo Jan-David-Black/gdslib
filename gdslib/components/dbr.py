@@ -1,15 +1,20 @@
 """ Bragg simulator using transfer matrix method (TMM) approach
 adapted from https://github.com/SiEPIC-Kits/SiEPIC_Photonics_Package
 """
-
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.io as sio
+
 
 # set the wavelength span for the simulation
 wavelength_start = 1500e-9
 wavelength_stop = 1600e-9
 resolution = 0.1
+wavelengths = np.linspace(
+    wavelength_start,
+    wavelength_stop,
+    round((wavelength_stop - wavelength_start) * 1e9 / resolution),
+)
 
 # Grating waveguide compact model (cavity)
 # these are polynomial fit constants from a waveguide width of 500 nm
@@ -25,11 +30,11 @@ n3_c = -0.046366956781710
 
 # grating parameters
 period = 317e-9
-n_delta = 0.0  # effective index perturbation
+dn = 0.0  # effective index perturbation
 lambda_Bragg = 1550e-9
 dw = 20e-9
 kappa = -1.53519e19 * dw ** 2 + 2.2751e12 * dw
-n_delta = kappa * lambda_Bragg / 2
+dn = kappa * lambda_Bragg / 2
 n_periods = 200  # number of periods (left of cavity)
 
 # Cavity Parameters
@@ -40,8 +45,11 @@ L = period / 2  # length of cavity
 
 def tmatrix_waveguide(wavelength, neff, length):
     """waveguide
+
     Args:
-        length (m):
+        wavelength (same units as length)
+        neff: effective index
+        length (same units as wavelength)
     """
     beta = 2 * np.pi * neff / wavelength - 1j * alpha / 2
     v = [np.exp(1j * beta * length), np.exp(-1j * beta * length)]
@@ -59,7 +67,7 @@ def tmatrix_boundary(neff1, neff2):
 
 def tmatrix_dbr(wavelength, n1, n2, period, n_periods=n_periods):
     """ DBR Tmatrix """
-    length = period/2
+    length = period / 2
     T_hw1 = tmatrix_waveguide(wavelength, n1, length)
     T_is12 = tmatrix_boundary(n1, n2)
     T_hw2 = tmatrix_waveguide(wavelength, n2, length)
@@ -71,18 +79,12 @@ def tmatrix_dbr(wavelength, n1, n2, period, n_periods=n_periods):
 
 
 def tmatrix_dbr_cavity(
-    wavelength,
-    n1,
-    n2,
-    period,
-    length=0.01,
-    n_periods_left=600,
-    n_periods_right=600,
+    wavelength, n1, n2, period, length=0.01, n_periods_left=600, n_periods_right=600,
 ):
     """ 2 DBR with a waveguide cavity of length in the middle"""
-    T_hw1 = tmatrix_waveguide(wavelength, n1, period/2)
+    T_hw1 = tmatrix_waveguide(wavelength, n1, period / 2)
     T_is12 = tmatrix_boundary(n1, n2)
-    T_hw2 = tmatrix_waveguide(wavelength, n2, period/2)
+    T_hw2 = tmatrix_waveguide(wavelength, n2, period / 2)
     T_is21 = tmatrix_boundary(n2, n1)
 
     Tp1 = np.matmul(T_hw1, T_is12)
@@ -122,8 +124,27 @@ def smatrix(tmatrix):
     return np.array([[s11, s12], [s21, s22]])
 
 
-def plot_tmatrix_dbr(n_delta, period, n_periods=600, title="DBR TMM spectrum"):
-    length = period / 2
+def dbr_r(wavelengths, dn, period=period, tmax_dB=0):
+    """ DBR reflection """
+    wavelengths = wavelengths
+    neff0 = n1_wg + n2_wg * (wavelengths * 1e6) + n3_wg * (wavelengths * 1e6) ** 2
+    n1 = neff0 - dn / 2
+    n2 = neff0 + dn / 2
+
+    R = []
+    T = []
+    for wavelength, n1i, n2i in zip(wavelengths, n1, n2):
+        m = tmatrix_dbr(
+            wavelength=wavelength, n1=n1i, n2=n2i, period=period, n_periods=n_periods
+        )
+        [t, r] = tmatrix_t_r(m)
+        R.append(r)
+        T.append(t)
+
+    return tmax_dB + 10 * np.log10(R)
+
+
+def plot_tmatrix_dbr(dn=dn, period=period, n_periods=600, title="DBR TMM spectrum"):
     wavelengths = np.linspace(
         wavelength_start,
         wavelength_stop,
@@ -131,14 +152,14 @@ def plot_tmatrix_dbr(n_delta, period, n_periods=600, title="DBR TMM spectrum"):
     )
     neff0 = n1_wg + n2_wg * (wavelengths * 1e6) + n3_wg * (wavelengths * 1e6) ** 2
 
-    n1 = neff0 - n_delta / 2
-    n2 = neff0 + n_delta / 2
+    n1 = neff0 - dn / 2
+    n2 = neff0 + dn / 2
 
     R = []
     T = []
     for wavelength, n1i, n2i in zip(wavelengths, n1, n2):
         m = tmatrix_dbr(
-            wavelength=wavelength, n1=n1i, n2=n2i, length=length, n_periods=n_periods
+            wavelength=wavelength, n1=n1i, n2=n2i, period=period, n_periods=n_periods
         )
         [t, r] = tmatrix_t_r(m)
         R.append(r)
@@ -160,8 +181,7 @@ def plot_tmatrix_dbr(n_delta, period, n_periods=600, title="DBR TMM spectrum"):
     return f, ax
 
 
-
-def plot_smatrix_dbr_cavity(n_delta=n_delta, title="DBR cavity", length=20e-6, n_periods=600):
+def plot_smatrix_dbr_cavity(dn=dn, title="DBR cavity", length=20e-6, n_periods=600):
     wavelengths = np.linspace(
         wavelength_start,
         wavelength_stop,
@@ -169,8 +189,8 @@ def plot_smatrix_dbr_cavity(n_delta=n_delta, title="DBR cavity", length=20e-6, n
     )
     neff0 = n1_wg + n2_wg * (wavelengths * 1e6) + n3_wg * (wavelengths * 1e6) ** 2
 
-    n1 = neff0 - n_delta / 2
-    n2 = neff0 + n_delta / 2
+    n1 = neff0 - dn / 2
+    n2 = neff0 + dn / 2
 
     R = []
     T = []
@@ -195,4 +215,9 @@ def plot_smatrix_dbr_cavity(n_delta=n_delta, title="DBR cavity", length=20e-6, n
 
 
 if __name__ == "__main__":
-    plot_smatrix_dbr_cavity()
+    # plot_smatrix_dbr_cavity()
+    # plot_tmatrix_dbr(dn=0.15, period=period)
+
+    r = dbr_r(wavelengths=wavelengths, dn=0.05, tmax_dB=-5)
+    plt.plot(wavelengths, r)
+    plt.show()

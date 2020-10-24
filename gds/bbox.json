@@ -1,0 +1,27 @@
+{
+  "json_version": 7,
+  "cells": {
+    "bbox": {
+      "bbox": [
+        [
+          -1,
+          -1
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "function_name": "bbox",
+      "layer": [
+        1,
+        0
+      ],
+      "module": "pp.components.bbox",
+      "name": "bbox"
+    }
+  },
+  "test_protocol": {},
+  "data_analysis_protocol": {},
+  "git_hash": "361e72e7329a9deb7c42c747096b553657d760ae"
+}

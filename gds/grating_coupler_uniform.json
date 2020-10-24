@@ -1,9 +1,9 @@
 {
-  "json_version": 6,
+  "json_version": 7,
   "cells": {
     "grating_coupler_uniform": {
-      "class": "grating_coupler_uniform",
       "fill_factor": 0.5,
+      "function_name": "grating_coupler_uniform",
       "layer": [
         1,
         0
@@ -16,13 +16,15 @@
       "module": "pp.components.grating_coupler.uniform",
       "name": "grating_coupler_uniform",
       "num_teeth": 20,
-      "partial_etch": "False",
+      "partial_etch": false,
       "period": 0.75,
+      "polarization": "te",
+      "wavelength": 1500,
       "width": 0.5,
       "width_grating": 11.0
     }
   },
   "test_protocol": {},
   "data_analysis_protocol": {},
-  "git_hash": "5826788fc89fd92d70d772195b1baf71adbd3601"
+  "git_hash": "97accc9248421176254aa446407bc0f6581ba45f"
 }

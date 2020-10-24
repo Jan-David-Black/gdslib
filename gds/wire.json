@@ -1,0 +1,19 @@
+{
+  "json_version": 7,
+  "cells": {
+    "wire": {
+      "function_name": "wire",
+      "layer": [
+        49,
+        0
+      ],
+      "length": 50,
+      "module": "pp.components.electrical.wire",
+      "name": "wire",
+      "width": 10.0
+    }
+  },
+  "test_protocol": {},
+  "data_analysis_protocol": {},
+  "git_hash": "728ed39dd5940d3197ccba84c987872f73aada96"
+}

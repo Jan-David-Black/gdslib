@@ -2,9 +2,10 @@
 adapted from https://github.com/smartalecH/BYUqot/blob/master/ANN/BG/simBG.py
 """
 import time
+
 import numpy as np
-from numpy import linalg as LA
 from matplotlib import pyplot as plt
+from numpy import linalg as LA
 from scipy import optimize as op
 
 
@@ -33,9 +34,14 @@ dneff_width = (
 
 # Find Bragg wavelength using lambda_Bragg = Period * 2neff(lambda_bragg);
 # Assume neff is for the average waveguide width.
-f = lambda lambdaIn: lambdaIn - Period * 2 * (
-    neff_wavelength(lambdaIn) + (dneff_width(width2) + dneff_width(width1)) / 2
-)
+
+
+def f(wavelength):
+    return wavelength - Period * 2 * (
+        neff_wavelength(wavelength) + (dneff_width(width2) + dneff_width(width1)) / 2
+    )
+
+
 wavelength0 = op.fsolve(f, 1550e-9)
 wavelengths = wavelength0 + np.linspace(-span / 2, span / 2, Npoints)
 n1 = neff_wavelength(wavelengths) + dneff_width(width1)  # low index
@@ -59,10 +65,10 @@ def TMM_Grating_RT(wavelength, Period, NG, n1, n2, loss):
 
 def TMM_Grating_Matrix(wavelength, Period, NG, n1, n2, loss):
     # Calculate the total transfer matrix of the gratings
-    l = Period / 2
-    T_hw1 = TMM_HomoWG_Matrix(wavelength, l, n1, loss)
+    length = Period / 2
+    T_hw1 = TMM_HomoWG_Matrix(wavelength, length, n1, loss)
     T_is12 = TMM_IndexStep_Matrix(n1, n2)
-    T_hw2 = TMM_HomoWG_Matrix(wavelength, l, n2, loss)
+    T_hw2 = TMM_HomoWG_Matrix(wavelength, length, n2, loss)
     T_is21 = TMM_IndexStep_Matrix(n2, n1)
     q = wavelength.shape[0]
     Tp = np.zeros((2, 2, q), dtype="Complex128")
@@ -79,13 +85,13 @@ def TMM_Grating_Matrix(wavelength, Period, NG, n1, n2, loss):
     return T
 
 
-def TMM_HomoWG_Matrix(wavelength, l, neff, loss):
+def TMM_HomoWG_Matrix(wavelength, length, neff, loss):
     # Calculate the transfer matrix of a homogeneous waveguide.
     beta = 2 * np.pi * neff / wavelength - 1j * loss / 2
     # Complex propagation constant
     T_hw = np.zeros((2, 2, neff.shape[0]), dtype="Complex128")
-    T_hw[0, 0, :] = np.exp(1j * beta * l)
-    T_hw[1, 1, :] = np.exp(-1j * beta * l)
+    T_hw[0, 0, :] = np.exp(1j * beta * length)
+    T_hw[1, 1, :] = np.exp(-1j * beta * length)
     return T_hw
 
 
@@ -102,12 +108,8 @@ def TMM_IndexStep_Matrix(n1, n2):
 
 
 if __name__ == "__main__":
-    T_1 = time.clock()
     R, T, S = TMM_Grating_RT(wavelengths, Period, NG, n1, n2, loss)
     R1 = abs(S[1, 1, :]) ** 2
-    T_2 = time.clock()
-
-    print(T_2 - T_1)
 
     plt.figure()
     plt.plot(wavelengths * 1e6, R, linewidth=2.0)
