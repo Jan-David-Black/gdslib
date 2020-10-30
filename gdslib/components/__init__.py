@@ -16,20 +16,13 @@ component_factory = dict(
     coupler=coupler,
     mmi1x2=mmi1x2,
     mmi2x2=mmi2x2,
-    mzi=mzi,
-    ring_double=ring_double,
     waveguide=waveguide,
 )
 
+circuit_factory = dict(mzi=mzi, ring_double=ring_double)
 
-_elements = [
-    "bend_circular",
-    "coupler",
-    "coupler_ring",
-    "mmi1x2",
-    "mmi2x2",
-    "waveguide",
-]
-_circuits = ["mzi", "ring_double"]
 
-__all__ = _elements + _circuits
+components = list(component_factory.keys())
+circuits = list(circuit_factory.keys())
+
+__all__ = components + circuits

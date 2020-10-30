@@ -5,20 +5,6 @@ from simphony.simulation import SweepSimulation
 from simphony.tools import freq2wl
 
 
-def get_transmission(
-    circuit, iport="input", oport="output", start=1500e-9, stop=1600e-9, num=2000
-):
-
-    circuit = pp.call_if_func(circuit)
-
-    simulation = SweepSimulation(circuit, start, stop, num)
-    result = simulation.simulate()
-
-    f, s = result.data(iport, oport)
-    w = freq2wl(f) * 1e9
-    return dict(wavelength_nm=w, s=s)
-
-
 def plot_circuit(
     circuit,
     iport="input",
@@ -29,10 +15,16 @@ def plot_circuit(
     logscale=True,
     **kwargs
 ):
-    """ Plot Sparameter circuit transmission over wavelength
+    """Plot Sparameter circuit transmission over wavelength
 
     Args:
+        circuit:
+        iport: input port name
+        oport: output port name
+        start: wavelength (m)
+        stop: wavelength (m)
         num: number of sampled points
+        logscale: plot in dB scale
     """
     circuit = pp.call_if_func(circuit)
 
@@ -57,8 +49,8 @@ def plot_circuit(
 
 
 if __name__ == "__main__":
-    from mzi import mzi
+    import gdslib
 
-    c = mzi()
-    print(c.name)
-    plot_circuit(mzi, logscale=False)
+    c = gdslib.c.mzi()
+    plot_circuit(c, logscale=False)
+    plt.show()
