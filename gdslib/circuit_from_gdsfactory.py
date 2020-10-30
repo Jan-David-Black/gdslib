@@ -1,7 +1,7 @@
 from simphony.library import siepic
 from simphony.netlist import Subcircuit
 
-from gdslib.components import component_type2factory
+from gdslib.components import component_factory
 
 
 def circuit_from_gdsfactory(component):
@@ -19,7 +19,7 @@ def circuit_from_gdsfactory(component):
     for i in n.instances.keys():
         component_type = n.instances[i]["component"]
         component_settings = n.instances[i]["settings"]
-        model = component_type2factory[component_type](**component_settings)
+        model = component_factory[component_type](**component_settings)
         model_name_tuple.append((model, i))
 
     circuit.add(model_name_tuple)

@@ -10,7 +10,7 @@ from .ring_double import ring_double
 from .waveguide import waveguide
 
 
-component_type2factory = dict(
+component_factory = dict(
     bend_circular=bend_circular,
     coupler_ring=coupler_ring,
     coupler=coupler,
