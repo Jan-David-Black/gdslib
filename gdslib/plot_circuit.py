@@ -7,20 +7,22 @@ from simphony.tools import freq2wl
 
 def plot_circuit(
     circuit,
-    iport="input",
-    oport="output",
+    pin_in="input",
+    pin_out="output",
     start=1500e-9,
     stop=1600e-9,
     num=2000,
     logscale=True,
+    fig=None,
+    pins_out=None,
     **kwargs
 ):
     """Plot Sparameter circuit transmission over wavelength
 
     Args:
         circuit:
-        iport: input port name
-        oport: output port name
+        pin_in: input port name
+        pin_out: output port name
         start: wavelength (m)
         stop: wavelength (m)
         num: number of sampled points
@@ -31,26 +33,39 @@ def plot_circuit(
     simulation = SweepSimulation(circuit, start, stop, num)
     result = simulation.simulate()
 
-    f, s = result.data(iport, oport)
-    w = freq2wl(f) * 1e9
+    pins_out = pins_out or [pin_out]
 
-    if logscale:
-        s = 20 * np.log10(abs(s))
-        ylabel = "|S| (dB)"
-    else:
-        ylabel = "|S|"
+    fig = fig or plt.subplot()
+    ax = fig.axes
 
-    f, ax = plt.subplots()
-    ax.plot(w, s)
-    plt.xlabel("wavelength (nm)")
-    plt.ylabel(ylabel)
-    plt.title(circuit.name)
+    for pin_out in pins_out:
+        f, s = result.data(pin_in, pin_out)
+        w = freq2wl(f) * 1e9
+
+        if logscale:
+            s = 20 * np.log10(abs(s))
+            ylabel = "|S| (dB)"
+        else:
+            ylabel = "|S|"
+
+        ax.plot(w, s, label=pin_out)
+    ax.set_xlabel("wavelength (nm)")
+    ax.set_ylabel(ylabel)
+    ax.set_title(circuit.name)
+    ax.legend()
     return ax
+
+
+def demo_single_port():
+    c = gdslib.c.mzi()
+    plot_circuit(c, logscale=False)
+    plt.show()
 
 
 if __name__ == "__main__":
     import gdslib
 
-    c = gdslib.c.mzi()
-    plot_circuit(c, logscale=False)
+    c = gdslib.c.ring_double()
+    pins_out = ["cdrop", "drop", "output"]
+    plot_circuit(c, pins_out=pins_out)
     plt.show()

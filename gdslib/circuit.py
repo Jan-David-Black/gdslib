@@ -23,7 +23,11 @@ def get_transmission(
     return dict(wavelength_nm=w, s=s)
 
 
-def circuit(component: Callable, component_factory=component_factory) -> Subcircuit:
+def model_factory(model_name, **settings):
+    return component_factory[model_name](**settings)
+
+
+def circuit(component: Callable, model_factory=model_factory) -> Subcircuit:
     """imports netlist from gdsfactory component and returns a Simphony circuit
 
     Args:
@@ -39,7 +43,7 @@ def circuit(component: Callable, component_factory=component_factory) -> Subcirc
     for i in n.instances.keys():
         component_type = n.instances[i]["component"]
         component_settings = n.instances[i]["settings"]
-        model = component_factory[component_type](**component_settings)
+        model = model_factory(component_type, **component_settings)
         model_name_tuple.append((model, i))
 
     circuit.add(model_name_tuple)
