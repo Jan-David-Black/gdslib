@@ -44,9 +44,7 @@ def ring_single(
     circuit = Subcircuit("ring_double")
     circuit.add([(coupler, "cb"), (waveguide, "wt")])
 
-    circuit.connect_many(
-        [("cb", "N0", "wt", "W0"), ("wt", "E0", "cb", "N1"),]
-    )
+    circuit.connect_many([("cb", "N0", "wt", "W0"), ("wt", "E0", "cb", "N1")])
     circuit.elements["cb"].pins["W0"] = "input"
     circuit.elements["cb"].pins["E0"] = "output"
     return circuit

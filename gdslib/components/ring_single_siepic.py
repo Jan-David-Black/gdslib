@@ -1,7 +1,6 @@
 import numpy as np
 from simphony.library import siepic
 from simphony.netlist import Subcircuit
-from simphony.library import siepic
 
 from gdslib import plot_circuit
 from gdslib.autoname import autoname

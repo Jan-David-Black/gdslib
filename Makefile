@@ -2,7 +2,7 @@ install:
 	bash install.sh
 
 lint:
-	flake8
+	flake8 gdslib
 
 test:
 	pytest
