@@ -1,7 +1,6 @@
-
-
-import pathlib
 import json
+import pathlib
+
 import lumapi
 
 
@@ -15,5 +14,3 @@ d = {k: list(abs(s.getv(k).flatten())) for k in ["S11", "S12", "S21", "S22", "f"
 
 with open(dirpath / "GC_sparameters.json", "w") as f:
     f.write(json.dumps(d))
-
-    

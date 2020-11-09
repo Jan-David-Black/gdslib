@@ -3,9 +3,12 @@
 
 """
 import functools
-from inspect import signature
 import hashlib
-from typing import Any, Callable
+from inspect import signature
+from typing import Any
+from typing import Callable
+
+from gdslib.freq2wl import freq2wl
 
 MAX_NAME_LENGTH = 100
 
@@ -84,6 +87,9 @@ def autoname(component_function: Callable) -> Callable:
         component.name = name
         component.module = component_function.__module__
         component.function_name = component_function.__name__
+
+        if hasattr(component, "freq_range"):
+            component.wl_range = freq2wl(component.freq_range)
 
         if len(name) > MAX_NAME_LENGTH:
             component.name_long = name

@@ -6,8 +6,6 @@ from simphony.tools import freq2wl
 from simphony.tools import interpolate
 from simphony.tools import wl2freq
 
-from gdslib.config import CONFIG
-
 
 def model_from_sparameters(wavelengths, sparameters, pins=("E0", "W0")):
     """returns simphony model from Sparameters"""
@@ -34,6 +32,7 @@ if __name__ == "__main__":
     import matplotlib.pyplot as plt
 
     c = model_from_sparameters(pp.c.mmi1x2())
+
     # wav = np.linspace(1520, 1570, 1024) * 1e-9
     # f = speed_of_light / wav
     # s = c.s_parameters(freq=f)

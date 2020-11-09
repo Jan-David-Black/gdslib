@@ -34,9 +34,21 @@ def waveguide(
 
 
 if __name__ == "__main__":
+    import numpy as np
     import matplotlib.pyplot as plt
 
     c = waveguide()
-    print(c)
-    plot_model(c)
-    plt.show()
+
+    # wav = np.linspace(1520, 1570, 3) * 1e-9
+    # f = 3e8 / wav
+    # s = c.s_parameters(freq=f)
+    # _, rows, cols = np.shape(s)
+    # sdict = {
+    #     f"S{i+1}{j+1}": np.abs(s[:, i, j]).tolist()
+    #     for i in range(rows)
+    #     for j in range(cols)
+    # }
+    # print(sdict)
+
+    # plot_model(c, logscale=False)
+    # plt.show()

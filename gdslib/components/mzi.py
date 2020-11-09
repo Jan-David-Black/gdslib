@@ -9,11 +9,11 @@ from gdslib.components.waveguide import waveguide
 
 @autoname
 def mzi(L0=1, DL=100, L2=10, y_model_factory=mmi1x2, wg=waveguide):
-    """ Mzi circuit model
+    """Mzi circuit model
 
     Args:
         L0 (um): vertical length for both and top arms
-        DL (um): bottom arm extra length, delta_length = 2*DL
+        DL (um): bottom arm extra length
         L2 (um): L_top horizontal length
         y_model_factory: model for coupler and combiner
         wg: waveguide model
@@ -30,7 +30,7 @@ def mzi(L0=1, DL=100, L2=10, y_model_factory=mmi1x2, wg=waveguide):
                |      |
                L0     L0r
                |      |
-               DL     DL
+               DL/2   DL/2
                |      |
                |__L2__|
 
@@ -55,7 +55,7 @@ def mzi(L0=1, DL=100, L2=10, y_model_factory=mmi1x2, wg=waveguide):
 
     """
     y = y_model_factory() if callable(y_model_factory) else y_model_factory
-    wg_long = wg(length=2 * L0 + 2 * DL + L2)
+    wg_long = wg(length=2 * L0 + DL + L2)
     wg_short = wg(length=2 * L0 + L2)
 
     # Create the circuit, add all individual instances

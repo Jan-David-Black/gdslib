@@ -9,16 +9,15 @@ from gdslib.components import component_factory
 
 
 def get_transmission(
-    circuit, iport="input", oport="output", start=1500e-9, stop=1600e-9, num=2000
+    circuit, pin_in="input", pin_out="output", start=1500e-9, stop=1600e-9, num=2000
 ):
-    """ returns transmission for a circuit
-    """
+    """returns transmission for a circuit"""
     circuit = pp.call_if_func(circuit)
 
     simulation = SweepSimulation(circuit, start, stop, num)
     result = simulation.simulate()
 
-    f, s = result.data(iport, oport)
+    f, s = result.data(pin_in, pin_out)
     w = freq2wl(f) * 1e9
     return dict(wavelength_nm=w, s=s)
 
@@ -37,13 +36,22 @@ def circuit(component: Callable, model_factory=model_factory) -> Subcircuit:
     n = component.get_netlist()
 
     circuit = Subcircuit(component.name)
-
+    model_names = []
     model_name_tuple = []
 
     for i in n.instances.keys():
         component_type = n.instances[i]["component"]
+        if component_type is None:
+            continue
+
+        if component_type not in component_factory:
+            print(
+                f"skipping component `{component_type}` as it is not in {list(component_factory.keys())}"
+            )
+            continue
         component_settings = n.instances[i]["settings"]
         model = model_factory(component_type, **component_settings)
+        model_names.append(i)
         model_name_tuple.append((model, i))
 
     circuit.add(model_name_tuple)
@@ -51,7 +59,8 @@ def circuit(component: Callable, model_factory=model_factory) -> Subcircuit:
     for k, v in n.connections.items():
         c1, p1 = k.split(",")
         c2, p2 = v.split(",")
-        circuit.connect(c1, p1, c2, p2)
+        if c1 in model_names and c2 in model_names:
+            circuit.connect(c1, p1, c2, p2)
 
     return circuit
 
@@ -79,7 +88,7 @@ def demo_plot_transmission():
     from gdslib import plot_circuit
     import pp
 
-    c = pp.c.mzi(DL=50)
+    c = pp.c.mzi(DL=100)
     m = circuit(c)
     m.elements["mmi1x2_12_0"].pins["W0"] = "input"
     m.elements["mmi1x2_98_0"].pins["W0"] = "output"
@@ -89,4 +98,5 @@ def demo_plot_transmission():
 
 
 if __name__ == "__main__":
-    demo_print_transmission()
+    # demo_print_transmission()
+    demo_plot_transmission()

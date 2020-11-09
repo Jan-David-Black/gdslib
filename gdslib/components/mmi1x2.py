@@ -6,7 +6,7 @@ from gdslib.model_from_gdsfactory import model_from_gdsfactory
 
 @autoname
 def mmi1x2(c=pp.c.mmi1x2, height_nm=220, **kwargs):
-    """ mmi1x2 Sparameter model
+    """mmi1x2 Sparameter model
 
     .. code::
             ____
@@ -29,13 +29,16 @@ def mmi1x2(c=pp.c.mmi1x2, height_nm=220, **kwargs):
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
     import numpy as np
+    import gdslib as gl
 
     wav = np.linspace(1520, 1570, 1024) * 1e-9
     f = 3e8 / wav
     c = mmi1x2()
-    s = c.s_parameters(freq=f)
 
-    plt.plot(wav, np.abs(s[:, 1] ** 2))
-    print(c.pins)
-    print(c.settings)
-    # plt.show()
+    # s = c.s_parameters(freq=f)
+    # plt.plot(wav, np.abs(s[:, 1] ** 2))
+    # print(c.pins)
+    # print(c.settings)
+
+    gl.plot_model(c)
+    plt.show()

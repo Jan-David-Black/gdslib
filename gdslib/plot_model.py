@@ -10,16 +10,8 @@ def get_sparameters(c, wavelengths=None):
     return c.s_parameters(freq=f)
 
 
-def magnitude_square_per_cent(x):
-    return 100 * np.abs(x ** 2)
-
-
-def logscale(x):
-    return 20 * np.log10(np.abs(x))
-
-
 def plot_model(
-    model, wavelengths=None, pins=None, label=None, function=magnitude_square_per_cent
+    model, pin_in: str = "W0", pins=None, wavelengths=None, logscale=True, fig=None,
 ):
     """plots simphony model Sparameters
 
@@ -27,8 +19,7 @@ def plot_model(
         model: simphony model
         wavelengths (m):
         pins: set of pins
-        label: Optional labell
-        function: for plotting
+        logscale:
 
     .. plot::
         :include-source:
@@ -39,40 +30,59 @@ def plot_model(
         c = gc.mmi1x2()
         gl.plot_model(c)
     """
-    c = model() if callable(model) else model
+    m = model() if callable(model) else model
 
     if wavelengths is None:
-        if hasattr(c, "wavelengths"):
-            wavelengths = c.wavelengths
+        if hasattr(m, "wavelengths"):
+            wavelengths = m.wavelengths
         else:
             wavelengths = np.linspace(1520e-9, 1580e-9, 2000)
     f = speed_of_light / wavelengths
-    s = c.s_parameters(freq=f)
+    s = m.s_parameters(freq=f)
 
-    pins = pins or c.pins
-    assert isinstance(
-        pins, (tuple, set, list)
-    ), f"pins {pins} need to be a tuple, set or list"
+    pins = pins or m.pins
+    if not isinstance(pins, (tuple, set, list)):
+        raise ValueError(f"pins {pins} need to be a tuple, set or list")
     for pin in pins:
-        assert pin in c.pins, f"{pin} not in {c.pins}"
+        if pin not in m.pins:
+            raise ValueError(f"{pin} not in {m.pins}")
 
-    for i, pin in enumerate(c.pins):
+    if pin_in not in m.pins:
+        raise ValueError(f"pin_in = `{pin_in}` not in {m.pins}")
+
+    pin_in_index = m.pins.index(pin_in)
+
+    fig = fig or plt.subplot()
+    ax = fig.axes
+
+    for i, pin in enumerate(m.pins):
         if pin in pins:
-            plt.plot(wavelengths * 1e9, function(s[:, i, 0]), label=label or pin)
-    plt.xlabel("wavelength (nm)")
-    if function == magnitude_square_per_cent:
-        plt.ylabel("S (%)")
-    elif function == logscale:
-        plt.ylabel("S (dB)")
+            y = np.abs(s[:, i, pin_in_index]) ** 2
+            if logscale:
+                y = 10 * np.log10(y)
+
+            ax.plot(wavelengths * 1e9, y, label=pin)
+    ax.set_xlabel("wavelength (nm)")
+    if logscale:
+        ax.set_ylabel("S (dB)")
+    else:
+        ax.set_ylabel("S (%)")
+    plt.legend()
+    return ax
 
 
 if __name__ == "__main__":
     from simphony.library import siepic
+    import gdslib as gl
 
-    wavelengths = np.linspace(1520, 1570, 1024) * 1e-9
+    w = np.linspace(1520, 1570, 1024) * 1e-9
     coupler = siepic.ebeam_dc_halfring_straight(
         gap=200e-9, radius=10e-6, width=500e-9, thickness=220e-9, couple_length=0.0
     )
-    plot_model(coupler, wavelengths)
-    plt.legend()
-    plt.show()
+    # m = gl.c.waveguide()
+    # plot_model(m)
+
+    plot_model(coupler, pin_in="n1")
+
+    # plt.legend()
+    # plt.show()
