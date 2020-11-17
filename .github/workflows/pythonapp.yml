@@ -27,7 +27,7 @@ jobs:
         make install
 
     - name: Test with tox
-      run: tox
+      run: tox -e py
     - name: Lint with flake8
       run: |
         flake8

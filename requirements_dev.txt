@@ -7,3 +7,5 @@ matplotlib
 pytest
 pytest-regressions
 pre-commit
+flake8
+tox
