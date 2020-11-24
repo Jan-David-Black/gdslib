@@ -11,10 +11,10 @@
       "gap": 0.234,
       "module": "pp.components.mzi2x2",
       "name": "mzi2x2",
-      "with_elec_connections": "False"
+      "with_elec_connections": false
     }
   },
   "test_protocol": {},
   "data_analysis_protocol": {},
-  "git_hash": "6164955b3b35b6be02527c5c1baffb22b5da97fe"
+  "git_hash": "097f3a6a18e6e56b4b42044a681623d0ea9702a6"
 }

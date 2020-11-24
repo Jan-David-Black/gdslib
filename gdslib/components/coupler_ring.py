@@ -14,7 +14,7 @@ def coupler_ring(
     sw_angle: float = 90.0,
     **kwargs
 ):
-    """coupler for half a ring
+    r"""coupler for half a ring
 
     Args:
         bend_radius: 5

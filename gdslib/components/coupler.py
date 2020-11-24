@@ -15,15 +15,16 @@ def coupler(
     V: float = 0.0,
     **kwargs,
 ):
-    """Returns simphony Model for Directional coupler
+    r"""Returns simphony Model for Directional coupler
     This is what most people think of when they think directional coupler. Ports are numbered as::
 
     .. code::
-                            H
-               2---\      /---4
-                    ------    | V
-                    ------
-               1---/      \---3
+                           <--H-->
+            W1 2---\      /-------- 4 E1
+                    ------        |
+                                  | V
+                    ------        |
+            W0 1---/      \-------- 3 E0
 
     Args:
         width: Width of the waveguide in um (Valid for 0.4-0.6)

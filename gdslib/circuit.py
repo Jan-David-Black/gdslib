@@ -22,11 +22,7 @@ def get_transmission(
     return dict(wavelength_nm=w, s=s)
 
 
-def model_factory(model_name, **settings):
-    return component_factory[model_name](**settings)
-
-
-def circuit(component: Callable, model_factory=model_factory) -> Subcircuit:
+def circuit(component: Callable, model_factory=component_factory) -> Subcircuit:
     """imports netlist from gdsfactory component and returns a Simphony circuit
 
     Args:
@@ -44,13 +40,17 @@ def circuit(component: Callable, model_factory=model_factory) -> Subcircuit:
         if component_type is None:
             continue
 
-        if component_type not in component_factory:
+        if component_type not in model_factory:
             print(
-                f"skipping component `{component_type}` as it is not in {list(component_factory.keys())}"
+                f"skipping component `{component_type}` as it is not in {list(model_factory.keys())}"
             )
             continue
         component_settings = n.instances[i]["settings"]
-        model = model_factory(component_type, **component_settings)
+        assert (
+            component_type in model_factory
+        ), f"component_type={component_type} not in {list(model_factory.keys())}"
+        model_function = model_factory[component_type]
+        model = model_function(**component_settings)
         model_names.append(i)
         model_name_tuple.append((model, i))
 

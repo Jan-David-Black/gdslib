@@ -15,7 +15,7 @@ def coupler_sipann(
     V: float = 2.0,
     **kwargs,
 ):
-    """Returns simphony Model for Directional coupler
+    r"""Returns simphony Model for Directional coupler
     This is what most people think of when they think directional coupler. Ports are numbered as::
 
     .. code::
