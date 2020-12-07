@@ -16,7 +16,7 @@ def test_elements(component_type, data_regression):
     s = c.s_parameters(freq=f)
     _, rows, cols = np.shape(s)
     sdict = {
-        f"S{i+1}{j+1}": np.abs(s[:, i, j]).tolist()
+        f"S{i+1}{j+1}": np.round(np.abs(s[:, i, j]), decimals=10).tolist()
         for i in range(rows)
         for j in range(cols)
     }

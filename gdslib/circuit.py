@@ -2,6 +2,7 @@ from typing import Callable
 from typing import Dict
 from typing import Union
 
+import numpy as np
 import pp
 from pp.component import Component
 from simphony.elements import Model
@@ -107,7 +108,9 @@ def demo_print_transmission():
     c.elements["mmi1x2_0_0"].pins["W0"] = "input"
     c.elements["mmi1x2_85_0"].pins["W0"] = "output"
     r = get_transmission(c, num=3)
-    print(dict(w=r["wavelength_nm"].tolist(), s=r["s"].tolist()))
+    s = np.round(r["s"], decimals=10)
+    s = s.tolist()
+    print(dict(w=r["wavelength_nm"].tolist(), s=s))
 
 
 def demo_plot_transmission():
@@ -126,4 +129,10 @@ def demo_plot_transmission():
 
 if __name__ == "__main__":
     # demo_print_transmission()
-    demo_plot_transmission()
+    # demo_plot_transmission()
+
+    component = pp.c.mzi(DL=100)
+    c = circuit(component)
+    c.elements["mmi1x2_0_0"].pins["W0"] = "input"
+    c.elements["mmi1x2_85_0"].pins["W0"] = "output"
+    r = get_transmission(c, num=3)
