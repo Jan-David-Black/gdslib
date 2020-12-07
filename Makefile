@@ -15,3 +15,9 @@ clean:
 	rm **/**.log
 	rm **/**.fsp
 	rm **/**.lms
+
+cov:
+	pytest --cov=gdslib
+
+mypy:
+	mypy . --ignore-missing-imports

@@ -1,6 +1,4 @@
-"""
-stores configuration variables
-
+""" stores configuration variables
 """
 
 __all__ = ["CONFIG"]
