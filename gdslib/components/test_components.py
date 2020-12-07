@@ -27,4 +27,5 @@ def test_elements(component_type, data_regression):
 def test_circuits(component_type, data_regression):
     c = circuit_factory[component_type]()
     r = get_transmission(c, num=3)
-    data_regression.check(dict(w=r["wavelength_nm"].tolist(), s=r["s"].tolist()))
+    s = np.round(r["s"], decimals=10).to_list()
+    data_regression.check(dict(w=r["wavelength_nm"].tolist(), s=s))
