@@ -32,4 +32,4 @@ __all__ = [
     "freq2wl",
     "wl2freq",
 ]
-__version__ = "0.1.3"
+__version__ = "0.1.4"
