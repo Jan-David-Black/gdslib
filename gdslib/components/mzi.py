@@ -1,38 +1,51 @@
+from typing import Callable
+from typing import Optional
+
 from simphony.library import siepic
 from simphony.netlist import Subcircuit
 
 from gdslib import plot_circuit
 from gdslib.autoname import autoname
 from gdslib.components.mmi1x2 import mmi1x2
-from gdslib.components.waveguide import waveguide
+from gdslib.components.waveguide import waveguide as waveguide_function
 
 
 @autoname
-def mzi(L0=1, DL=100, L2=10, y_model_factory=mmi1x2, wg=waveguide):
+def mzi(
+    delta_length: float = 10.0,
+    length_y: float = 4.0,
+    length_x: float = 0.1,
+    splitter: Callable = mmi1x2,
+    combiner: Optional[Callable] = None,
+    wg: Callable = waveguide_function,
+):
     """Mzi circuit model
 
     Args:
-        L0 (um): vertical length for both and top arms
-        DL (um): bottom arm extra length
-        L2 (um): L_top horizontal length
-        y_model_factory: model for coupler and combiner
-        wg: waveguide model
+        delta_length: bottom arm vertical extra length
+        length_y: vertical length for both and top arms
+        length_x: horizontal length
+        splitter: model function for combiner
+        combiner: model function for combiner
+        wg: waveguide model function
 
     Returns: mzi circuit model
 
     .. code::
 
-               __L2__
-               |      |
-               L0     L0r
-               |      |
-     splitter==|      |==recombiner
-               |      |
-               L0     L0r
-               |      |
-               DL/2   DL/2
-               |      |
-               |__L2__|
+
+                   __Lx__
+                  |      |
+                  Ly     Lyr
+                  |      |
+         coupler==|      |==combiner
+                  |      |
+                  Ly     Lyr
+                  |      |
+                 DL/2   DL/2
+                  |      |
+                  |__Lx__|
+
 
 
     .. plot::
@@ -40,7 +53,7 @@ def mzi(L0=1, DL=100, L2=10, y_model_factory=mmi1x2, wg=waveguide):
 
       import pp
 
-      c = pp.c.mzi(L0=0.1, DL=0, L2=10)
+      c = pp.c.mzi(delta_length=10)
       pp.plotgds(c)
 
 
@@ -54,16 +67,19 @@ def mzi(L0=1, DL=100, L2=10, y_model_factory=mmi1x2, wg=waveguide):
 
 
     """
-    y = y_model_factory() if callable(y_model_factory) else y_model_factory
-    wg_long = wg(length=2 * L0 + DL + L2)
-    wg_short = wg(length=2 * L0 + L2)
+    combiner = combiner or splitter
+    splitter = splitter() if callable(splitter) else splitter
+    combiner = combiner() if callable(combiner) else combiner
+
+    wg_long = wg(length=2 * length_y + delta_length + length_x)
+    wg_short = wg(length=2 * length_y + length_x)
 
     # Create the circuit, add all individual instances
     circuit = Subcircuit("mzi")
     circuit.add(
         [
-            (y, "splitter"),
-            (y, "recombiner"),
+            (splitter, "splitter"),
+            (combiner, "recombiner"),
             (wg_long, "wg_long"),
             (wg_short, "wg_short"),
         ]

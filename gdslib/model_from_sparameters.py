@@ -7,6 +7,12 @@ from simphony.tools import interpolate
 from simphony.tools import wl2freq
 
 
+def model_from_filepath(filepath, numports):
+    pins, f, s = pp.sp.read_sparameters(filepath=filepath, numports=numports,)
+    wavelengths = freq2wl(f)
+    return model_from_sparameters(wavelengths=wavelengths, sparameters=s, pins=pins)
+
+
 def model_from_sparameters(wavelengths, sparameters, pins=("E0", "W0")):
     """returns simphony model from Sparameters"""
 

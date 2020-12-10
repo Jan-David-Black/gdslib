@@ -8,6 +8,7 @@ from gdslib.circuit import get_transmission
 from gdslib.components import component_factory
 from gdslib.freq2wl import freq2wl
 from gdslib.model_from_gdsfactory import model_from_gdsfactory
+from gdslib.model_from_sparameters import model_from_filepath
 from gdslib.model_from_sparameters import model_from_sparameters
 from gdslib.plot_circuit import plot_circuit
 from gdslib.plot_circuit_montecarlo import plot_circuit_montecarlo
@@ -25,6 +26,7 @@ __all__ = [
     "component_factory",
     "model_from_gdsfactory",
     "model_from_sparameters",
+    "model_from_filepath",
     "plot_model",
     "get_transmission",
     "plot_circuit",

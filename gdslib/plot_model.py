@@ -13,10 +13,12 @@ def get_sparameters(c, wavelengths=None):
 def plot_model(
     model, pin_in: str = "W0", pins=None, wavelengths=None, logscale=True, fig=None,
 ):
-    """plots simphony model Sparameters
+    """Plot simphony Sparameters for a model
 
     Args:
         model: simphony model
+        pin_in: input pin name
+        pins: list of pins
         wavelengths (m):
         pins: set of pins
         logscale:
@@ -54,6 +56,8 @@ def plot_model(
 
     fig = fig or plt.subplot()
     ax = fig.axes
+
+    print(pin_in_index)
 
     for i, pin in enumerate(m.pins):
         if pin in pins:

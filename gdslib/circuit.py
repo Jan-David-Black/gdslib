@@ -71,7 +71,7 @@ def circuit(
                 f"skipping component `{component_type}` as it is not in {list(model_factory.keys())}"
             )
             continue
-        component_settings = n.instances[i]["settings"]
+        component_settings = n.instances[i]["settings"]["settings"]
         assert (
             component_type in model_factory
         ), f"component_type={component_type} not in {list(model_factory.keys())}"
@@ -94,19 +94,19 @@ def circuit(
 
 
 def test_circuit_transmission(data_regression):
-    component = pp.c.mzi(DL=100)
+    component = pp.c.mzi(delta_length=100)
     c = circuit(component)
     c.elements["mmi1x2_0_0"].pins["W0"] = "input"
-    c.elements["mmi1x2_85_0"].pins["W0"] = "output"
+    c.elements["mmi1x2_65_0"].pins["W0"] = "output"
     r = get_transmission(c, num=3)
     data_regression.check(dict(w=r["wavelength_nm"].tolist(), s=r["s"].tolist()))
 
 
 def demo_print_transmission():
-    component = pp.c.mzi(DL=100)
+    component = pp.c.mzi(delta_length=100)
     c = circuit(component)
     c.elements["mmi1x2_0_0"].pins["W0"] = "input"
-    c.elements["mmi1x2_85_0"].pins["W0"] = "output"
+    c.elements["mmi1x2_65_0"].pins["W0"] = "output"
     r = get_transmission(c, num=3)
     s = np.round(r["s"], decimals=10)
     s = s.tolist()
@@ -118,10 +118,10 @@ def demo_plot_transmission():
     from gdslib import plot_circuit
     import pp
 
-    c = pp.c.mzi(DL=100)
+    c = pp.c.mzi(delta_length=100)
     m = circuit(c)
     m.elements["mmi1x2_0_0"].pins["W0"] = "input"
-    m.elements["mmi1x2_85_0"].pins["W0"] = "output"
+    m.elements["mmi1x2_65_0"].pins["W0"] = "output"
 
     plot_circuit(m)
     plt.show()
@@ -131,8 +131,8 @@ if __name__ == "__main__":
     # demo_print_transmission()
     # demo_plot_transmission()
 
-    component = pp.c.mzi(DL=100)
+    component = pp.c.mzi(delta_length=100)
     c = circuit(component)
     c.elements["mmi1x2_0_0"].pins["W0"] = "input"
-    c.elements["mmi1x2_85_0"].pins["W0"] = "output"
+    c.elements["mmi1x2_65_0"].pins["W0"] = "output"
     r = get_transmission(c, num=3)
