@@ -14,7 +14,7 @@ def coupler_ring(
     sw_angle: float = 90.0,
     **kwargs
 ):
-    r"""coupler for half a ring
+    r"""Returns model for for half a ring coupler.
 
     Args:
         bend_radius: 5
@@ -72,10 +72,12 @@ def coupler_ring(
 
 
 if __name__ == "__main__":
+    import numpy as np
     import matplotlib.pyplot as plt
     from gdslib import plot_model
 
     c = coupler_ring()
     print(c)
-    plot_model(c)
+    wavelengths = np.linspace(1.5, 1.6) * 1e-6
+    plot_model(c, wavelengths=wavelengths)
     plt.show()

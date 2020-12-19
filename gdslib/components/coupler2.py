@@ -6,7 +6,7 @@ from gdslib.model_from_gdsfactory import model_from_gdsfactory
 
 @autoname
 def coupler2(c=pp.c.coupler, wg_width=0.5, length=20, gap=0.224):
-    """ coupler for half a ring based on Lumerical 3D FDTD simulations
+    r"""Coupler for half a ring based on Lumerical 3D FDTD simulations.
 
     Args:
         wg_width:0.5

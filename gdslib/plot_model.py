@@ -20,8 +20,8 @@ def plot_model(
         pin_in: input pin name
         pins: list of pins
         wavelengths (m):
-        pins: set of pins
         logscale:
+        fig: figure
 
     .. plot::
         :include-source:
@@ -57,15 +57,11 @@ def plot_model(
     fig = fig or plt.subplot()
     ax = fig.axes
 
-    print(pin_in_index)
-
-    for i, pin in enumerate(m.pins):
-        if pin in pins:
-            y = np.abs(s[:, i, pin_in_index]) ** 2
-            if logscale:
-                y = 10 * np.log10(y)
-
-            ax.plot(wavelengths * 1e9, y, label=pin)
+    for pin_out in pins:
+        pin_out_index = m.pins.index(pin_out)
+        y = np.abs(s[:, pin_out_index, pin_in_index]) ** 2
+        y = 10 * np.log10(y) if logscale else y
+        ax.plot(wavelengths * 1e9, y, label=pin_out)
     ax.set_xlabel("wavelength (nm)")
     if logscale:
         ax.set_ylabel("S (dB)")

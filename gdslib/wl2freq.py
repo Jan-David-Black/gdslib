@@ -3,6 +3,7 @@ from scipy.constants import c
 
 
 def wl2freq(wl):
+    """Converts wavelength to frequency."""
     return c / np.array(wl)
 
 

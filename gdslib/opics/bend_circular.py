@@ -4,6 +4,7 @@ from opics.components import compoundElement
 
 
 def bend_circular(**kwargs):
+    """Returns radial bend circular Opics model."""
     c = pp.c.bend_circular(**kwargs)
     filepath = pp.sp.get_sparameters_path(c)
     assert filepath.exists(), f"{filepath} does not exist"

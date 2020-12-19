@@ -4,14 +4,11 @@ from gdslib import wl2freq
 
 
 def get_sparameters(model, wavelengths=None):
-    """returns Sparameters for a model
+    """Returns wavelengths, Sparameters for a model.
 
     Args:
         model: model function of Model
         wavelengths: (m)
-
-    Returns:
-        wavelength and Sparameters
     """
     wavelengths = wavelengths or np.linspace(1520, 1570, 3) * 1e-9
     f = wl2freq(wavelengths)

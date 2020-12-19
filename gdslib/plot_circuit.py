@@ -26,6 +26,7 @@ def plot_circuit(
         stop: wavelength (m)
         num: number of sampled points
         logscale: plot in dB scale
+        fig: matplotlib figure
     """
     if not isinstance(pins_out, (set, list, tuple)):
         raise ValueError("pins out is not iterable")

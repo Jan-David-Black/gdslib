@@ -9,3 +9,5 @@ pytest-regressions
 pre-commit
 flake8
 tox
+doc8
+pydocstyle

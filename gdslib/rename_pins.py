@@ -1,6 +1,5 @@
 def rename_pins(circuit, pins):
-    """ {(element, pin): new_pin_name
-    FIXME! and add test
+    """FIXME! and add test
     """
     for k, new_pin_name in pins.items():
         element, pin = k

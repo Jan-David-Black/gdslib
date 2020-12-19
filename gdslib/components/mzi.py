@@ -38,7 +38,7 @@ def mzi(
                   |      |
                   Ly     Lyr
                   |      |
-         coupler==|      |==combiner
+         splitter=|      |==combiner
                   |      |
                   Ly     Lyr
                   |      |

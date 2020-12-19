@@ -19,7 +19,7 @@ def ring_single(
     waveguide=waveguide,
     bend=bend_circular,
 ):
-    """ single bus ring made of a ring coupler (cb: bottom)
+    r""" single bus ring made of a ring coupler (cb: bottom)
     connected with:
     - 2 vertical waveguides (wl: left, wr: right)
     - 2 bend90 waveguides (bl: left, br: right)
@@ -65,7 +65,9 @@ def ring_single(
         gl.plot_circuit(c)
     """
 
-    waveguide = waveguide(width=wg_width, length=length_y) if callable(waveguide) else waveguide
+    waveguide = (
+        waveguide(width=wg_width, length=length_y) if callable(waveguide) else waveguide
+    )
     bend = bend(width=wg_width, radius=bend_radius) if callable(bend) else bend
     coupler = (
         coupler(length_x=length_x, bend_radius=bend_radius, gap=gap, wg_width=wg_width)

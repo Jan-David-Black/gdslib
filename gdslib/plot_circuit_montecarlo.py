@@ -4,8 +4,7 @@ from simphony.simulation import MonteCarloSweepSimulation
 
 
 def plot_circuit_montecarlo(circuit, wmin=1500e-9, wmax=1600e-9, runs=10, **kwargs):
-    """ Run runs sweep simulations and plots variation
-    """
+    """Sweep MonterCarlo sim and plots variation."""
     circuit = pp.call_if_func(circuit)
 
     simulation = MonteCarloSweepSimulation(circuit, wmin, wmax)

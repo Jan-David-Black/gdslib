@@ -2,7 +2,6 @@ import numpy as np
 from SiPANN.scee import Waveguide
 from SiPANN.scee_int import SimphonyWrapper
 
-from gdslib import plot_model
 from gdslib.autoname import autoname
 
 
@@ -16,6 +15,7 @@ def bend_circular(
     **kwargs,
 ):
     """Returns simphony Model for a bend using a waveguide
+
     notice that this is fake bend!
 
     Args:
@@ -39,8 +39,10 @@ def bend_circular(
 
 
 if __name__ == "__main__":
+    from gdslib import plot_model
     import matplotlib.pyplot as plt
 
     c = bend_circular()
-    plot_model(c)
+    wavelengths = np.linspace(1.5, 1.6) * 1e-6
+    plot_model(c, wavelengths=wavelengths)
     plt.show()

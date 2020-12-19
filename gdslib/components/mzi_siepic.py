@@ -8,7 +8,7 @@ from gdslib.components.mmi1x2 import mmi1x2
 
 @autoname
 def mzi(L0=1, DL=100, L2=10, y_model_factory=mmi1x2, wg=siepic.ebeam_wg_integral_1550):
-    """ Mzi circuit model
+    """Mzi circuit model
 
     Args:
         L0 (um): vertical length for both and top arms

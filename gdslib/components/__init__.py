@@ -1,8 +1,9 @@
-""" parameterized circuit models for https://github.com/gdsfactory/gdsfactory components
+"""Circuit models for gdsfactory
 """
 from .bend_circular import bend_circular
 from .coupler import coupler
 from .coupler_ring import coupler_ring
+from .gc import gc1550te
 from .mmi1x2 import mmi1x2
 from .mmi2x2 import mmi2x2
 from .mzi import mzi
@@ -17,6 +18,7 @@ component_factory = dict(
     mmi1x2=mmi1x2,
     mmi2x2=mmi2x2,
     waveguide=waveguide,
+    gc1550te=gc1550te,
 )
 
 circuit_factory = dict(mzi=mzi, ring_double=ring_double)

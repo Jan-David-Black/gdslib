@@ -19,6 +19,7 @@ def coupler_sipann(
     This is what most people think of when they think directional coupler. Ports are numbered as::
 
     .. code::
+
                             H
                2---\      /---4
                     ------    | V
@@ -30,9 +31,10 @@ def coupler_sipann(
         thickness: Thickness of waveguide in um (Valid for 0.18-0.24)
         gap: Minimum distance between the two waveguides edge in um. (Must be > 0.1)
         length: float or ndarray Length of the straight portion of both waveguides in um.
+        sw_angle: Sidewall angle of waveguide from horizontal in degrees (Valid for 80-90 degrees). Defaults to 90.
         H: Horizontal distance between end of coupler until straight portion in nm.
         V: Vertical distance between end of coupler until straight portion in um.
-        sw_angle: Sidewall angle of waveguide from horizontal in degrees (Valid for 80-90 degrees). Defaults to 90.
+
     """
 
     width = width * 1e3

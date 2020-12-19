@@ -4,6 +4,7 @@ from opics.components import compoundElement
 
 
 def mmi1x2(**kwargs):
+    """Returns mmi1x2 model."""
     c = pp.c.mmi1x2(**kwargs)
     filepath = pp.sp.get_sparameters_path(c)
     assert filepath.exists(), f"{filepath} does not exist"

@@ -16,7 +16,7 @@ def ring_double_siepic(
     waveguide=siepic.ebeam_wg_integral_1550,
     terminator=siepic.ebeam_terminator_te1550,
 ):
-    """ double bus ring made of two couplers (ct: top, cb: bottom)
+    r"""Returns double bus ring made of two couplers (ct: top, cb: bottom)
     connected with two vertical waveguides (wyl: left, wyr: right)
 
     .. code::

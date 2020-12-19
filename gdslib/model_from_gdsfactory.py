@@ -8,7 +8,7 @@ from gdslib.config import CONFIG
 
 
 def model_from_gdsfactory(component, **kwargs):
-    """returns simphony model from gdsfactory Component Sparameters
+    """Returns simphony model from gdsfactory Component Sparameters
 
     Args:
         component: component factory or instance

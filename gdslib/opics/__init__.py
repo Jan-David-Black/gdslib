@@ -1,3 +1,4 @@
+"""Opics circuit simulator interface."""
 from gdslib.opics.bend_circular import bend_circular
 from gdslib.opics.coupler_ring import coupler_ring
 from gdslib.opics.mmi1x2 import mmi1x2

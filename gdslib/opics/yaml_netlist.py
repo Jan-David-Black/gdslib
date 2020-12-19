@@ -17,7 +17,7 @@ def circuit(
     model_factory: Dict[str, Callable] = model_factory,
     recursive: bool = True,
 ) -> compoundElement:
-    """imports netlist from gdsfactory component and returns a Simphony circuit
+    """Import netlist from gdsfactory component and returns a Simphony circuit.
 
     Args:
         component: component factory or instance
@@ -64,6 +64,7 @@ def circuit(
 
 
 def demo_print_transmission():
+    """Needs fix."""
     component = pp.c.mzi(delta_length=100)
     c = circuit(component)
     c.elements["mmi1x2_0_0"].pins["W0"] = "input"
@@ -75,6 +76,7 @@ def demo_print_transmission():
 
 
 def demo_plot_transmission():
+    """Needs fix."""
     import matplotlib.pyplot as plt
     import pp
 

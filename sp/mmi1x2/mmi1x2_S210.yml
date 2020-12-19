@@ -1,0 +1,37 @@
+background_material: sio2
+component:
+  function_name: mmi1x2
+  module: pp.components.mmi1x2
+  name: mmi1x2
+  settings:
+    cladding_offset: 3.0
+    gap_mmi: 0.25
+    layer: !!python/tuple
+    - 1
+    - 0
+    layers_cladding:
+    - !!python/tuple
+      - 111
+      - 0
+    length_mmi: 5.496
+    length_taper: 10.0
+    wg_width: 0.5
+    width_mmi: 2.5
+    width_taper: 1.0
+height_nm: 220
+layer2material:
+- 1_0_si
+layer2nm:
+- '1_0_210'
+mesh_accuracy: 2
+port_extension_um: 1
+port_height: 1.5e-06
+port_width: 1.5e-06
+remove_layers:
+- '111_0'
+version: 2.2.2
+wavelength_points: 500
+wavelength_start: 1.2e-06
+wavelength_stop: 1.6e-06
+ymargin: 2.0e-06
+zmargin: 1.0e-06

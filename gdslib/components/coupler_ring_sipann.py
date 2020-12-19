@@ -9,7 +9,7 @@ def coupler_ring_sipann(
     length_x: float = 4.0,
     sw_angle: float = 90.0,
 ):
-    """coupler for half a ring
+    r"""Returns coupler for half a ring
 
     Args:
         bend_radius: 5
@@ -17,6 +17,7 @@ def coupler_ring_sipann(
         thickness : float or ndarray Thickness of waveguide in um (Valid for 0.18-0.24)
         gap : float or ndarray Minimum distance between the two waveguides edge in um. (Must be > 0.1)
         length_x: Length of straight portion of ring waveguide in um
+        sw_angle: waveguide Sidewall angle
 
 
     .. code::

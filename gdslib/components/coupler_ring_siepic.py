@@ -1,4 +1,7 @@
-"""
+r"""SIEPIC coupler sample.
+
+.. code::
+
            n2            n4
            |             |
             \           /

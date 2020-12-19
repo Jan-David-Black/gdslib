@@ -1,9 +1,6 @@
 install:
 	bash install.sh
 
-lint:
-	flake8 gdslib
-
 test:
 	pytest
 
@@ -21,3 +18,18 @@ cov:
 
 mypy:
 	mypy . --ignore-missing-imports
+
+lint:
+	flake8 gdslib
+
+pylint:
+	pylint gdslib
+
+lintd2:
+	flake8 --select RST
+
+lintd:
+	pydocstyle gdslib
+
+doc8:
+	doc8 docs/

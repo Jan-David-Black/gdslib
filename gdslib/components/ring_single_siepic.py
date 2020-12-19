@@ -17,7 +17,8 @@ def ring_single(
     coupler=coupler_ring,
     waveguide=siepic.ebeam_wg_integral_1550,
 ):
-    """single bus ring made of a ring coupler (cb: bottom)
+    r"""single bus ring made of a ring coupler (cb: bottom)
+
     connected with a waveguide
 
     .. code::
