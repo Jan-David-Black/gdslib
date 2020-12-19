@@ -31,7 +31,7 @@ def get_component_name(component_type: str, **kwargs) -> str:
 
 
 def autoname(component_function: Callable) -> Callable:
-    """ decorator for auto-naming component functions
+    """decorator for auto-naming component functions
     if no Keyword argument `name`  is passed it creates a name by concenating all Keyword arguments
 
     Args:
@@ -127,18 +127,14 @@ def dict2name(prefix: None = None, **kwargs) -> str:
     """ returns name from a dict """
     ignore_from_name = kwargs.pop("ignore_from_name", [])
 
-    if prefix:
-        label = [prefix]
-    else:
-        label = []
+    label = [prefix] if prefix else []
     for key in sorted(kwargs):
         if key not in ignore_from_name:
             value = kwargs[key]
             key = join_first_letters(key)
             value = clean_value(value)
             label += [f"{key.upper()}{value}"]
-    label = "_".join(label)
-    return clean_name(label)
+    return clean_name("_".join(label))
 
 
 def assert_first_letters_are_different(**kwargs):
@@ -154,7 +150,7 @@ def assert_first_letters_are_different(**kwargs):
 
 
 def clean_name(name: str) -> str:
-    """ Ensures that gds cells are composed of [a-zA-Z0-9]
+    """Ensures that gds cells are composed of [a-zA-Z0-9]
 
     FIXME: only a few characters are currently replaced.
         This function has been updated only on case-by-case basis
@@ -183,7 +179,7 @@ def clean_name(name: str) -> str:
 
 
 def clean_value(value: Any) -> str:
-    """ returns more readable value (integer)
+    """returns more readable value (integer)
     if number is < 1:
         returns number units in nm (integer)
     """

@@ -3,7 +3,6 @@ from typing import Optional
 import numpy as np
 from SiPANN.nn import straightWaveguide_S
 
-from gdslib import plot_model
 from gdslib.autoname import autoname
 from gdslib.model_from_sparameters import model_from_sparameters
 
@@ -14,7 +13,7 @@ def waveguide2(
     width: float = 0.5,
     thickness: float = 0.22,
     sw_angle: float = 90.0,
-    wavelength: Optional = None,
+    wavelength: Optional[np.array] = None,
     **kwargs,
 ):
     """Return simphony Model for a Straight waveguide."""
@@ -32,8 +31,9 @@ def waveguide2(
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
+    from gdslib import plot_model
 
     c = waveguide2()
     print(c)
-    # plot_model(c)
+    plot_model(c)
     # plt.show()

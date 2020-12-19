@@ -2,6 +2,7 @@ import pp
 
 from gdslib.autoname import autoname
 from gdslib.model_from_gdsfactory import model_from_gdsfactory
+from gdslib.plot_model import plot_model
 
 
 @autoname
@@ -30,7 +31,6 @@ def mmi1x2(c=pp.c.mmi1x2, **kwargs):
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
     import numpy as np
-    import gdslib as gl
 
     wav = np.linspace(1520, 1570, 1024) * 1e-9
     f = 3e8 / wav
@@ -41,5 +41,5 @@ if __name__ == "__main__":
     # print(c.pins)
     # print(c.settings)
 
-    gl.plot_model(c)
+    plot_model(c)
     plt.show()

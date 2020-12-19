@@ -3,6 +3,7 @@ from SiPANN.scee import Waveguide
 from SiPANN.scee_int import SimphonyWrapper
 
 from gdslib.autoname import autoname
+from gdslib.plot_model import plot_model
 
 
 @autoname
@@ -39,7 +40,6 @@ def bend_circular(
 
 
 if __name__ == "__main__":
-    from gdslib import plot_model
     import matplotlib.pyplot as plt
 
     c = bend_circular()

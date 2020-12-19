@@ -2,6 +2,7 @@ from SiPANN.scee import Standard
 from SiPANN.scee_int import SimphonyWrapper
 
 from gdslib.autoname import autoname
+from gdslib.plot_model import plot_model
 
 
 @autoname
@@ -61,7 +62,6 @@ def coupler(
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
-    from gdslib import plot_model
 
     c = coupler()
     print(c)

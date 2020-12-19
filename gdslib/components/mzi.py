@@ -1,10 +1,8 @@
 from typing import Callable
 from typing import Optional
-
-from simphony.library import siepic
 from simphony.netlist import Subcircuit
 
-from gdslib import plot_circuit
+from gdslib.plot_circuit import plot_circuit
 from gdslib.autoname import autoname
 from gdslib.components.mmi1x2 import mmi1x2
 from gdslib.components.waveguide import waveguide as waveguide_function

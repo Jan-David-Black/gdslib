@@ -15,7 +15,7 @@ def bend_circular2(
     thickness: float = 0.22,
     angle: int = 90,
     sw_angle: float = 90.0,
-    wavelength: Optional = None,
+    wavelength: Optional[np.array] = None,
     **kwargs,
 ):
     """Return simphony Model for a bend.

@@ -1,50 +1,40 @@
 from typing import Callable
-from typing import Dict
 from typing import Union
-
-import numpy as np
 import opics as op
 import pp
 from opics.components import compoundElement
 from pp.component import Component
-
-from gdslib.components import component_factory
-from gdslib.opics import model_factory
+from gdslib.opics import model_factory as model_factory_default
 
 
 def circuit(
     component: Union[Callable, Component],
-    model_factory: Dict[str, Callable] = model_factory,
+    model_factory: Callable[[str], Callable] = model_factory_default,
     recursive: bool = True,
 ) -> compoundElement:
     """Import netlist from gdsfactory component and returns a Simphony circuit.
 
     Args:
         component: component factory or instance
-        model_factory: dict of component_type
+        model_factory: function to get the model function
         recursive: get flat netlist
     """
     component = pp.call_if_func(component)
     n = component.get_netlist(recursive=recursive)
 
     circuit = op.Network(component.name)
-    model_names = []
+    # model_names = []
 
     for i in n.instances.keys():
         component_type = n.instances[i]["component"]
         if component_type is None:
             continue
 
-        if component_type not in model_factory:
-            print(
-                f"skipping component `{component_type}` as it is not in {list(model_factory.keys())}"
-            )
+        model_function = model_factory(component_type)
+        if model_function is None:
             continue
+
         component_settings = n.instances[i]["settings"]
-        assert (
-            component_type in model_factory
-        ), f"component_type={component_type} not in {list(model_factory.keys())}"
-        model_function = model_factory[component_type]
         model = model_function(**component_settings)
         # assert isinstance(model, compoundElement), f"model {model} is not a opics Model"
         # model_names.append(i)
@@ -57,8 +47,8 @@ def circuit(
         model1_name, port1_name = k.split(",")
         model2_name, port2_name = v.split(",")
 
-        if model1_name in model_names and model2_name in model_names:
-            circuit.connect(model1_name, port1_name, model2_name, port2_name)
+        # if model1_name in model_names and model2_name in model_names:
+        #     circuit.connect(model1_name, port1_name, model2_name, port2_name)
 
     return circuit
 
@@ -94,7 +84,7 @@ if __name__ == "__main__":
     c = circuit(component)
     # c.elements["mmi1x2_0_0"].pins["W0"] = "input"
     # c.elements["mmi1x2_85_0"].pins["W0"] = "output"
-    circuit.simulate_network()
-    circuit.sim_result.plot_sparameters(
+    c.simulate_network()
+    c.sim_result.plot_sparameters(
         show_freq=False, scale="abs_sq", ports=[[1, 0], [0, 0]]
     )

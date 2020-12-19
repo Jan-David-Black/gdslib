@@ -56,8 +56,8 @@ def add_gc_siepic(circuit, gc=siepic.ebeam_gc_te1550):
 
 
 if __name__ == "__main__":
-    from gdslib import plot_circuit
-    from gdslib.components import mzi
+    from gdslib.plot_circuit import plot_circuit
+    from gdslib.components.mzi import mzi
 
     c1 = mzi()
     c2 = add_gc(c1)
