@@ -13,7 +13,7 @@ def waveguide(
     sw_angle: float = 90.0,
     **kwargs,
 ):
-    """Returns simphony Model for a Straight waveguide.
+    """Return simphony Model for a Straight waveguide.
 
     Args:
         length: Length of the waveguide in um.

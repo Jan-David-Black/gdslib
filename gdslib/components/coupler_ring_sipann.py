@@ -9,7 +9,7 @@ def coupler_ring_sipann(
     length_x: float = 4.0,
     sw_angle: float = 90.0,
 ):
-    r"""Returns coupler for half a ring
+    r"""Return coupler for half a ring
 
     Args:
         bend_radius: 5

@@ -29,7 +29,7 @@ def mzi(
         combiner: model function for combiner
         wg: waveguide model function
 
-    Returns: mzi circuit model
+    Return: mzi circuit model
 
     .. code::
 

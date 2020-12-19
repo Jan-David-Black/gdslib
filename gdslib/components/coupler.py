@@ -15,7 +15,7 @@ def coupler(
     V: float = 0.0,
     **kwargs,
 ):
-    r"""Returns simphony Model for Directional coupler.
+    r"""Return simphony Model for Directional coupler.
 
     Args:
         width: Width of the waveguide in um (Valid for 0.4-0.6)

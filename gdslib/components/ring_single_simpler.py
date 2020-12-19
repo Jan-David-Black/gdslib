@@ -16,7 +16,7 @@ def ring_single(
     coupler=coupler_ring,
     waveguide=waveguide,
 ):
-    r"""Returns Single bus ring made of a ring coupler (cb: bottom)
+    r"""Return Single bus ring made of a ring coupler (cb: bottom)
 
     FIXME! Sparameters are zero
 

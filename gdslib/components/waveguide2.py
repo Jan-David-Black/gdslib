@@ -17,7 +17,7 @@ def waveguide2(
     wavelength: Optional = None,
     **kwargs,
 ):
-    """Returns simphony Model for a Straight waveguide."""
+    """Return simphony Model for a Straight waveguide."""
     if wavelength is None:
         wavelength = np.linspace(1200, 1600) * 1e-9
     s = straightWaveguide_S(

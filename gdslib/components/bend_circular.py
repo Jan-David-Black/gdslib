@@ -14,7 +14,7 @@ def bend_circular(
     sw_angle: float = 90.0,
     **kwargs,
 ):
-    """Returns simphony Model for a bend using a waveguide
+    """Return simphony Model for a bend using a waveguide
 
     notice that this is fake bend!
 

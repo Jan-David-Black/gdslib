@@ -21,7 +21,7 @@ def get_transmission(
     stop: float = 1600e-9,
     num: int = 2000,
 ):
-    """Returns transmission for a circuit.
+    """Return transmission for a circuit.
 
     Args:
         circuit:

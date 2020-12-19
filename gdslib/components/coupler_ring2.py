@@ -8,7 +8,7 @@ from gdslib.model_from_gdsfactory import model_from_gdsfactory
 def coupler_ring2(
     c=pp.c.coupler_ring, wg_width=0.5, length_x=4.0, gap=0.2, bend_radius=5
 ):
-    """Returns half ring model based on Lumerical 3D FDTD simulations.
+    """Return half ring model based on Lumerical 3D FDTD simulations.
 
     Args:
         c: gdsfactory component

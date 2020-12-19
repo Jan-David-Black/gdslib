@@ -3,7 +3,7 @@ from scipy.constants import c
 
 
 def waveguide(wavelengths, length, loss_dB_cm, ne=2.40705, ng=4.17917, nd=0.000143768):
-    """Returns the Sparameters for a waveguide based on OPICS."""
+    """Return the Sparameters for a waveguide based on OPICS."""
     w = wavelengths
     w0 = np.mean(w)
     alpha = loss_dB_cm / (20 * np.log10(np.exp(1)))

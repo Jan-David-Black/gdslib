@@ -6,7 +6,7 @@ from gdslib.model_from_gdsfactory import model_from_gdsfactory
 
 @autoname
 def mmi2x2(c=pp.c.mmi2x2, **kwargs):
-    """ mmi2x2 Sparameter model
+    """Return mmi2x2 Sparameter model
 
     .. code::
 

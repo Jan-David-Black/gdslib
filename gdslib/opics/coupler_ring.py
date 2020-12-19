@@ -4,7 +4,7 @@ from opics.components import compoundElement
 
 
 def coupler_ring(**kwargs):
-    """Returns Halfcoupler ring model."""
+    """Return Halfcoupler ring model."""
     c = pp.c.coupler_ring(**kwargs)
     filepath = pp.sp.get_sparameters_path(c)
     assert filepath.exists(), f"{filepath} does not exist"

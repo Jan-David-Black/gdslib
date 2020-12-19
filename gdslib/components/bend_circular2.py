@@ -1,7 +1,6 @@
 from typing import Optional
 
 import numpy as np
-import pp
 from SiPANN.nn import bentWaveguide_S
 
 from gdslib import plot_model
@@ -19,7 +18,7 @@ def bend_circular2(
     wavelength: Optional = None,
     **kwargs,
 ):
-    """Returns simphony Model for a bend.
+    """Return simphony Model for a bend.
 
     FIXME! gives lot of ripple in MZI simulation
 
@@ -47,22 +46,9 @@ def bend_circular2(
     return model_from_sparameters(wavelength, s, pins=("W0", "N0"))
 
 
-def demo():
-    import matplotlib.pyplot as plt
-
-    c = bend_circular2()
-    plot_model(c)
-    plt.show()
-
-
-def demo_needs_fix():
-    import matplotlib.pyplot as plt
-    from gdslib.mzi import mzi
-
-    c = bend_circular2()
-    plot_model(c)
-    plt.show()
-
-
 if __name__ == "__main__":
-    demo_needs_fix()
+    import matplotlib.pyplot as plt
+
+    c = bend_circular2()
+    plot_model(c)
+    plt.show()

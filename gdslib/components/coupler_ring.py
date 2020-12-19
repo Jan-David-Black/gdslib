@@ -14,7 +14,7 @@ def coupler_ring(
     sw_angle: float = 90.0,
     **kwargs
 ):
-    r"""Returns model for for half a ring coupler.
+    r"""Return model for for half a ring coupler.
 
     Args:
         bend_radius: 5

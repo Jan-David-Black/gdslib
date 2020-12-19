@@ -17,7 +17,7 @@ def ring_double(
     coupler=coupler_ring,
     waveguide=waveguide,
 ):
-    r"""Returns double bus ring made of two couplers (ct: top, cb: bottom)
+    r"""Return double bus ring made of two couplers (ct: top, cb: bottom)
     connected with two vertical waveguides (yl: left, wr: right)
 
     .. code::

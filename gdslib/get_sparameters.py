@@ -4,7 +4,7 @@ from gdslib import wl2freq
 
 
 def get_sparameters(model, wavelengths=None):
-    """Returns wavelengths, Sparameters for a model.
+    """Return wavelengths, Sparameters for a model.
 
     Args:
         model: model function of Model
