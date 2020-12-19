@@ -40,3 +40,7 @@ repos:
       hooks:
           - id: mypy
             exclude: ^(docs/|example-plugin/|tests/fixtures)
+    # - repo: https://github.com/pycqa/pydocstyle
+    #   rev: ""
+    #   hooks:
+    #       - id: pydocstyle
