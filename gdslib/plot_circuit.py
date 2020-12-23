@@ -1,19 +1,20 @@
+from typing import Iterable, Optional
 import matplotlib.pyplot as plt
 import numpy as np
-import pp
 from simphony.simulation import SweepSimulation
 from simphony.tools import freq2wl
+from simphony.netlist import Subcircuit
 
 
 def plot_circuit(
-    circuit,
-    pin_in="input",
-    pins_out=("output",),
-    start=1500e-9,
-    stop=1600e-9,
-    num=2000,
-    logscale=True,
-    fig=None,
+    circuit: Subcircuit,
+    pin_in: str = "input",
+    pins_out: Iterable[str] = ("output",),
+    start: float = 1500e-9,
+    stop: float = 1600e-9,
+    num: int = 2000,
+    logscale: bool = True,
+    fig: Optional[plt.Figure] = None,
     **kwargs,
 ):
     """Plot Sparameter circuit transmission over wavelength
@@ -30,7 +31,7 @@ def plot_circuit(
     """
     if not isinstance(pins_out, (set, list, tuple)):
         raise ValueError("pins out is not iterable")
-    circuit = pp.call_if_func(circuit)
+    circuit = circuit() if callable(circuit) else circuit
 
     simulation = SweepSimulation(circuit, start, stop, num)
     result = simulation.simulate()

@@ -1,7 +1,6 @@
-from simphony.library import siepic
 from simphony.netlist import Subcircuit
 
-from gdslib import plot_circuit
+from gdslib.plot_circuit import plot_circuit
 from gdslib.autoname import autoname
 from gdslib.components.bend_circular import bend_circular
 from gdslib.components.coupler_ring import coupler_ring

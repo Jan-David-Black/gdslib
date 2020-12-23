@@ -8,6 +8,7 @@ from .mmi1x2 import mmi1x2
 from .mmi2x2 import mmi2x2
 from .mzi import mzi
 from .ring_double import ring_double
+from .ring_single import ring_single
 from .waveguide import waveguide
 
 
@@ -21,10 +22,13 @@ component_factory = dict(
     gc1550te=gc1550te,
 )
 
-circuit_factory = dict(mzi=mzi, ring_double=ring_double)
+circuit_factory = dict(mzi=mzi, ring_double=ring_double, ring_single=ring_single)
 
 
 components = list(component_factory.keys())
 circuits = list(circuit_factory.keys())
+
+_circuits = set(circuits) - set(["ring_single"])
+_components = set(components)
 
 __all__ = components + circuits

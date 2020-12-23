@@ -45,7 +45,6 @@ def get_transmission(
 def circuit(
     component: Union[Callable, Component],
     model_factory: Dict[str, Callable] = component_factory,
-    recursive: bool = True,
 ) -> Subcircuit:
     """imports netlist from gdsfactory component and returns a Simphony circuit
 
@@ -55,14 +54,16 @@ def circuit(
         recursive: get flat netlist
     """
     component = pp.call_if_func(component)
-    n = component.get_netlist(recursive=recursive)
+    netlist = component.get_netlist()
+    instances = netlist["instances"]
+    connections = netlist["connections"]
 
     circuit = Subcircuit(component.name)
     model_names = []
     model_name_tuple = []
 
-    for i in n.instances.keys():
-        component_type = n.instances[i]["component"]
+    for name, settings in instances.items():
+        component_type = settings["component"]
         if component_type is None:
             continue
 
@@ -71,19 +72,19 @@ def circuit(
                 f"skipping component `{component_type}` as it is not in {list(model_factory.keys())}"
             )
             continue
-        component_settings = n.instances[i]["settings"]["settings"]
+        component_settings = settings["settings"]
         assert (
             component_type in model_factory
         ), f"component_type={component_type} not in {list(model_factory.keys())}"
         model_function = model_factory[component_type]
         model = model_function(**component_settings)
         assert isinstance(model, Model), f"model {model} is not a simphony Model"
-        model_names.append(i)
-        model_name_tuple.append((model, i))
+        model_names.append(name)
+        model_name_tuple.append((model, name))
 
     circuit.add(model_name_tuple)
 
-    for k, v in n.connections["flat"].items():
+    for k, v in connections.items():
         model1_name, port1_name = k.split(",")
         model2_name, port2_name = v.split(",")
 
@@ -93,20 +94,25 @@ def circuit(
     return circuit
 
 
+splitter = "mmi1x2_0.0_0.0"
+combiner = "mmi1x2_65.596_-0.0"
+
+
 def test_circuit_transmission(data_regression):
     component = pp.c.mzi(delta_length=100)
     c = circuit(component)
-    c.elements["mmi1x2_0_0"].pins["W0"] = "input"
-    c.elements["mmi1x2_65_0"].pins["W0"] = "output"
+    c.elements[splitter].pins["W0"] = "input"
+    c.elements[combiner].pins["W0"] = "output"
     r = get_transmission(c, num=3)
-    data_regression.check(dict(w=r["wavelength_nm"].tolist(), s=r["s"].tolist()))
+    s = np.round(r["s"], decimals=10).tolist()
+    data_regression.check(dict(w=r["wavelength_nm"].tolist(), s=s))
 
 
 def demo_print_transmission():
     component = pp.c.mzi(delta_length=100)
     c = circuit(component)
-    c.elements["mmi1x2_0_0"].pins["W0"] = "input"
-    c.elements["mmi1x2_65_0"].pins["W0"] = "output"
+    c.elements[splitter].pins["W0"] = "input"
+    c.elements[combiner].pins["W0"] = "output"
     r = get_transmission(c, num=3)
     s = np.round(r["s"], decimals=10)
     s = s.tolist()
@@ -120,8 +126,8 @@ def demo_plot_transmission():
 
     c = pp.c.mzi(delta_length=100)
     m = circuit(c)
-    m.elements["mmi1x2_0_0"].pins["W0"] = "input"
-    m.elements["mmi1x2_65_0"].pins["W0"] = "output"
+    m.elements[splitter].pins["W0"] = "input"
+    m.elements[combiner].pins["W0"] = "output"
 
     plot_circuit(m)
     plt.show()
@@ -129,10 +135,11 @@ def demo_plot_transmission():
 
 if __name__ == "__main__":
     # demo_print_transmission()
-    # demo_plot_transmission()
+    demo_plot_transmission()
 
-    component = pp.c.mzi(delta_length=100)
-    c = circuit(component)
-    c.elements["mmi1x2_0_0"].pins["W0"] = "input"
-    c.elements["mmi1x2_65_0"].pins["W0"] = "output"
-    r = get_transmission(c, num=3)
+    # component = pp.c.mzi(delta_length=100)
+    # c = circuit(component)
+    # c.elements[splitter].pins["W0"] = "input"
+    # c.elements[combiner].pins["W0"] = "output"
+    # r = get_transmission(c, num=3)
+    # print(r)
