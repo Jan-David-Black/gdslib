@@ -1,5 +1,6 @@
 import numpy as np
 import pp
+from pp.component import Component
 from scipy.constants import speed_of_light
 from simphony.elements import Model
 from simphony.tools import interpolate
@@ -7,7 +8,7 @@ from simphony.tools import interpolate
 from gdslib.config import path
 
 
-def model_from_gdsfactory(component, **kwargs):
+def model_from_gdsfactory(component: Component, **kwargs) -> Model:
     """Return simphony model from gdsfactory Component Sparameters
 
     Args:

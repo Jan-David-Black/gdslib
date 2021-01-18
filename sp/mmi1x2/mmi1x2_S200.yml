@@ -1,30 +1,12 @@
-simulation_settings:
-  layer2nm:
-  - '1_0_200'
-  layer2material:
-  - 1_0_si
-  remove_layers:
-  - '111_0'
-  background_material: sio2
-  port_width: 1.5e-06
-  port_height: 1.5e-06
-  port_extension_um: 1
-  mesh_accuracy: 2
-  zmargin: 1.0e-06
-  ymargin: 2.0e-06
-  wavelength_start: 1.2e-06
-  wavelength_stop: 1.6e-06
-  wavelength_points: 500
 component:
   function_name: mmi1x2
+  info:
+    simulation_settings:
+      port_width: 1.5e-06
   module: pp.components.mmi1x2
   name: mmi1x2
   settings:
-    wg_width: 0.5
-    width_taper: 1.0
-    length_taper: 10.0
-    length_mmi: 5.496
-    width_mmi: 2.5
+    cladding_offset: 3.0
     gap_mmi: 0.25
     layer:
     - 1
@@ -32,5 +14,16 @@ component:
     layers_cladding:
     - - 111
       - 0
-    cladding_offset: 3.0
-version: 2.2.2
+    length_mmi: 5.496
+    length_taper: 10.0
+    wg_width: 0.5
+    width_mmi: 2.5
+    width_taper: 1.0
+simulation_settings:
+  layer2material:
+  - 1_0_si
+  layer2nm:
+  - '1_0_200'
+  remove_layers:
+  - '111_0'
+version: 2.2.4

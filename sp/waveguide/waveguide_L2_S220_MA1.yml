@@ -1,0 +1,23 @@
+component:
+  function_name: waveguide
+  info:
+    length: 2
+    width: 0.5
+  module: pp.components.waveguide
+  name: waveguide_L2
+  settings:
+    cladding_offset: 0.0
+    layer:
+    - 1
+    - 0
+    layers_cladding: null
+    length: 2
+    width: 0.5
+simulation_settings:
+  layer2material:
+  - 1_0_si
+  layer2nm:
+  - '1_0_220'
+  remove_layers:
+  - '111_0'
+version: 2.2.4
