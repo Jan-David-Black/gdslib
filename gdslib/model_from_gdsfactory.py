@@ -1,5 +1,6 @@
 import numpy as np
 import pp
+import pp.sp as sp
 from pp.component import Component
 from scipy.constants import speed_of_light
 from simphony.elements import Model
@@ -18,7 +19,7 @@ def model_from_gdsfactory(component: Component, **kwargs) -> Model:
     kwargs.pop("function_name", "")
     kwargs.pop("module", "")
     component = pp.call_if_func(component, **kwargs)
-    pins, f, s = pp.sp.load(component, dirpath=path.sp)
+    pins, f, s = sp.load(component, dirpath=path.sp)
 
     def interpolate_sp(freq):
         return interpolate(freq, f, s)

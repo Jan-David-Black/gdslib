@@ -3,6 +3,7 @@ from typing import Tuple
 
 import numpy as np
 import pp
+import pp.sp as sp
 from scipy.constants import speed_of_light
 from simphony.elements import Model
 from simphony.tools import freq2wl
@@ -19,7 +20,7 @@ def model_from_filepath(filepath: PosixPath, numports: int, name: str = "model")
         name: model name
 
     """
-    pins, f, s = pp.sp.read_sparameters(filepath=filepath, numports=numports,)
+    pins, f, s = sp.read_sparameters(filepath=filepath, numports=numports,)
     wavelengths = freq2wl(f)
     return model_from_sparameters(
         wavelengths=wavelengths, sparameters=s, pins=pins, name=name
