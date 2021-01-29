@@ -8,14 +8,15 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
-      max-parallel: 3
+      max-parallel: 12
       matrix:
-        python-version: [3.6, 3.7, 3.8]
+        python-version: [3.7, 3.8, 3.9]
+        os: [ubuntu-latest, windows-latest]
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
@@ -25,9 +26,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install tox tox-gh-actions
         make install
-
-    - name: Test with tox
-      run: tox -e py
     - name: Lint with flake8
       run: |
         flake8
+    - name: Test with tox
+      run: tox -e py
