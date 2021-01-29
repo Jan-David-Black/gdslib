@@ -9,7 +9,7 @@ def get_install_requires():
 
 setup(
     name="gdslib",
-    version="0.1.4",
+    version="0.1.5",
     url="https://github.com/gdsfactory/gdslib",
     license="MIT",
     author="Joaquin",
