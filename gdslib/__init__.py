@@ -3,7 +3,7 @@
 import gdslib.components as components
 from gdslib.add_gc import add_gc
 from gdslib.autoname import autoname
-from gdslib.circuit import circuit
+from gdslib.circuit import component_to_circuit
 from gdslib.circuit import get_transmission
 from gdslib.components import component_factory
 from gdslib.model_from_gdsfactory import model_from_gdsfactory
@@ -21,7 +21,7 @@ __all__ = [
     "add_gc",
     "autoname",
     "c",
-    "circuit",
+    "component_to_circuit",
     "components",
     "component_factory",
     "model_from_gdsfactory",

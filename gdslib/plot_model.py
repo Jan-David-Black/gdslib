@@ -1,5 +1,7 @@
+from typing import Tuple
 import matplotlib.pyplot as plt
 import numpy as np
+from simphony.elements import Model
 from scipy.constants import speed_of_light
 
 
@@ -11,8 +13,13 @@ def get_sparameters(c, wavelengths=None):
 
 
 def plot_model(
-    model, pin_in: str = "W0", pins=None, wavelengths=None, logscale=True, fig=None,
-):
+    model: Model,
+    pin_in: str = "W0",
+    pins: Tuple[str, ...] = None,
+    wavelengths=None,
+    logscale=True,
+    fig=None,
+) -> None:
     """Plot simphony Sparameters for a model
 
     Args:
@@ -73,7 +80,6 @@ def plot_model(
 
 if __name__ == "__main__":
     from simphony.library import siepic
-    import gdslib as gl
 
     w = np.linspace(1520, 1570, 1024) * 1e-9
     coupler = siepic.ebeam_dc_halfring_straight(

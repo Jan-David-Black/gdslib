@@ -42,16 +42,15 @@ def get_transmission(
     return dict(wavelength_nm=w, s=s)
 
 
-def circuit(
+def component_to_circuit(
     component: Union[Callable, Component],
     model_factory: Dict[str, Callable] = component_factory,
 ) -> Subcircuit:
-    """imports netlist from gdsfactory component and returns a Simphony circuit
+    """Returns Simphony circuit from a gdsfactory component netlist.
 
     Args:
         component: component factory or instance
         model_factory: dict of component_type
-        recursive: get flat netlist
     """
     component = pp.call_if_func(component)
     netlist = component.get_netlist()
@@ -100,7 +99,7 @@ combiner = "mmi1x2_65.596_-0.0"
 
 def test_circuit_transmission(data_regression):
     component = pp.c.mzi(delta_length=100)
-    c = circuit(component)
+    c = component_to_circuit(component)
     c.elements[splitter].pins["W0"] = "input"
     c.elements[combiner].pins["W0"] = "output"
     r = get_transmission(c, num=3)
@@ -110,7 +109,7 @@ def test_circuit_transmission(data_regression):
 
 def demo_print_transmission():
     component = pp.c.mzi(delta_length=100)
-    c = circuit(component)
+    c = component_to_circuit(component)
     c.elements[splitter].pins["W0"] = "input"
     c.elements[combiner].pins["W0"] = "output"
     r = get_transmission(c, num=3)
@@ -125,7 +124,7 @@ def demo_plot_transmission():
     import pp
 
     c = pp.c.mzi(delta_length=100)
-    m = circuit(c)
+    m = component_to_circuit(c)
     m.elements[splitter].pins["W0"] = "input"
     m.elements[combiner].pins["W0"] = "output"
 
@@ -138,7 +137,7 @@ if __name__ == "__main__":
     demo_plot_transmission()
 
     # component = pp.c.mzi(delta_length=100)
-    # c = circuit(component)
+    # c = component_to_circuit(component)
     # c.elements[splitter].pins["W0"] = "input"
     # c.elements[combiner].pins["W0"] = "output"
     # r = get_transmission(c, num=3)

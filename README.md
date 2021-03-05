@@ -4,7 +4,7 @@ Library of compact models for components
 
 ## Usage
 
-See notebooks
+See docs/notebooks
 
 
 ## Tests

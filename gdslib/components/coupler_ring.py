@@ -7,8 +7,8 @@ from gdslib.plot_model import plot_model
 
 @autoname
 def coupler_ring(
-    bend_radius: float = 5,
-    wg_width: float = 0.5,
+    radius: float = 5,
+    width: float = 0.5,
     thickness: float = 0.22,
     gap: float = 0.22,
     length_x: float = 4.0,
@@ -18,8 +18,8 @@ def coupler_ring(
     r"""Return model for for half a ring coupler.
 
     Args:
-        bend_radius: 5
-        wg_width: float or ndarray Width of the waveguide in um (Valid for 0.4-0.6)
+        radius: 5
+        width: float or ndarray Width of the waveguide in um (Valid for 0.4-0.6)
         thickness : float or ndarray Thickness of waveguide in um (Valid for 0.18-0.24)
         gap : float or ndarray Minimum distance between the two waveguides edge in um. (Must be > 0.1)
         length_x: Length of straight portion of ring waveguide in um
@@ -52,11 +52,11 @@ def coupler_ring(
 
     """
 
-    width = wg_width * 1e3
+    width = width * 1e3
     thickness = thickness * 1e3
     gap = gap * 1e3
     length = length_x * 1e3
-    radius = bend_radius * 1e3
+    radius = radius * 1e3
     # print(f'ignoring {kwargs}')
 
     s = HalfRacetrack(

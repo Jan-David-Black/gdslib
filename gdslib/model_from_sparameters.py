@@ -12,7 +12,7 @@ from simphony.tools import wl2freq
 
 
 def model_from_filepath(filepath: PosixPath, numports: int, name: str = "model"):
-    """Return a Simphony Model.
+    """Returns a Simphony Model.
 
     Args:
         filepath: path to Sparameters in Lumerical interconnect format
@@ -30,7 +30,7 @@ def model_from_filepath(filepath: PosixPath, numports: int, name: str = "model")
 def model_from_sparameters(
     wavelengths, sparameters, pins: Tuple[str, ...] = ("E0", "W0"), name: str = "model"
 ):
-    """Return simphony model from wavelengths and Sparameters"""
+    """Returns simphony model from wavelengths and Sparameters."""
 
     f = wl2freq(wavelengths)
     s = sparameters
@@ -42,8 +42,8 @@ def model_from_sparameters(
     m.pins = pins
     m.s_params = (f, s)
     m.s_parameters = interpolate_sp
-    m.freq_range = (m.s_params[0][-1], m.s_params[0][0])
-    m.wavelength_range = freq2wl(np.array([m.s_params[0][0], m.s_params[0][-1]]))
+    m.freq_range = (min(f), max(f))
+    m.wavelength_range = (min(wavelengths), max(wavelengths))
     m.wavelengths = speed_of_light / np.array(f)
     m.s = s
     m.name = name

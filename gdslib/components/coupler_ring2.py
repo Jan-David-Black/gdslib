@@ -6,16 +6,16 @@ from gdslib.model_from_gdsfactory import model_from_gdsfactory
 
 @autoname
 def coupler_ring2(
-    c=pp.c.coupler_ring, wg_width=0.5, length_x=4.0, gap=0.2, bend_radius=5
+    factory=pp.c.coupler_ring, width=0.5, length_x=4.0, gap=0.2, radius=5
 ):
     """Return half ring model based on Lumerical 3D FDTD simulations.
 
     Args:
         c: gdsfactory component
-        wg_width:0.5
+        width:0.5
         gap: 0.2
         length_x: 4
-        bend_radius: 5
+        radius: 5
 
     .. code::
 
@@ -35,10 +35,12 @@ def coupler_ring2(
         gl.plot_model(m)
 
     """
-    if callable(c):
-        c = c(wg_width=wg_width, length_x=length_x, gap=gap, bend_radius=bend_radius)
-    m = model_from_gdsfactory(c)
-    return m
+    coupler = (
+        factory(width=width, length_x=length_x, gap=gap, radius=radius)
+        if callable(factory)
+        else factory
+    )
+    return model_from_gdsfactory(coupler)
 
 
 if __name__ == "__main__":
