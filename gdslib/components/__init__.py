@@ -1,6 +1,7 @@
 """Circuit models for gdsfactory
 """
 from .bend_circular import bend_circular
+from .bend_euler import bend_euler
 from .coupler import coupler
 from .coupler_ring import coupler_ring
 from .gc import gc1550te
@@ -14,6 +15,7 @@ from .waveguide import waveguide
 
 component_factory = dict(
     bend_circular=bend_circular,
+    bend_euler=bend_euler,
     coupler_ring=coupler_ring,
     coupler=coupler,
     mmi1x2=mmi1x2,

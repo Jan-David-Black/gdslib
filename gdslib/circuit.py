@@ -97,14 +97,16 @@ splitter = "mmi1x2_0.0_0.0"
 combiner = "mmi1x2_65.596_-0.0"
 
 
-def test_circuit_transmission(data_regression):
+def test_circuit_transmission(data_regression, check: bool = True):
     component = pp.c.mzi(delta_length=100)
     c = component_to_circuit(component)
     c.elements[splitter].pins["W0"] = "input"
     c.elements[combiner].pins["W0"] = "output"
     r = get_transmission(c, num=3)
     s = np.round(r["s"], decimals=10).tolist()
-    data_regression.check(dict(w=r["wavelength_nm"].tolist(), s=s))
+    if check:
+        data_regression.check(dict(w=r["wavelength_nm"].tolist(), s=s))
+    return s
 
 
 def demo_print_transmission():
@@ -133,8 +135,9 @@ def demo_plot_transmission():
 
 
 if __name__ == "__main__":
+    s = test_circuit_transmission(None, check=False)
     # demo_print_transmission()
-    demo_plot_transmission()
+    # demo_plot_transmission()
 
     # component = pp.c.mzi(delta_length=100)
     # c = component_to_circuit(component)
