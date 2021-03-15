@@ -1,7 +1,6 @@
 """
 adapted from https://github.com/smartalecH/BYUqot/blob/master/ANN/BG/simBG.py
 """
-import time
 
 import numpy as np
 from matplotlib import pyplot as plt

@@ -4,4 +4,5 @@ simphony
 SiPANN
 scipy
 numpy
+matplotlib
 numba

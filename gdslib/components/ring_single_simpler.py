@@ -1,4 +1,3 @@
-from simphony.library import siepic
 from simphony.netlist import Subcircuit
 
 from gdslib import plot_circuit

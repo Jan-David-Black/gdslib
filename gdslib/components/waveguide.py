@@ -1,7 +1,5 @@
 from SiPANN.scee import Waveguide
 from SiPANN.scee_int import SimphonyWrapper
-
-from gdslib import plot_model
 from gdslib.autoname import autoname
 
 
@@ -34,7 +32,6 @@ def waveguide(
 
 
 if __name__ == "__main__":
-    import numpy as np
     import matplotlib.pyplot as plt
 
     c = waveguide()

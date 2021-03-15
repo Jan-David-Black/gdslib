@@ -1,4 +1,3 @@
-import opics as op
 import pp
 from opics.components import compoundElement
 
