@@ -4,11 +4,11 @@ import pytest
 from gdslib.circuit import get_transmission
 from gdslib.components import circuit_factory
 from gdslib.components import component_factory
-from gdslib.components import _circuits
-from gdslib.components import _components
+from gdslib.components import circuit_names
+from gdslib.components import component_names
 
 
-@pytest.mark.parametrize("component_type", _components)
+@pytest.mark.parametrize("component_type", component_names)
 def test_elements(component_type, data_regression):
     c = component_factory[component_type]()
     wav = np.linspace(1520, 1570, 3) * 1e-9
@@ -23,7 +23,7 @@ def test_elements(component_type, data_regression):
     data_regression.check(sdict)
 
 
-@pytest.mark.parametrize("component_type", _circuits)
+@pytest.mark.parametrize("component_type", circuit_names)
 def test_circuits(component_type, data_regression):
     c = circuit_factory[component_type]()
     r = get_transmission(c, num=3)

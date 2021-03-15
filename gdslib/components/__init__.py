@@ -27,10 +27,8 @@ component_factory = dict(
 circuit_factory = dict(mzi=mzi, ring_double=ring_double, ring_single=ring_single)
 
 
-components = list(component_factory.keys())
-circuits = list(circuit_factory.keys())
+component_names = list(component_factory.keys())
+circuit_names = list(circuit_factory.keys())
 
-_circuits = set(circuits) - set(["ring_single"])
-_components = set(components)
 
-__all__ = components + circuits
+__all__ = component_names + circuit_names

@@ -1,5 +1,5 @@
 import pathlib
-from gdslib.components import circuit_factory
+from gdslib.components import component_names
 
 
 p = pathlib.Path("circuits.rst")
@@ -12,7 +12,7 @@ Circuits
 """
     )
 
-    for name in sorted(list(circuit_factory.keys())):
+    for name in sorted(component_names):
         print(name)
         f.write(
             f"""

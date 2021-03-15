@@ -42,6 +42,8 @@ exclude_patterns = [
     "**.ipynb_checkpoints",
     "build",
     "extra/**",
+    "notebooks/03_components_SiPANN.ipynb",
+    "05_components_wg_empy.ipynb",
 ]
 
 napoleon_use_param = True

@@ -60,9 +60,8 @@ def mzi(
 
         import gdslib as gl
 
-        c = gl.mzi()
+        c = gl.c.mzi()
         gl.plot_circuit(c)
-
 
     """
     combiner = combiner or splitter

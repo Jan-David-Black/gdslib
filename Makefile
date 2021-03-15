@@ -5,7 +5,7 @@ test:
 	pytest
 
 test-force:
-	echo 'Regenerating metadata for regression test. Make sure there are not any unwanted regressions because this will overwrite them'
+	echo 'Regenerating metadata for regression test. Make sure there are not any unwanted regressions because this command will overwrite them'
 	pytest --force-regen
 
 clean:
