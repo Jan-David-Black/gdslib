@@ -67,14 +67,10 @@ def component_to_circuit(
             continue
 
         if component_type not in model_factory:
-            print(
-                f"skipping component `{component_type}` as it is not in {list(model_factory.keys())}"
+            raise ValueError(
+                f"Model for `{component_type}` not found in {list(model_factory.keys())}"
             )
-            continue
         component_settings = settings["settings"]
-        assert (
-            component_type in model_factory
-        ), f"component_type={component_type} not in {list(model_factory.keys())}"
         model_function = model_factory[component_type]
         model = model_function(**component_settings)
         assert isinstance(model, Model), f"model {model} is not a simphony Model"
@@ -135,9 +131,9 @@ def demo_plot_transmission():
 
 
 if __name__ == "__main__":
-    s = test_circuit_transmission(None, check=False)
+    # s = test_circuit_transmission(None, check=False)
     # demo_print_transmission()
-    # demo_plot_transmission()
+    demo_plot_transmission()
 
     # component = pp.c.mzi(delta_length=100)
     # c = component_to_circuit(component)

@@ -18,6 +18,7 @@ html_static_path = ["_static"]
 htmlhelp_basename = project
 
 extensions = [
+    "nbsphinx",
     "sphinx.ext.autodoc",
     "sphinx.ext.mathjax",
     "sphinx.ext.napoleon",
@@ -31,6 +32,19 @@ extensions = [
 ]
 
 autodoc_member_order = "bysource"
+
+# Add any paths that contain templates here, relative to this directory.
+templates_path = ["_templates"]
+exclude_patterns = [
+    "_build",
+    "Thumbs.db",
+    ".DS_Store",
+    "**.ipynb_checkpoints",
+    "build",
+    "extra/**",
+]
+
+napoleon_use_param = True
 
 
 def setup(app):

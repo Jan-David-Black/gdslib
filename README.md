@@ -1,17 +1,32 @@
 # gdslib 0.1.5
 
-Library of compact models for components
+Compact models for photonic components
 
 ## Usage
 
-See docs/notebooks
-
+See jupyer notebooks
 
 ## Tests
 
-pytest runs pytest-regressions over the Sparameters for components and circuits
+`pytest` runs 2 types of tests:
+
+- testing functions
+- pytest-regressions over the Sparameters for components and circuits
 
 
 ## Installation
 
-`make install`
+You can install install the latest released version.
+
+```
+pip install gdslib
+```
+
+
+Or you can install the development version if you plan to contribute
+
+```
+git clone https://github.com/gdsfactory/gdslib.git
+cd gdslib
+make install
+```

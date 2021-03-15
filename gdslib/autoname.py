@@ -7,8 +7,9 @@ import hashlib
 from inspect import signature
 from typing import Any
 from typing import Callable
+import numpy as np
+from simphony.tools import freq2wl
 
-from gdslib.freq2wl import freq2wl
 
 MAX_NAME_LENGTH = 100
 
@@ -89,7 +90,7 @@ def autoname(component_function: Callable) -> Callable:
         component.function_name = component_function.__name__
 
         if hasattr(component, "freq_range"):
-            component.wl_range = freq2wl(component.freq_range)
+            component.wl_range = freq2wl(np.array(component.freq_range))
 
         if len(name) > MAX_NAME_LENGTH:
             component.name_long = name

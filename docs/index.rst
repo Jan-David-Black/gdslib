@@ -5,6 +5,6 @@ gdslib
     :maxdepth: 2
 
     README
-    functions
-    elements
+    components
     circuits
+    notebooks

@@ -16,7 +16,7 @@ def ring_double(
     coupler=coupler_ring,
     waveguide=waveguide,
 ):
-    r"""Return double bus ring made of two couplers (ct: top, cb: bottom)
+    r"""Return double bus ring Model made of two couplers (ct: top, cb: bottom)
     connected with two vertical waveguides (yl: left, wr: right)
 
     .. code::
@@ -53,7 +53,7 @@ def ring_double(
 
       import pp
 
-      c = pp.c.ring_double(wg_width=0.5, gap=0.2, length_x=4, bend_radius=5, length_y=2)
+      c = pp.c.ring_double(width=0.5, gap=0.2, length_x=4, radius=5, length_y=2)
       pp.plotgds(c)
 
 

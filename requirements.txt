@@ -4,3 +4,4 @@ SiPANN
 scipy
 numpy
 numba
+ElectromagneticPython

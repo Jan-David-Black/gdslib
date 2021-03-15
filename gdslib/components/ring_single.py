@@ -18,7 +18,7 @@ def ring_single(
     waveguide=waveguide,
     bend=bend_circular,
 ):
-    r""" single bus ring made of a ring coupler (cb: bottom)
+    r"""Return single bus ring Model made of a ring coupler (cb: bottom)
     connected with:
     - 2 vertical waveguides (wl: left, wr: right)
     - 2 bend90 waveguides (bl: left, br: right)
@@ -51,7 +51,7 @@ def ring_single(
 
       import pp
 
-      c = pp.c.ring_single(wg_width=0.5, gap=0.2, length_x=4, bend_radius=5, length_y=2)
+      c = pp.c.ring_single(width=0.5, gap=0.2, length_x=4, radius=5, length_y=2)
       pp.plotgds(c)
 
 

@@ -1,5 +1,8 @@
 """Parameterized circuit models for circuit simulations."""
 
+from simphony.tools import freq2wl
+from simphony.tools import wl2freq
+
 import gdslib.components as components
 from gdslib.add_gc import add_gc
 from gdslib.autoname import autoname
@@ -12,8 +15,6 @@ from gdslib.model_from_sparameters import model_from_sparameters
 from gdslib.plot_circuit import plot_circuit
 from gdslib.plot_circuit_montecarlo import plot_circuit_montecarlo
 from gdslib.plot_model import plot_model
-from gdslib.wl2freq import wl2freq
-from gdslib.freq2wl import freq2wl
 
 c = components
 

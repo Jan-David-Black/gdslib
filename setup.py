@@ -13,7 +13,7 @@ setup(
     url="https://github.com/gdsfactory/gdslib",
     license="MIT",
     author="Joaquin",
-    description="gdslibrary library of compact models and GDS metadata",
+    description="library of component models",
     packages=find_packages(exclude=("tests",)),
     python_requires=">=3.6",
     install_requires=get_install_requires(),
