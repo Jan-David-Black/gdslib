@@ -5,11 +5,11 @@ from gdslib.model_from_gdsfactory import model_from_gdsfactory
 
 
 @autoname
-def coupler2(c=pp.c.coupler, wg_width=0.5, length=20, gap=0.224):
+def coupler2(c=pp.c.coupler, width=0.5, length=20, gap=0.224):
     r"""Coupler for half a ring based on Lumerical 3D FDTD simulations.
 
     Args:
-        wg_width:0.5
+        width:0.5
         gap: 0.2
         length: 4
 
@@ -34,7 +34,7 @@ def coupler2(c=pp.c.coupler, wg_width=0.5, length=20, gap=0.224):
 
     """
     if callable(c):
-        c = c(wg_width=wg_width, length=length, gap=gap)
+        c = c(width=width, length=length, gap=gap)
     m = model_from_gdsfactory(c)
     return m
 
@@ -47,6 +47,7 @@ if __name__ == "__main__":
     f = 3e8 / wav
     c = pp.c.coupler(length=20, gap=0.224)
     m = coupler2(c=c)
+    # c = coupler2()
     s = m.s_parameters(freq=f)
 
     plt.plot(wav, np.abs(s[:, 1] ** 2))

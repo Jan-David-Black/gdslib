@@ -5,25 +5,57 @@ from gdslib.model_from_gdsfactory import model_from_gdsfactory
 
 
 @autoname
-def mmi2x2(c=pp.c.mmi2x2, **kwargs):
-    """Return mmi2x2 Sparameter model
+def mmi2x2(**kwargs):
+    """Return 2x2 MultiModeInterferometer Sparameter model.
+
+    Args:
+        width: input and output waveguide width
+        width_taper: interface between input waveguides and mmi region
+        length_taper: into the mmi region
+        length_mmi: in x direction
+        width_mmi: in y direction
+        gap_mmi:  gap between tapered wg
+        taper: taper function
+        layer:
+        layers_cladding:
+        cladding_offset
+        tech: technology dataclass
 
     .. code::
 
-                 ____
-            W1 _|   |_ E1
-            W0 _|   |_ E0
-                |___|
+                   length_mmi
+                    <------>
+                    ________
+                   |        |
+                __/          \__
+            W1  __            __  E1
+                  \          /_ _ _ _
+                  |         | _ _ _ _| gap_mmi
+                __/          \__
+            W0  __            __  E0
+                  \          /
+                   |________|
+
+                 <->
+            length_taper
+
+    .. plot::
+      :include-source:
+
+      import pp
+      c = pp.c.mmi2x2(length_mmi=15.45, width_mmi=2.1)
+      c.plot()
+
 
     .. plot::
         :include-source:
 
         import gdslib as gl
 
-        c = gl.mmi2x2()
+        c = gl.c.mmi2x2()
         gl.plot_model(c)
     """
-    m = model_from_gdsfactory(c, **kwargs)
+    m = model_from_gdsfactory(pp.c.mmi2x2, **kwargs)
     return m
 
 

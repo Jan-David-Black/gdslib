@@ -5,8 +5,17 @@ from gdslib.model_from_sparameters import model_from_filepath
 
 @autoname
 def gc1550te(filepath=path.sp / "gc2dte" / "gc1550.dat", numports=2):
-    m = model_from_filepath(filepath=filepath, numports=numports)
-    return m
+    """Returns Sparameter model for 1550nm TE grating_coupler.
+
+    .. plot::
+        :include-source:
+
+        import gdslib as gl
+
+        c = gl.c.gc1550te()
+        gl.plot_model(c)
+    """
+    return model_from_filepath(filepath=filepath, numports=numports)
 
 
 if __name__ == "__main__":

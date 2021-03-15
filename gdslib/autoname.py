@@ -1,7 +1,4 @@
-""" define names, clean names and values
-
-
-"""
+"""Define names, clean names and values."""
 import functools
 import hashlib
 from inspect import signature
@@ -32,21 +29,18 @@ def get_component_name(component_type: str, **kwargs) -> str:
 
 
 def autoname(component_function: Callable) -> Callable:
-    """decorator for auto-naming component functions
+    """Decorator for auto-naming functions.
     if no Keyword argument `name`  is passed it creates a name by concenating all Keyword arguments
 
     Args:
         name (str):
-        cache (bool): caches functions with same name
-        uid (bool): adds a unique id to the name
-        pins (bool): add pins
 
     .. plot::
       :include-source:
 
-      import pp
+      from gdslib.autoname import autoname
 
-      @pp.autoname
+      @autoname
       def rectangle(size=(4,2), layer=0):
           c = pp.Component()
           w, h = size
@@ -55,8 +49,7 @@ def autoname(component_function: Callable) -> Callable:
           return c
 
       c = rectangle(layer=1)
-      c << pp.c.text(text=c.name, size=1)
-      pp.plotgds(c)
+      print(c.name)
 
     """
 

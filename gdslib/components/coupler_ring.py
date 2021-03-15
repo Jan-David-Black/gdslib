@@ -7,7 +7,7 @@ from gdslib.plot_model import plot_model
 
 @autoname
 def coupler_ring(
-    radius: float = 5,
+    radius: float = 5.0,
     width: float = 0.5,
     thickness: float = 0.22,
     gap: float = 0.22,
@@ -19,11 +19,11 @@ def coupler_ring(
 
     Args:
         radius: 5
-        width: float or ndarray Width of the waveguide in um (Valid for 0.4-0.6)
-        thickness : float or ndarray Thickness of waveguide in um (Valid for 0.18-0.24)
-        gap : float or ndarray Minimum distance between the two waveguides edge in um. (Must be > 0.1)
-        length_x: Length of straight portion of ring waveguide in um
-        sw_angle: Sidewall angle from horizontal in degrees, ie 90 makes a square. Defaults to 90.
+        width: width um (Valid for 0.4-0.6)
+        thickness: Thickness in um (Valid for 0.18-0.24)
+        gap: distance between waveguides in um. (Must be > 0.1)
+        length_x: Length of straight portion of coupler in um
+        sw_angle: Sidewall angle from horizontal in degrees
         kwargs: geometrical args that this model ignores
 
     .. code::
@@ -57,7 +57,6 @@ def coupler_ring(
     gap = gap * 1e3
     length = length_x * 1e3
     radius = radius * 1e3
-    # print(f'ignoring {kwargs}')
 
     s = HalfRacetrack(
         radius=radius,

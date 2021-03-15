@@ -17,7 +17,7 @@ def mzi(
     combiner: Optional[Callable] = None,
     wg: Callable = waveguide_function,
 ):
-    """Mzi circuit model
+    """Mzi circuit model.
 
     Args:
         delta_length: bottom arm vertical extra length

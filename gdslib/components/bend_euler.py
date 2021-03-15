@@ -18,7 +18,7 @@ def bend_euler(
 ):
     """Return simphony Model for a bend using a waveguide
 
-    notice that this is fake bend!
+    FIXME. this is fake bend! need to create a better model
 
     Args:
         radius: Radius of waveguide in microns.

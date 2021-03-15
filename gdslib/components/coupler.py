@@ -16,7 +16,7 @@ def coupler(
     V: float = 0.0,
     **kwargs,
 ):
-    r"""Return simphony Model for Directional coupler.
+    r"""Return simphony Directional coupler model.
 
     Args:
         width: Width of the waveguide in um (Valid for 0.4-0.6)
@@ -25,7 +25,7 @@ def coupler(
         length: float or ndarray Length of the straight portion of both waveguides in um.
         H: Horizontal distance between end of coupler until straight portion in nm.
         V: Vertical distance between end of coupler until straight portion in um.
-        sw_angle: Sidewall angle of waveguide from horizontal in degrees (Valid for 80-90 degrees). Defaults to 90.
+        sw_angle: Sidewall angle from horizontal in degrees
 
     This is what most people think of when they think directional coupler. Ports are numbered as
 
@@ -36,6 +36,14 @@ def coupler(
                                   | V
                     ------        |
             W0 1---/      \-------- 3 E0
+
+    .. plot::
+        :include-source:
+
+        import gdslib as gl
+
+        c = gl.c.coupler()
+        gl.plot_model(c)
 
     """
 
