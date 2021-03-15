@@ -16,7 +16,7 @@ def test_elements(component_type, data_regression):
     s = c.s_parameters(freq=f)
     _, rows, cols = np.shape(s)
     sdict = {
-        f"S{i+1}{j+1}": np.round(np.abs(s[:, i, j]), decimals=10).tolist()
+        f"S{i+1}{j+1}": np.round(np.abs(s[:, i, j]), decimals=3).tolist()
         for i in range(rows)
         for j in range(cols)
     }
@@ -27,5 +27,5 @@ def test_elements(component_type, data_regression):
 def test_circuits(component_type, data_regression):
     c = circuit_factory[component_type]()
     r = get_transmission(c, num=3)
-    s = np.round(r["s"], decimals=10).tolist()
+    s = np.round(r["s"], decimals=3).tolist()
     data_regression.check(dict(w=r["wavelength_nm"].tolist(), s=s))
