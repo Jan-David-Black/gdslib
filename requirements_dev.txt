@@ -12,3 +12,4 @@ tox
 doc8
 pydocstyle
 nbsphinx
+ipykernel
