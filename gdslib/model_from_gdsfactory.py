@@ -19,7 +19,7 @@ def model_from_gdsfactory(component: Component, **kwargs) -> Model:
     kwargs.pop("function_name", "")
     kwargs.pop("module", "")
     component = pp.call_if_func(component, **kwargs)
-    pins, f, s = sp.load(component, dirpath=path.sp)
+    pins, f, s = sp.read_sparameters_component(component=component, dirpath=path.sp)
 
     def interpolate_sp(freq):
         return interpolate(freq, f, s)

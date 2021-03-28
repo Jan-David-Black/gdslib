@@ -1,6 +1,5 @@
 from typing import Callable
 from typing import Dict
-from typing import Union
 
 import numpy as np
 import pp
@@ -14,7 +13,7 @@ from gdslib.components import component_factory
 
 
 def get_transmission(
-    circuit,
+    circuit: Subcircuit,
     pin_in: str = "input",
     pin_out: str = "output",
     start: float = 1500e-9,
@@ -32,8 +31,6 @@ def get_transmission(
         num: number of points
 
     """
-    circuit = pp.call_if_func(circuit)
-
     simulation = SweepSimulation(circuit, start, stop, num)
     result = simulation.simulate()
 
@@ -43,8 +40,7 @@ def get_transmission(
 
 
 def component_to_circuit(
-    component: Union[Callable, Component],
-    model_factory: Dict[str, Callable] = component_factory,
+    component: Component, model_factory: Dict[str, Callable] = component_factory,
 ) -> Subcircuit:
     """Returns Simphony circuit from a gdsfactory component netlist.
 
@@ -52,7 +48,6 @@ def component_to_circuit(
         component: component factory or instance
         model_factory: dict of component_type
     """
-    component = pp.call_if_func(component)
     netlist = component.get_netlist()
     instances = netlist["instances"]
     connections = netlist["connections"]
@@ -90,19 +85,21 @@ def component_to_circuit(
 
 
 splitter = "mmi1x2_0.0_0.0"
-combiner = "mmi1x2_65.596_-0.0"
+combiner = "mmi1x2_65.596_0.0"
 
 
 def test_circuit_transmission(data_regression, check: bool = True):
-    component = pp.c.mzi(delta_length=100)
-    c = component_to_circuit(component)
-    c.elements[splitter].pins["W0"] = "input"
-    c.elements[combiner].pins["W0"] = "output"
-    r = get_transmission(c, num=3)
+    component = pp.c.mzi(delta_length=100, bend=pp.c.bend_circular)
+    circuit = component_to_circuit(component)
+    # for e in circuit.elements:
+    #     print(e)
+    circuit.elements[splitter].pins["W0"] = "input"
+    circuit.elements[combiner].pins["W0"] = "output"
+    r = get_transmission(circuit, num=3)
     s = np.round(r["s"], decimals=10).tolist()
     if check:
         data_regression.check(dict(w=r["wavelength_nm"].tolist(), s=s))
-    return s
+    return circuit
 
 
 def demo_print_transmission():
@@ -131,7 +128,7 @@ def demo_plot_transmission():
 
 
 if __name__ == "__main__":
-    # s = test_circuit_transmission(None, check=False)
+    # c = test_circuit_transmission(None, check=False)
     # demo_print_transmission()
     demo_plot_transmission()
 
