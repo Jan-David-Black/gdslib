@@ -41,13 +41,21 @@ def coupler_ring(
                 ---------
             1---------------3
 
+    .. plot::
+        :include-source:
+
+        import pp
+
+        c = pp.components.coupler_ring()
+        c.plot()
+
 
     .. plot::
         :include-source:
 
         import gdslib as gl
 
-        m = gl.c.coupler_ring()
+        m = gl.components.coupler_ring()
         gl.plot_model(m)
 
     """

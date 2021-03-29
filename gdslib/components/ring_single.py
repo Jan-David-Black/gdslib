@@ -51,8 +51,8 @@ def ring_single(
 
       import pp
 
-      c = pp.c.ring_single(width=0.5, gap=0.2, length_x=4, radius=5, length_y=2)
-      pp.plotgds(c)
+      c = pp.components.ring_single(width=0.5, gap=0.2, length_x=4, radius=5, length_y=2)
+      c.plot()
 
 
     .. plot::
@@ -60,7 +60,7 @@ def ring_single(
 
         import gdslib as gl
 
-        c = gl.c.ring_single()
+        c = gl.components.ring_single()
         gl.plot_circuit(c)
     """
 

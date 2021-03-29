@@ -2,13 +2,11 @@
 
 Circuit simulations for Photonic components.
 
-You can Component circuit models are
-
-You can leverage
+You can leverage:
 
 - Compact models for photonic components from FDTD Sparameter simulations
-- Compact models from Neural networks thanks to [SiPANN](https://sipann.readthedocs.io/en/latest/?badge=latest)
-- Circits simulations thanks to Open source package [simphony](https://simphonyphotonics.readthedocs.io/en/stable/) which provides a linear circuit solver for [Sparameters](https://en.wikipedia.org/wiki/Scattering_parameters)
+- Compact models from Neural networks thanks to [SiPANN package](https://sipann.readthedocs.io/en/latest/?badge=latest)
+- Circits simulations thanks to [simphony](https://simphonyphotonics.readthedocs.io/en/stable/) which provides a linear circuit solver for [Sparameters](https://en.wikipedia.org/wiki/Scattering_parameters). Which allows you to compute the spectral response of a circuit made of different components connected together.
 
 ## Usage
 
@@ -16,7 +14,7 @@ See jupyer notebooks
 
 ## Tests
 
-`pytest` runs 2 types of tests:
+`make test` runs 2 types of tests with pytest:
 
 - testing functions
 - pytest-regressions over the Sparameters for components and circuits

@@ -48,7 +48,7 @@ def coupler(
 
       import pp
 
-      c = pp.c.coupler(gap=0.2, length=10)
+      c = pp.components.coupler(gap=0.2, length=10)
       c.plot()
 
     .. plot::
@@ -56,7 +56,7 @@ def coupler(
 
         import gdslib as gl
 
-        c = gl.c.coupler()
+        c = gl.components.coupler()
         gl.plot_model(c)
 
     """

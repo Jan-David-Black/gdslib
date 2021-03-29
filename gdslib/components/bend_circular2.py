@@ -13,7 +13,7 @@ def bend_circular2(
     radius: float = 10.0,
     width: float = 0.5,
     thickness: float = 0.22,
-    angle: int = 90,
+    angle: float = 90.0,
     sw_angle: float = 90.0,
     wavelength: Optional[np.array] = None,
     **kwargs,

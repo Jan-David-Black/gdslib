@@ -53,8 +53,8 @@ def ring_double(
 
       import pp
 
-      c = pp.c.ring_double(width=0.5, gap=0.2, length_x=4, radius=5, length_y=2)
-      pp.plotgds(c)
+      c = pp.components.ring_double(width=0.5, gap=0.2, length_x=4, radius=5, length_y=2)
+      c.plot()
 
 
     .. plot::

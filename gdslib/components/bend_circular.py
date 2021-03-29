@@ -11,7 +11,7 @@ def bend_circular(
     radius: float = 10.0,
     width: float = 0.5,
     thickness: float = 0.22,
-    angle: int = 90,
+    angle: float = 90.0,
     sw_angle: float = 90.0,
     **kwargs,
 ):
@@ -24,7 +24,7 @@ def bend_circular(
         width: Width of the waveguides in microns
         thickness: Thickness of the waveguides in microns
         angle: Number of deg of circle that bent waveguide transverses
-        sw_angle: Sidewall angle from horizontal in degrees, ie 90 makes a square. Defaults to 90.
+        sw_angle: Sidewall angle from horizontal in degrees. Defaults to 90.
         kwargs: geometrical args that this model ignores
 
     """

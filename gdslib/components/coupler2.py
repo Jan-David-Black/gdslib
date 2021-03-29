@@ -29,7 +29,7 @@ def coupler2(c=pp.c.coupler, width=0.5, length=20, gap=0.224):
 
         import gdslib as gl
 
-        m = gl.c.coupler_ring()
+        m = gl.components.coupler_ring()
         gl.plot_model(m)
 
     """

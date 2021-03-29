@@ -51,8 +51,8 @@ def mzi(
 
       import pp
 
-      c = pp.c.mzi(delta_length=10)
-      pp.plotgds(c)
+      c = pp.components.mzi(delta_length=10)
+      c.plot()
 
 
     .. plot::
