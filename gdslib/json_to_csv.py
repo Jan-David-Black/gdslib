@@ -1,7 +1,7 @@
 import pathlib
 import json
 import pandas as pd
-from gdslib.config import path
+from gdslib.config import PATH
 
 
 def json_to_csv(dirpathin, dirpathout=None):
@@ -23,4 +23,4 @@ def json_to_csv(dirpathin, dirpathout=None):
 
 
 if __name__ == "__main__":
-    json_to_csv(path.sp)
+    json_to_csv(PATH.sp)

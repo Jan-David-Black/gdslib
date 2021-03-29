@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.2.1
+
+- compatible with latest gdsfactory
+
+## 0.2.0
+
+- better docs
+
 ## 0.1.4
 
 - remove gds

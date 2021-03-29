@@ -6,7 +6,7 @@ from scipy.constants import speed_of_light
 from simphony.elements import Model
 from simphony.tools import interpolate
 
-from gdslib.config import path
+from gdslib.config import PATH
 
 
 def model_from_gdsfactory(component: Component, **kwargs) -> Model:
@@ -19,7 +19,7 @@ def model_from_gdsfactory(component: Component, **kwargs) -> Model:
     kwargs.pop("function_name", "")
     kwargs.pop("module", "")
     component = pp.call_if_func(component, **kwargs)
-    pins, f, s = sp.read_sparameters_component(component=component, dirpath=path.sp)
+    pins, f, s = sp.read_sparameters_component(component=component, dirpath=PATH.sp)
 
     def interpolate_sp(freq):
         return interpolate(freq, f, s)

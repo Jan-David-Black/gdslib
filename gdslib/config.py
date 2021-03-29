@@ -1,7 +1,6 @@
-""" stores configuration variables
-"""
+"""Store configuration variables."""
 
-__all__ = ["path"]
+__all__ = ["PATH"]
 
 import pathlib
 
@@ -16,7 +15,7 @@ class Path:
     sp = repo_path / "sp"
 
 
-path = Path()
+PATH = Path()
 
 if __name__ == "__main__":
-    print(path.sp)
+    print(PATH.sp)

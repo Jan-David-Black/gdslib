@@ -7,7 +7,7 @@ from SiPANN import scee
 from simphony.elements import Model
 from simphony.tools import freq2wl, interpolate
 
-from gdslib.config import path
+from gdslib.config import PATH
 
 
 class coupler50(Model):
@@ -15,7 +15,7 @@ class coupler50(Model):
 
     # pins = ("n1", "n2", "n3", "n4")  #: The default pin names of the device
     pins = ("W0", "W1", "E0", "E1")  #: The default pin names of the device
-    loaded = np.load(path.sp / "sipann" / "sipann_scee_fifty_s.npz")
+    loaded = np.load(PATH.sp / "sipann" / "sipann_scee_fifty_s.npz")
     s_params = (loaded["f"], loaded["s"])
     freq_range = (
         s_params[0][0],
@@ -34,7 +34,7 @@ class coupler50(Model):
         Returns:
             s: Returns the calculated s-parameter matrix.
         """
-        loaded = np.load(path.sp / "sipann" / "sipann_fifty.npz")
+        loaded = np.load(PATH.sp / "sipann" / "sipann_fifty.npz")
         x = loaded["GAP"]
         b = loaded["LENGTH"]
 
@@ -97,7 +97,7 @@ if __name__ == "__main__":
     import matplotlib.pyplot as plt
     from gdslib.plot_model import plot_model
 
-    # loaded = np.load(path.sp / 'sipann'/ "sipann_scee_fifty.npz")
+    # loaded = np.load(PATH.sp / 'sipann'/ "sipann_scee_fifty.npz")
 
     c = coupler50()
     plot_model(c)

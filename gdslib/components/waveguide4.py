@@ -3,7 +3,7 @@ from itertools import combinations_with_replacement as comb_w_r
 import numpy as np
 
 from simphony.elements import Model
-from gdslib.config import path
+from gdslib.config import PATH
 
 
 def waveguide(
@@ -157,7 +157,7 @@ class Waveguide(Model):
 
         # get coefficients and return
         coeffs = np.load(
-            path.sp / "sipann" / "ebeam_wg_integral_1550" / "straightCoeffs.npy"
+            PATH.sp / "sipann" / "ebeam_wg_integral_1550" / "straightCoeffs.npy"
         )
         return polyCombos @ coeffs
 
