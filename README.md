@@ -1,4 +1,4 @@
-# gdslib 0.2.0
+# gdslib 0.2.1
 
 Circuit simulations for Photonic components.
 
