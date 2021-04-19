@@ -15,7 +15,7 @@ def ring_single(
     length_y=4,
     bend_radius=5,
     coupler=coupler_ring,
-    waveguide=siepic.ebeam_wg_integral_1550,
+    straight=siepic.ebeam_wg_integral_1550,
 ):
     r"""Single bus ring made of a ring coupler (cb: bottom)
 
@@ -33,7 +33,7 @@ def ring_single(
     """
 
     length = np.pi * bend_radius + length_x + 2 * length_y
-    waveguide = waveguide(length=length * 1e-6) if callable(waveguide) else waveguide
+    straight = straight(length=length * 1e-6) if callable(straight) else straight
     coupler = (
         coupler(length_x=length_x, bend_radius=bend_radius, gap=gap, wg_width=wg_width)
         if callable(coupler)
@@ -42,7 +42,7 @@ def ring_single(
 
     # Create the circuit, add all individual instances
     circuit = Subcircuit("ring_double")
-    circuit.add([(coupler, "cb"), (waveguide, "wt")])
+    circuit.add([(coupler, "cb"), (straight, "wt")])
 
     circuit.connect_many([("cb", "N0", "wt", "n1"), ("wt", "n2", "cb", "N1")])
     circuit.elements["cb"].pins["W0"] = "input"

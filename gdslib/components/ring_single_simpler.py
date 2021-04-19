@@ -3,7 +3,7 @@ from simphony.netlist import Subcircuit
 from gdslib import plot_circuit
 from gdslib.autoname import autoname
 from gdslib.components.coupler_ring import coupler_ring
-from gdslib.components.waveguide import waveguide
+from gdslib.components.straight import straight
 
 
 @autoname
@@ -13,7 +13,7 @@ def ring_single(
     length_x=4,
     bend_radius=5,
     coupler=coupler_ring,
-    waveguide=waveguide,
+    straight=straight,
 ):
     r"""Return Single bus ring made of a ring coupler (cb: bottom)
 
@@ -31,7 +31,7 @@ def ring_single(
 
 
     """
-    waveguide = waveguide(length=length_x) if callable(waveguide) else waveguide
+    straight = straight(length=length_x) if callable(straight) else straight
     coupler = (
         coupler(length_x=length_x, bend_radius=bend_radius, gap=gap, wg_width=wg_width)
         if callable(coupler)
@@ -40,7 +40,7 @@ def ring_single(
 
     # Create the circuit, add all individual instances
     circuit = Subcircuit("ring_double")
-    circuit.add([(coupler, "cb"), (waveguide, "wt")])
+    circuit.add([(coupler, "cb"), (straight, "wt")])
 
     circuit.connect_many([("cb", "N0", "wt", "W0"), ("wt", "E0", "cb", "N1")])
     circuit.elements["cb"].pins["W0"] = "input"

@@ -6,53 +6,53 @@ Components
 bend_circular
 ----------------------------------------------------
 
-.. autofunction:: gdslib.c.bend_circular
+.. autofunction:: gdslib.components.bend_circular
 
 
 
 bend_euler
 ----------------------------------------------------
 
-.. autofunction:: gdslib.c.bend_euler
+.. autofunction:: gdslib.components.bend_euler
 
 
 
 coupler
 ----------------------------------------------------
 
-.. autofunction:: gdslib.c.coupler
+.. autofunction:: gdslib.components.coupler
 
 
 
 coupler_ring
 ----------------------------------------------------
 
-.. autofunction:: gdslib.c.coupler_ring
+.. autofunction:: gdslib.components.coupler_ring
 
 
 
 gc1550te
 ----------------------------------------------------
 
-.. autofunction:: gdslib.c.gc1550te
+.. autofunction:: gdslib.components.gc1550te
 
 
 
 mmi1x2
 ----------------------------------------------------
 
-.. autofunction:: gdslib.c.mmi1x2
+.. autofunction:: gdslib.components.mmi1x2
 
 
 
 mmi2x2
 ----------------------------------------------------
 
-.. autofunction:: gdslib.c.mmi2x2
+.. autofunction:: gdslib.components.mmi2x2
 
 
 
-waveguide
+straight
 ----------------------------------------------------
 
-.. autofunction:: gdslib.c.waveguide
+.. autofunction:: gdslib.components.straight

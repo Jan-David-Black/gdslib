@@ -1,10 +1,10 @@
 component:
-  function_name: waveguide
+  function_name: straight
   info:
     length: 10.0
     width: 0.5
-  module: pp.components.waveguide
-  name: waveguide
+  module: pp.components.straight
+  name: straight
   settings:
     cladding_offset: 0.0
     layer:

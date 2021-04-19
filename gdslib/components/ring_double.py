@@ -3,7 +3,7 @@ from simphony.netlist import Subcircuit
 from gdslib.plot_circuit import plot_circuit
 from gdslib.autoname import autoname
 from gdslib.components.coupler_ring import coupler_ring
-from gdslib.components.waveguide import waveguide
+from gdslib.components.straight import straight
 
 
 @autoname
@@ -14,10 +14,10 @@ def ring_double(
     bend_radius=5,
     length_y=2,
     coupler=coupler_ring,
-    waveguide=waveguide,
+    straight=straight,
 ):
     r"""Return double bus ring Model made of two couplers (ct: top, cb: bottom)
-    connected with two vertical waveguides (yl: left, wr: right)
+    connected with two vertical straights (yl: left, wr: right)
 
     .. code::
 
@@ -66,7 +66,7 @@ def ring_double(
         gl.plot_circuit(c)
     """
 
-    waveguide = waveguide(length=length_y) if callable(waveguide) else waveguide
+    straight = straight(length=length_y) if callable(straight) else straight
     coupler = (
         coupler(length_x=length_x, bend_radius=bend_radius, gap=gap, wg_width=wg_width)
         if callable(coupler)
@@ -75,9 +75,7 @@ def ring_double(
 
     # Create the circuit, add all individual instances
     circuit = Subcircuit("ring_double")
-    circuit.add(
-        [(coupler, "ct"), (coupler, "cb"), (waveguide, "wl"), (waveguide, "wr")]
-    )
+    circuit.add([(coupler, "ct"), (coupler, "cb"), (straight, "wl"), (straight, "wr")])
 
     # Circuits can be connected using the elements' string names:
     circuit.connect_many(

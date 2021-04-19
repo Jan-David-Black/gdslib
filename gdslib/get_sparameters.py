@@ -20,5 +20,5 @@ def get_sparameters(model, wavelengths=None):
 if __name__ == "__main__":
     import gdslib as gl
 
-    w, sp = get_sparameters(gl.c.waveguide)
+    w, sp = get_sparameters(gl.c.straight)
     print(abs(sp))

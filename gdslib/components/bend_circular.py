@@ -15,15 +15,15 @@ def bend_circular(
     sw_angle: float = 90.0,
     **kwargs,
 ):
-    """Return simphony Model for a bend using a waveguide
+    """Return simphony Model for a bend using a straight
 
     FIXME. this is fake bend! need to create a better model
 
     Args:
-        radius: Radius of waveguide in microns.
-        width: Width of the waveguides in microns
-        thickness: Thickness of the waveguides in microns
-        angle: Number of deg of circle that bent waveguide transverses
+        radius: Radius of straight in microns.
+        width: Width of the straights in microns
+        thickness: Thickness of the straights in microns
+        angle: Number of deg of circle that bent straight transverses
         sw_angle: Sidewall angle from horizontal in degrees. Defaults to 90.
         kwargs: geometrical args that this model ignores
 

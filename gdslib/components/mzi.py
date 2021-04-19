@@ -5,7 +5,7 @@ from simphony.netlist import Subcircuit
 from gdslib.plot_circuit import plot_circuit
 from gdslib.autoname import autoname
 from gdslib.components.mmi1x2 import mmi1x2
-from gdslib.components.waveguide import waveguide as waveguide_function
+from gdslib.components.straight import straight as straight_function
 
 
 @autoname
@@ -15,7 +15,7 @@ def mzi(
     length_x: float = 0.1,
     splitter: Callable = mmi1x2,
     combiner: Optional[Callable] = None,
-    wg: Callable = waveguide_function,
+    straight: Callable = straight_function,
 ):
     """Mzi circuit model.
 
@@ -25,7 +25,7 @@ def mzi(
         length_x: horizontal length
         splitter: model function for combiner
         combiner: model function for combiner
-        wg: waveguide model function
+        wg: straight model function
 
     Return: mzi circuit model
 
@@ -60,7 +60,7 @@ def mzi(
 
         import gdslib as gl
 
-        c = gl.c.mzi()
+        c = gl.components.mzi()
         gl.plot_circuit(c)
 
     """
@@ -68,8 +68,8 @@ def mzi(
     splitter = splitter() if callable(splitter) else splitter
     combiner = combiner() if callable(combiner) else combiner
 
-    wg_long = wg(length=2 * length_y + delta_length + length_x)
-    wg_short = wg(length=2 * length_y + length_x)
+    wg_long = straight(length=2 * length_y + delta_length + length_x)
+    wg_short = straight(length=2 * length_y + length_x)
 
     # Create the circuit, add all individual instances
     circuit = Subcircuit("mzi")

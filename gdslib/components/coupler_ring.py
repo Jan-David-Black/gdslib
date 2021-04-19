@@ -21,7 +21,7 @@ def coupler_ring(
         radius: 5
         width: width um (Valid for 0.4-0.6)
         thickness: Thickness in um (Valid for 0.18-0.24)
-        gap: distance between waveguides in um. (Must be > 0.1)
+        gap: distance between straights in um. (Must be > 0.1)
         length_x: Length of straight portion of coupler in um
         sw_angle: Sidewall angle from horizontal in degrees
         kwargs: geometrical args that this model ignores

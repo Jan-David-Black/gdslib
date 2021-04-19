@@ -16,14 +16,14 @@ wavelengths = np.linspace(
     round((wavelength_stop - wavelength_start) * 1e9 / resolution),
 )
 
-# Grating waveguide compact model (cavity)
-# these are polynomial fit constants from a waveguide width of 500 nm
+# Grating straight compact model (cavity)
+# these are polynomial fit constants from a straight width of 500 nm
 n1_wg = 4.077182700600432
 n2_wg = -0.982556173493906
 n3_wg = -0.046366956781710
 
-# Cavity waveguide compact model (cavity)
-# these are polynomial fit constants from a waveguide width of 500 nm
+# Cavity straight compact model (cavity)
+# these are polynomial fit constants from a straight width of 500 nm
 n1_c = 4.077182700600432
 n2_c = -0.982556173493906
 n3_c = -0.046366956781710
@@ -43,8 +43,8 @@ alpha = np.log(10) * alpha_dBcm / 10 * 100.0  # per meter
 L = period / 2  # length of cavity
 
 
-def tmatrix_waveguide(wavelength, neff, length):
-    """waveguide
+def tmatrix_straight(wavelength, neff, length):
+    """straight
 
     Args:
         wavelength (same units as length)
@@ -68,9 +68,9 @@ def tmatrix_boundary(neff1, neff2):
 def tmatrix_dbr(wavelength, n1, n2, period, n_periods=n_periods):
     """ DBR Tmatrix """
     length = period / 2
-    T_hw1 = tmatrix_waveguide(wavelength, n1, length)
+    T_hw1 = tmatrix_straight(wavelength, n1, length)
     T_is12 = tmatrix_boundary(n1, n2)
-    T_hw2 = tmatrix_waveguide(wavelength, n2, length)
+    T_hw2 = tmatrix_straight(wavelength, n2, length)
     T_is21 = tmatrix_boundary(n2, n1)
     Tp1 = np.matmul(T_hw1, T_is12)
     Tp2 = np.matmul(T_hw2, T_is21)
@@ -81,17 +81,17 @@ def tmatrix_dbr(wavelength, n1, n2, period, n_periods=n_periods):
 def tmatrix_dbr_cavity(
     wavelength, n1, n2, period, length=0.01, n_periods_left=600, n_periods_right=600,
 ):
-    """ 2 DBR with a waveguide cavity of length in the middle"""
-    T_hw1 = tmatrix_waveguide(wavelength, n1, period / 2)
+    """ 2 DBR with a straight cavity of length in the middle"""
+    T_hw1 = tmatrix_straight(wavelength, n1, period / 2)
     T_is12 = tmatrix_boundary(n1, n2)
-    T_hw2 = tmatrix_waveguide(wavelength, n2, period / 2)
+    T_hw2 = tmatrix_straight(wavelength, n2, period / 2)
     T_is21 = tmatrix_boundary(n2, n1)
 
     Tp1 = np.matmul(T_hw1, T_is12)
     Tp2 = np.matmul(T_hw2, T_is21)
     Tp_Left = np.matmul(Tp1, Tp2)
 
-    T_cavity = tmatrix_waveguide(wavelength, n1, length)
+    T_cavity = tmatrix_straight(wavelength, n1, length)
 
     Tp1 = np.matmul(T_hw1, T_is12)
     Tp2 = np.matmul(T_hw2, T_is21)

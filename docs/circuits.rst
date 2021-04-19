@@ -6,18 +6,18 @@ Circuits
 mzi
 ----------------------------------------------------
 
-.. autofunction:: gdslib.c.mzi
+.. autofunction:: gdslib.components.mzi
 
 
 
 ring_double
 ----------------------------------------------------
 
-.. autofunction:: gdslib.c.ring_double
+.. autofunction:: gdslib.components.ring_double
 
 
 
 ring_single
 ----------------------------------------------------
 
-.. autofunction:: gdslib.c.ring_single
+.. autofunction:: gdslib.components.ring_single

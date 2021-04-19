@@ -1,4 +1,4 @@
-"""SIPANN based model for waveguide."""
+"""SIPANN based model for straight."""
 from itertools import combinations_with_replacement as comb_w_r
 import numpy as np
 
@@ -6,7 +6,7 @@ from simphony.elements import Model
 from gdslib.config import PATH
 
 
-def waveguide(
+def straight(
     length,
     width=0.5,
     thickness=0.22,
@@ -45,17 +45,17 @@ def waveguide(
 
 
 class Waveguide(Model):
-    """Neural-net trained model of a waveguide.
+    """Neural-net trained model of a straight.
 
-    A waveguide easily connects other components within the circuit.
-    The SiP-ANN waveguide is different from the EBeam package since its
+    A straight easily connects other components within the circuit.
+    The SiP-ANN straight is different from the EBeam package since its
     values are calculated based on a regression fit to simulation data.
 
     Args:
-        length: length of the waveguide in microns.
-        width: width of the waveguide in microns.
-        thickness: The thickness of the waveguide in microns.
-        radius: radius of the waveguide bends in microns.
+        length: length of the straight in microns.
+        width: width of the straight in microns.
+        thickness: The thickness of the straight in microns.
+        radius: radius of the straight bends in microns.
         sigma_length: standard deviation
         sigma_width: width standard deviation (um)
         sigma_thickness: thickness standard deviation (um)
@@ -163,7 +163,7 @@ class Waveguide(Model):
 
     def ann_s_params(self, frequency, length, width, thickness):
         """
-        Function that calculates the s-parameters for a waveguide using the ANN model
+        Function that calculates the s-parameters for a straight using the ANN model
 
         Parameters
         ----------
@@ -184,8 +184,8 @@ class Waveguide(Model):
         # mode = 0  # TE
 
         TE_loss = self.loss_dB_per_m / 1e6  # dB/um for width 500nm
-        alpha = TE_loss / (20 * np.log10(np.exp(1)))  # assuming lossless waveguide
-        waveguideLength = length
+        alpha = TE_loss / (20 * np.log10(np.exp(1)))  # assuming lossless straight
+        straightLength = length
 
         # calculate wavelength
         wl = np.true_divide(c0, frequency)
@@ -196,10 +196,10 @@ class Waveguide(Model):
         # K is calculated from the effective index and wavelength
         K = 2 * np.pi * np.true_divide(neff, wl)
 
-        # the s-matrix is built from alpha, K, and the waveguide length
+        # the s-matrix is built from alpha, K, and the straight length
         for x in range(0, len(neff)):
             mat[x, 0, 1] = mat[x, 1, 0] = np.exp(
-                -alpha * waveguideLength + (K[x] * waveguideLength * 1j)
+                -alpha * straightLength + (K[x] * straightLength * 1j)
             )
         s = mat
 
@@ -210,6 +210,6 @@ if __name__ == "__main__":
     import matplotlib.pyplot as plt
     from gdslib.plot_model import plot_model
 
-    c = waveguide(length=1e6)
+    c = straight(length=1e6)
     plot_model(c)
     plt.show()

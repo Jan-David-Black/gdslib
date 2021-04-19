@@ -12,18 +12,18 @@ from scipy import optimize as op
 Period = 310e-9  # Bragg period
 NG = 1000  # Number of grating periods
 L = NG * Period  # Grating length
-width0 = 0.5  # mean waveguide width
-dwidth = 0.005  # +/-  waveguide width
+width0 = 0.5  # mean straight width
+dwidth = 0.005  # +/-  straight width
 width1 = width0 - dwidth
 width2 = width0 + dwidth
-loss_dBcm = 3  # waveguide loss, dB/cm
+loss_dBcm = 3  # straight loss, dB/cm
 loss = np.log(10) * loss_dBcm / 10 * 100
 
 # Simulation Parameters:
 span = 30e-9  # Set the wavelength span for the simulation
 Npoints = 30000
 
-# 500x220 oxide strip waveguide
+# 500x220 oxide strip straight
 neff_wavelength = (
     lambda w: 2.4379 - 1.1193 * (w * 1e6 - 1.554) - 0.0350 * (w * 1e6 - 1.554) ** 2
 )
@@ -32,7 +32,7 @@ dneff_width = (
 )
 
 # Find Bragg wavelength using lambda_Bragg = Period * 2neff(lambda_bragg);
-# Assume neff is for the average waveguide width.
+# Assume neff is for the average straight width.
 
 
 def f(wavelength):
@@ -85,7 +85,7 @@ def TMM_Grating_Matrix(wavelength, Period, NG, n1, n2, loss):
 
 
 def TMM_HomoWG_Matrix(wavelength, length, neff, loss):
-    # Calculate the transfer matrix of a homogeneous waveguide.
+    # Calculate the transfer matrix of a homogeneous straight.
     beta = 2 * np.pi * neff / wavelength - 1j * loss / 2
     # Complex propagation constant
     T_hw = np.zeros((2, 2, neff.shape[0]), dtype="Complex128")

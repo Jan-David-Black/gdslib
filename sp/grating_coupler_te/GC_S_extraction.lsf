@@ -1,6 +1,6 @@
 # S Parameter extraction for the grating coupler
 # Port 1 = fibre
-# Port 2 = waveguide
+# Port 2 = straight
 
 newproject;
 redrawoff;
@@ -8,24 +8,24 @@ redrawoff;
 GC_init;
 GC_setup_fibre;
 
-#from waveguide to fibre
-select("waveguide_source");  set("enabled",1);
+#from straight to fibre
+select("straight_source");  set("enabled",1);
 select("fibre::fibre_mode"); set("enabled",0);
 run;
 
-T = getresult("waveguide","expansion for T");
+T = getresult("straight","expansion for T");
 fibre = getresult("fibre::fibre_modeExpansion","expansion for fibre_top");
 f = T.f;
 S22 = T.b / T.a;
 S12 = fibre.a*sqrt(fibre.N) / (T.a*sqrt(T.N));
 
-#from fibre to waveguide
+#from fibre to straight
 switchtolayout;
-select("waveguide_source");  set("enabled",0);
+select("straight_source");  set("enabled",0);
 select("fibre::fibre_mode"); set("enabled",1);
 run;
 
-T = getresult("waveguide","expansion for T");
+T = getresult("straight","expansion for T");
 fibre = getresult("fibre::fibre_modeExpansion","expansion for fibre_top");
 S11 = fibre.a / fibre.b;
 S21 =  T.b*sqrt(T.N) / (fibre.b*sqrt(fibre.N));

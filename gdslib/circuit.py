@@ -85,14 +85,14 @@ def component_to_circuit(
 
 
 splitter = "mmi1x2_0.0_0.0"
-combiner = "mmi1x2_65.596_0.0"
+combiner = "mmi1x2_65.6_0.0"
 
 
 def test_circuit_transmission(data_regression, check: bool = True):
     component = pp.c.mzi(delta_length=100, bend=pp.c.bend_circular)
     circuit = component_to_circuit(component)
-    # for e in circuit.elements:
-    #     print(e)
+    for e in circuit.elements:
+        print(e)
     circuit.elements[splitter].pins["W0"] = "input"
     circuit.elements[combiner].pins["W0"] = "output"
     r = get_transmission(circuit, num=3)
@@ -128,9 +128,9 @@ def demo_plot_transmission():
 
 
 if __name__ == "__main__":
-    # c = test_circuit_transmission(None, check=False)
+    c = test_circuit_transmission(None, check=False)
     # demo_print_transmission()
-    demo_plot_transmission()
+    # demo_plot_transmission()
 
     # component = pp.c.mzi(delta_length=100)
     # c = component_to_circuit(component)

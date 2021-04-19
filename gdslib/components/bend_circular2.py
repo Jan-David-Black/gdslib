@@ -23,10 +23,10 @@ def bend_circular2(
     FIXME! gives lot of ripple in MZI simulation
 
     Args:
-        radius: Radius of waveguide in microns.
-        width: Width of the waveguides in microns
-        thickness: Thickness of the waveguides in microns
-        angle: Number of deg of circle that bent waveguide transverses
+        radius: Radius of straight in microns.
+        width: Width of the straights in microns
+        thickness: Thickness of the straights in microns
+        angle: Number of deg of circle that bent straight transverses
         sw_angle: Sidewall angle from horizontal in degrees, ie 90 makes a square. Defaults to 90.
         wavelength: Wavelength (nm) points to evaluate
         kwargs: geometrical args that this model ignores

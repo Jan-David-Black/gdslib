@@ -20,7 +20,7 @@ Circuits
 {name}
 ----------------------------------------------------
 
-.. autofunction:: gdslib.c.{name}
+.. autofunction:: gdslib.components.{name}
 
 """
         )

@@ -1,6 +1,8 @@
 # gdslib 0.2.1
 
-Circuit simulations for Photonic components.
+Frequency domain Circuit simulations for Photonic components based on Sparameters.
+
+Gdslib adapts simphony and SIPANN to create Sparameter models for the generic technology library for [gdsfactory](https://gdsfactory.readthedocs.io/en/latest/)
 
 You can leverage:
 
@@ -10,7 +12,7 @@ You can leverage:
 
 ## Usage
 
-See jupyer notebooks
+See docs/notebooks tutorials
 
 ## Tests
 

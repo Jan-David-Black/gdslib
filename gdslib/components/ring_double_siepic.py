@@ -13,11 +13,11 @@ def ring_double_siepic(
     bend_radius=5,
     length_y=2,
     coupler=siepic.ebeam_dc_halfring_straight,
-    waveguide=siepic.ebeam_wg_integral_1550,
+    straight=siepic.ebeam_wg_integral_1550,
     terminator=siepic.ebeam_terminator_te1550,
 ):
     r"""Return double bus ring made of two couplers (ct: top, cb: bottom)
-    connected with two vertical waveguides (wyl: left, wyr: right)
+    connected with two vertical straights (wyl: left, wyr: right)
 
     .. code::
 
@@ -43,14 +43,12 @@ def ring_double_siepic(
 
     """
 
-    waveguide = waveguide() if callable(waveguide) else waveguide
+    straight = straight() if callable(straight) else straight
     coupler = coupler() if callable(coupler) else coupler
 
     # Create the circuit, add all individual instances
     circuit = Subcircuit("mzi")
-    circuit.add(
-        [(coupler, "ct"), (coupler, "cb"), (waveguide, "wl"), (waveguide, "wr")]
-    )
+    circuit.add([(coupler, "ct"), (coupler, "cb"), (straight, "wl"), (straight, "wr")])
 
     # Circuits can be connected using the elements' string names:
     circuit.connect_many(

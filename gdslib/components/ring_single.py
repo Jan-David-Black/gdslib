@@ -4,7 +4,7 @@ from gdslib.plot_circuit import plot_circuit
 from gdslib.autoname import autoname
 from gdslib.components.bend_circular import bend_circular
 from gdslib.components.coupler_ring import coupler_ring
-from gdslib.components.waveguide import waveguide
+from gdslib.components.straight import straight
 
 
 @autoname
@@ -15,14 +15,14 @@ def ring_single(
     bend_radius=5,
     length_y=2,
     coupler=coupler_ring,
-    waveguide=waveguide,
+    straight=straight,
     bend=bend_circular,
 ):
     r"""Return single bus ring Model made of a ring coupler (cb: bottom)
     connected with:
-    - 2 vertical waveguides (wl: left, wr: right)
-    - 2 bend90 waveguides (bl: left, br: right)
-    - 1 waveguide at the top (wt)
+    - 2 vertical straights (wl: left, wr: right)
+    - 2 bend90 straights (bl: left, br: right)
+    - 1 straight at the top (wt)
 
     FIXME! Sparameters are zero
 
@@ -64,8 +64,8 @@ def ring_single(
         gl.plot_circuit(c)
     """
 
-    waveguide = (
-        waveguide(width=wg_width, length=length_y) if callable(waveguide) else waveguide
+    straight = (
+        straight(width=wg_width, length=length_y) if callable(straight) else straight
     )
     bend = bend(width=wg_width, radius=bend_radius) if callable(bend) else bend
     coupler = (
@@ -81,9 +81,9 @@ def ring_single(
             (bend, "bl"),
             (bend, "br"),
             (coupler, "cb"),
-            (waveguide, "wl"),
-            (waveguide, "wr"),
-            (waveguide, "wt"),
+            (straight, "wl"),
+            (straight, "wr"),
+            (straight, "wt"),
         ]
     )
 

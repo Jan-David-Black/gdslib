@@ -20,9 +20,9 @@ set('x',-5e-6);
 set('y',0.5*thick_Si);
 set('y span',1e-6);
 
-# add waveguide mode expansion monitor
+# add straight mode expansion monitor
 addmodeexpansion;
-set('name','waveguide');
+set('name','straight');
 set('monitor type','2D X-normal');
 setexpansion('T','T');
 set('x',-5e-6);

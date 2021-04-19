@@ -85,7 +85,7 @@ if __name__ == "__main__":
     coupler = siepic.ebeam_dc_halfring_straight(
         gap=200e-9, radius=10e-6, width=500e-9, thickness=220e-9, couple_length=0.0
     )
-    # m = gl.c.waveguide()
+    # m = gl.c.straight()
     # plot_model(m)
 
     plot_model(coupler, pin_in="n1")

@@ -4,20 +4,20 @@ from gdslib.autoname import autoname
 
 
 @autoname
-def waveguide(
+def straight(
     length: float = 10.0,
     width: float = 0.5,
     thickness: float = 0.22,
     sw_angle: float = 90.0,
     **kwargs,
 ):
-    """Return simphony Model for a Straight waveguide.
+    """Return simphony Model for a Straight straight.
 
     Args:
-        length: Length of the waveguide in um.
-        width: Width of the waveguide in um (Valid for 0.4-0.6)
-        thickness: Thickness of waveguide in um (Valid for 180nm-240nm)
-        sw_angle: optional Sidewall angle of waveguide from horizontal in degrees (Valid for 80-90 degrees). Defaults to 90.
+        length: Length of the straight in um.
+        width: Width of the straight in um (Valid for 0.4-0.6)
+        thickness: Thickness of straight in um (Valid for 180nm-240nm)
+        sw_angle: Sidewall angle. Valid for 80-90 degrees.
         kwargs: geometrical args that this model ignores
 
     """
@@ -34,7 +34,7 @@ def waveguide(
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
 
-    c = waveguide()
+    c = straight()
 
     # wav = np.linspace(1520, 1570, 3) * 1e-9
     # f = 3e8 / wav

@@ -13,11 +13,11 @@ def coupler_ring_sipann(
 
     Args:
         bend_radius: 5
-        wg_width: float or ndarray Width of the waveguide in um (Valid for 0.4-0.6)
-        thickness : float or ndarray Thickness of waveguide in um (Valid for 0.18-0.24)
-        gap : float or ndarray Minimum distance between the two waveguides edge in um. (Must be > 0.1)
-        length_x: Length of straight portion of ring waveguide in um
-        sw_angle: waveguide Sidewall angle
+        wg_width: float or ndarray Width of the straight in um (Valid for 0.4-0.6)
+        thickness : float or ndarray Thickness of straight in um (Valid for 0.18-0.24)
+        gap : float or ndarray Minimum distance between the two straights edge in um. (Must be > 0.1)
+        length_x: Length of straight portion of ring straight in um
+        sw_angle: straight Sidewall angle
 
 
     .. code::

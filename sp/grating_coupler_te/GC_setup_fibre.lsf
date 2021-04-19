@@ -12,9 +12,9 @@ set('y max',thick_Clad+2e-6);
 set('mesh accuracy',mesh_accuracy);
 set('simulation time',simulation_time);
 
-#add waveguide mode source;
+#add straight mode source;
 addmode;
-set('name','waveguide_source');
+set('name','straight_source');
 set('x',-3e-6);
 set('y',0.5*thick_Si);
 set('y span',2e-6);
@@ -108,9 +108,9 @@ set('x',-2.8e-6);
 set('y',0.5*thick_Si);
 set('y span',1e-6);
 
-# add waveguide mode expansion monitor
+# add straight mode expansion monitor
 addmodeexpansion;
-set('name','waveguide');
+set('name','straight');
 set('monitor type','2D X-normal');
 setexpansion('T','T');
 set('x',-2.9e-6);
@@ -121,13 +121,13 @@ set('y span',1e-6);
 if (polarization=='TE'){
     select('fibre::fibre_mode'); set('mode selection','fundamental TM');
     select('fibre::fibre_modeExpansion'); set('mode selection','fundamental TM');
-    select('waveguide_source'); set('mode selection','fundamental TM');
-    select('waveguide'); set('mode selection','fundamental TM');
+    select('straight_source'); set('mode selection','fundamental TM');
+    select('straight'); set('mode selection','fundamental TM');
 } else {
     select('fibre::fibre_mode'); set('mode selection','fundamental TE');
     select('fibre::fibre_modeExpansion'); set('mode selection','fundamental TE');
-    select('waveguide_source'); set('mode selection','fundamental TE');
-    select('waveguide'); set('mode selection','fundamental TE');
+    select('straight_source'); set('mode selection','fundamental TE');
+    select('straight'); set('mode selection','fundamental TE');
 }
 # global properties
 setglobalmonitor('frequency points',frequency_points);

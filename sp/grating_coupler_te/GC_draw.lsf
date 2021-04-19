@@ -50,7 +50,7 @@ set('override mesh order from material database',true);
 set('mesh order',3);
 set('alpha',0.3);
 
-#draw waveguide;
+#draw straight;
 addrect;
 set('name','WG');
 set('material','Si (Silicon) - Dispersive & Lossless');

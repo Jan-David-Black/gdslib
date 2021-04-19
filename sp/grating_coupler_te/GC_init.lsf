@@ -3,7 +3,7 @@ period = 6.82e-07;
 ff = 0.5029325513196481;
 gc_number = 50;
 
-# define wafer and waveguide structure
+# define wafer and straight structure
 thick_Si = 2.2e-07;
 etch_depth = 7e-08;
 thick_BOX = 2e-06;

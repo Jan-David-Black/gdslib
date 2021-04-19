@@ -10,7 +10,7 @@ from .mmi2x2 import mmi2x2
 from .mzi import mzi
 from .ring_double import ring_double
 from .ring_single import ring_single
-from .waveguide import waveguide
+from .straight import straight
 
 
 component_factory = dict(
@@ -20,7 +20,7 @@ component_factory = dict(
     coupler=coupler,
     mmi1x2=mmi1x2,
     mmi2x2=mmi2x2,
-    waveguide=waveguide,
+    straight=straight,
     gc1550te=gc1550te,
 )
 

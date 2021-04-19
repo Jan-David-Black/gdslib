@@ -19,10 +19,10 @@ def coupler(
     r"""Return simphony Directional coupler model.
 
     Args:
-        width: Width of the waveguide in um (Valid for 0.4-0.6)
-        thickness: Thickness of waveguide in um (Valid for 0.18-0.24)
-        gap: Minimum distance between the two waveguides edge in um. (Must be > 0.1)
-        length: float or ndarray Length of the straight portion of both waveguides in um.
+        width: Width of the straight in um (Valid for 0.4-0.6)
+        thickness: Thickness of straight in um (Valid for 0.18-0.24)
+        gap: Minimum distance between the two straights edge in um. (Must be > 0.1)
+        length: float or ndarray Length of the straight portion of both straights in um.
         dx: Horizontal distance between end of coupler until straight portion in nm.
         dy: Vertical distance between end of coupler until straight portion in um.
         sw_angle: Sidewall angle from horizontal in degrees
