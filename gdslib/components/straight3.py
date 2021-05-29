@@ -26,5 +26,6 @@ if __name__ == "__main__":
 
     s21 = np.abs(s[:, 0, 1]) ** 2
     s21phase = np.angle(s[:, 0, 1])
-    plt.plot(w, s21)
+    # plt.plot(w, s21)
+    plt.plot(w, s21phase)
     plt.show()

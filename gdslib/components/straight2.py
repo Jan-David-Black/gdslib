@@ -36,4 +36,4 @@ if __name__ == "__main__":
     c = straight2()
     print(c)
     plot_model(c)
-    # plt.show()
+    plt.show()

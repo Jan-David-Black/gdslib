@@ -84,8 +84,8 @@ def component_to_circuit(
     return circuit
 
 
-splitter = "mmi1x2_0.0_0.0"
-combiner = "mmi1x2_65.6_0.0"
+splitter = "mmi1x2_0p0_0p0"
+combiner = "mmi1x2_65p6_m0p0"
 
 
 def test_circuit_transmission(data_regression, check: bool = True):
@@ -116,7 +116,6 @@ def demo_print_transmission():
 def demo_plot_transmission():
     import matplotlib.pyplot as plt
     from gdslib import plot_circuit
-    import pp
 
     c = pp.c.mzi(delta_length=100)
     m = component_to_circuit(c)

@@ -19,6 +19,7 @@ def plot_model(
     wavelengths=None,
     logscale=True,
     fig=None,
+    plot_phase=False,
 ) -> None:
     """Plot simphony Sparameters for a model
 
@@ -66,8 +67,11 @@ def plot_model(
 
     for pin_out in pins:
         pin_out_index = m.pins.index(pin_out)
-        y = np.abs(s[:, pin_out_index, pin_in_index]) ** 2
-        y = 10 * np.log10(y) if logscale else y
+        if plot_phase:
+            y = np.angle(s[:, pin_out_index, pin_in_index])
+        else:
+            y = np.abs(s[:, pin_out_index, pin_in_index]) ** 2
+            y = 10 * np.log10(y) if logscale else y
         ax.plot(wavelengths * 1e9, y, label=pin_out)
     ax.set_xlabel("wavelength (nm)")
     if logscale:
@@ -80,15 +84,17 @@ def plot_model(
 
 if __name__ == "__main__":
     from simphony.library import siepic
+    import gdslib as gl
 
     w = np.linspace(1520, 1570, 1024) * 1e-9
     coupler = siepic.ebeam_dc_halfring_straight(
         gap=200e-9, radius=10e-6, width=500e-9, thickness=220e-9, couple_length=0.0
     )
-    # m = gl.c.straight()
-    # plot_model(m)
 
-    plot_model(coupler, pin_in="n1")
-
+    # plot_model(coupler, pin_in="n1")
     # plt.legend()
     # plt.show()
+
+    m = gl.c.straight()
+    plot_model(m, plot_phase=False)
+    plt.show()
