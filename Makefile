@@ -33,3 +33,9 @@ lintd:
 
 doc8:
 	doc8 docs/
+
+update:
+	pur
+
+update2:
+	pre-commit autoupdate --bleeding-edge

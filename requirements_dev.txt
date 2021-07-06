@@ -13,3 +13,4 @@ doc8
 pydocstyle
 nbsphinx
 ipykernel
+pur

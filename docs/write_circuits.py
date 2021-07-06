@@ -1,5 +1,5 @@
 import pathlib
-from gdslib.components import circuit_names
+from gdslib.simphony.components import circuit_names
 
 
 p = pathlib.Path("circuits.rst")
@@ -20,7 +20,7 @@ Circuits
 {name}
 ----------------------------------------------------
 
-.. autofunction:: gdslib.components.{name}
+.. autofunction:: gdslib.simphony.components.{name}
 
 """
         )
