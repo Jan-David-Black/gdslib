@@ -67,6 +67,7 @@ def ring_double_siepic(
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
+
     from gdslib.simphony import plot_circuit
 
     c = ring_double_siepic()

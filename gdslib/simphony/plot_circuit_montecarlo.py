@@ -1,7 +1,7 @@
-import numpy as np
 import matplotlib.pyplot as plt
-from simphony.simulation import MonteCarloSweepSimulation
+import numpy as np
 from simphony.netlist import Subcircuit
+from simphony.simulation import MonteCarloSweepSimulation
 from simphony.tools import freq2wl
 
 

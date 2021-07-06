@@ -6,9 +6,7 @@ import pp
 import pp.sp as sp
 from scipy.constants import speed_of_light
 from simphony.elements import Model
-from simphony.tools import freq2wl
-from simphony.tools import interpolate
-from simphony.tools import wl2freq
+from simphony.tools import freq2wl, interpolate, wl2freq
 
 
 def model_from_filepath(filepath: PosixPath, numports: int, name: str = "model"):
@@ -52,8 +50,9 @@ def model_from_sparameters(
 
 
 if __name__ == "__main__":
-    from gdslib.plot_model import plot_model
     import matplotlib.pyplot as plt
+
+    from gdslib.plot_model import plot_model
 
     filepath = pp.CONFIG["sp"] / "mmi1x2" / "mmi1x2_S220.dat"
     numports = 3

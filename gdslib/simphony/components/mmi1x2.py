@@ -61,6 +61,7 @@ def mmi1x2(**kwargs):
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
     import numpy as np
+
     from gdslib.simphony.plot_model import plot_model
 
     wav = np.linspace(1520, 1570, 1024) * 1e-9

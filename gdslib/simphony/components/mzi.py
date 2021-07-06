@@ -1,5 +1,5 @@
-from typing import Callable
-from typing import Optional
+from typing import Callable, Optional
+
 from simphony.netlist import Subcircuit
 
 from gdslib.autoname import autoname
@@ -98,6 +98,7 @@ def mzi(
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
+
     from gdslib.simphony.plot_circuit import plot_circuit
 
     c = mzi()

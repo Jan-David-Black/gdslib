@@ -1,5 +1,4 @@
 import numpy as np
-
 from simphony.tools import wl2freq
 
 

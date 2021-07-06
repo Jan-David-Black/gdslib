@@ -49,6 +49,7 @@ def ring_single(
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
+
     from gdslib.simphony import plot_circuit
 
     c = ring_single()

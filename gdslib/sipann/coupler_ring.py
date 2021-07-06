@@ -76,8 +76,9 @@ def coupler_ring(
 
 
 if __name__ == "__main__":
-    import numpy as np
     import matplotlib.pyplot as plt
+    import numpy as np
+
     import gdslib as gl
 
     c = coupler_ring()

@@ -1,9 +1,10 @@
 from typing import Iterable, Optional
+
 import matplotlib.pyplot as plt
 import numpy as np
+from simphony.netlist import Subcircuit
 from simphony.simulation import SweepSimulation
 from simphony.tools import freq2wl
-from simphony.netlist import Subcircuit
 
 
 def plot_circuit(
@@ -72,7 +73,6 @@ if __name__ == "__main__":
     from gdslib.simphony.components.mzi import mzi
 
     # import gdslib.simphony.components as gc
-
     # c = gc.ring_double()
     # plot_circuit(c, pins_out=("cdrop", "drop", "output", "input"))
 

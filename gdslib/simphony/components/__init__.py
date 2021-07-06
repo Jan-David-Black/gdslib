@@ -10,7 +10,6 @@ from .ring_double import ring_double
 from .ring_single import ring_single
 from .straight import straight
 
-
 component_factory = dict(
     bend_circular=bend_circular,
     bend_euler=bend_euler,

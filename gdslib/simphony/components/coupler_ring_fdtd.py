@@ -37,9 +37,10 @@ def coupler_ring_fdtd(
 
 
 if __name__ == "__main__":
-    import gdslib.simphony as gs
     import matplotlib.pyplot as plt
     import numpy as np
+
+    import gdslib.simphony as gs
 
     wav = np.linspace(1520, 1570, 1024) * 1e-9
     c = coupler_ring_fdtd()

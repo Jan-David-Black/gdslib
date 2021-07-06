@@ -83,8 +83,9 @@ def mzi(
 
 
 if __name__ == "__main__":
-    from gdslib.simphony import plot_circuit
     import matplotlib.pyplot as plt
+
+    from gdslib.simphony import plot_circuit
 
     c = mzi()
     plot_circuit(c)

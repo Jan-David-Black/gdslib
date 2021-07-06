@@ -13,9 +13,10 @@ r"""SIEPIC coupler sample.
 
 
 if __name__ == "__main__":
-    from simphony.library import siepic
-    from gdslib.simphony import plot_model
     import matplotlib.pyplot as plt
+    from simphony.library import siepic
+
+    from gdslib.simphony import plot_model
 
     c = siepic.ebeam_dc_halfring_straight(
         gap=200e-9, radius=12e-6, width=500e-9, thickness=220e-9, couple_length=0.0

@@ -1,8 +1,9 @@
 from typing import Tuple
+
 import matplotlib.pyplot as plt
 import numpy as np
-from simphony.elements import Model
 from scipy.constants import speed_of_light
+from simphony.elements import Model
 
 
 def get_sparameters(c, wavelengths=None):
@@ -83,6 +84,7 @@ def plot_model(
 
 if __name__ == "__main__":
     from simphony.library import siepic
+
     from gdslib.simphony.components.straight import straight
 
     w = np.linspace(1520, 1570, 1024) * 1e-9

@@ -2,10 +2,12 @@ import numpy as np
 import pytest
 
 from gdslib.simphony.circuit import get_transmission
-from gdslib.simphony.components import circuit_factory
-from gdslib.simphony.components import component_factory
-from gdslib.simphony.components import circuit_names
-from gdslib.simphony.components import component_names
+from gdslib.simphony.components import (
+    circuit_factory,
+    circuit_names,
+    component_factory,
+    component_names,
+)
 
 
 @pytest.mark.parametrize("component_type", component_names)

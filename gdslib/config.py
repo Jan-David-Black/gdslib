@@ -4,7 +4,6 @@ __all__ = ["PATH"]
 
 import pathlib
 
-
 module_path = pathlib.Path(__file__).parent.absolute()
 repo_path = module_path.parent
 

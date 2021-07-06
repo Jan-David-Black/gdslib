@@ -50,8 +50,9 @@ def ring_single(
 
 
 if __name__ == "__main__":
-    from gdslib.simphony import plot_circuit
     import matplotlib.pyplot as plt
+
+    from gdslib.simphony import plot_circuit
 
     c = ring_single(length_y=20)
     plot_circuit(c)

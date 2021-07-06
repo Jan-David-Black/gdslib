@@ -36,6 +36,7 @@ def bend_circular(
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
+
     from gdslib.simphony.plot_model import plot_model
 
     c = bend_circular()

@@ -81,8 +81,9 @@ def coupler_ring(
 
 
 if __name__ == "__main__":
-    import numpy as np
     import matplotlib.pyplot as plt
+    import numpy as np
+
     from gdslib.simphony.plot_model import plot_model
 
     c = coupler_ring()
