@@ -2,17 +2,16 @@
 import functools
 import hashlib
 from inspect import signature
-from typing import Any
-from typing import Callable
+from typing import Any, Callable
+
 import numpy as np
 from simphony.tools import freq2wl
-
 
 MAX_NAME_LENGTH = 100
 
 
 def join_first_letters(name: str) -> str:
-    """ join the first letter of a name separated with underscores (taper_length -> TL) """
+    """join the first letter of a name separated with underscores (taper_length -> TL)"""
     return "".join([x[0] for x in name.split("_") if x])
 
 
@@ -65,7 +64,10 @@ def autoname(component_function: Callable) -> Callable:
             )
 
         component_type = component_function.__name__
-        name = kwargs.pop("name", get_component_name(component_type, **kwargs),)
+        name = kwargs.pop(
+            "name",
+            get_component_name(component_type, **kwargs),
+        )
 
         kwargs.pop("ignore_from_name", [])
         sig = signature(component_function)
@@ -118,7 +120,7 @@ def dict2hash(**kwargs):
 
 
 def dict2name(prefix: None = None, **kwargs) -> str:
-    """ returns name from a dict """
+    """returns name from a dict"""
     ignore_from_name = kwargs.pop("ignore_from_name", [])
 
     label = [prefix] if prefix else []
@@ -132,7 +134,7 @@ def dict2name(prefix: None = None, **kwargs) -> str:
 
 
 def assert_first_letters_are_different(**kwargs):
-    """ avoids having name colissions of different args with the same first letter """
+    """avoids having name colissions of different args with the same first letter"""
     first_letters = [join_first_letters(k) for k in kwargs.keys() if k != "layer"]
     assert len(set(first_letters)) == len(
         first_letters

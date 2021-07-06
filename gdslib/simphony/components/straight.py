@@ -1,5 +1,6 @@
 from SiPANN.scee import Waveguide
 from SiPANN.scee_int import SimphonyWrapper
+
 from gdslib.autoname import autoname
 
 
@@ -35,18 +36,9 @@ def straight(
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
 
+    from gdslib.simphony.plot_model import plot_model
+
     c = straight()
 
-    # wav = np.linspace(1520, 1570, 3) * 1e-9
-    # f = 3e8 / wav
-    # s = c.s_parameters(freq=f)
-    # _, rows, cols = np.shape(s)
-    # sdict = {
-    #     f"S{i+1}{j+1}": np.abs(s[:, i, j]).tolist()
-    #     for i in range(rows)
-    #     for j in range(cols)
-    # }
-    # print(sdict)
-
-    # plot_model(c, logscale=False)
-    # plt.show()
+    plot_model(c, logscale=False)
+    plt.show()

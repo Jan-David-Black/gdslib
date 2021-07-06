@@ -7,7 +7,7 @@ from gdslib.simphony.components.mmi1x2 import mmi1x2
 
 @autoname
 def mzi_gc(L0=1, L1=100, L2=10, y_model_factory=mmi1x2):
-    """ MZI with grating couplers
+    """MZI with grating couplers
     Deprecated!
     use add_gc instead
     """

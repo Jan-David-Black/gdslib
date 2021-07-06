@@ -6,7 +6,7 @@ from gdslib.simphony.components.gc import gc1550te
 
 
 def add_gc(circuit, gc=gc1550te, cpi="input", cpo="output", gpi="port 1", gpo="port 2"):
-    """ add input and output gratings
+    """add input and output gratings
 
     Args:
         circuit: needs to have `input` and `output` pins
@@ -34,7 +34,7 @@ def add_gc(circuit, gc=gc1550te, cpi="input", cpo="output", gpi="port 1", gpo="p
 
 
 def add_gc_siepic(circuit, gc=siepic.ebeam_gc_te1550):
-    """ add input and output gratings
+    """add input and output gratings
 
     Args:
         circuit: needs to have `input` and `output` pins
@@ -56,8 +56,8 @@ def add_gc_siepic(circuit, gc=siepic.ebeam_gc_te1550):
 
 
 if __name__ == "__main__":
-    from gdslib.simphony.plot_circuit import plot_circuit
     from gdslib.simphony.components.mzi import mzi
+    from gdslib.simphony.plot_circuit import plot_circuit
 
     c1 = mzi()
     c2 = add_gc(c1)

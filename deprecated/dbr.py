@@ -66,7 +66,7 @@ def tmatrix_boundary(neff1, neff2):
 
 
 def tmatrix_dbr(wavelength, n1, n2, period, n_periods=n_periods):
-    """ DBR Tmatrix """
+    """DBR Tmatrix"""
     length = period / 2
     T_hw1 = tmatrix_straight(wavelength, n1, length)
     T_is12 = tmatrix_boundary(n1, n2)
@@ -79,9 +79,15 @@ def tmatrix_dbr(wavelength, n1, n2, period, n_periods=n_periods):
 
 
 def tmatrix_dbr_cavity(
-    wavelength, n1, n2, period, length=0.01, n_periods_left=600, n_periods_right=600,
+    wavelength,
+    n1,
+    n2,
+    period,
+    length=0.01,
+    n_periods_left=600,
+    n_periods_right=600,
 ):
-    """ 2 DBR with a straight cavity of length in the middle"""
+    """2 DBR with a straight cavity of length in the middle"""
     T_hw1 = tmatrix_straight(wavelength, n1, period / 2)
     T_is12 = tmatrix_boundary(n1, n2)
     T_hw2 = tmatrix_straight(wavelength, n2, period / 2)
@@ -125,7 +131,7 @@ def smatrix(tmatrix):
 
 
 def dbr_r(wavelengths, dn, period=period, tmax_dB=0):
-    """ DBR reflection """
+    """DBR reflection"""
     wavelengths = wavelengths
     neff0 = n1_wg + n2_wg * (wavelengths * 1e6) + n3_wg * (wavelengths * 1e6) ** 2
     n1 = neff0 - dn / 2

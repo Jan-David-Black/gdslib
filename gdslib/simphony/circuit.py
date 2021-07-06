@@ -1,5 +1,4 @@
-from typing import Callable
-from typing import Dict
+from typing import Callable, Dict
 
 import numpy as np
 import pp
@@ -40,7 +39,8 @@ def get_transmission(
 
 
 def component_to_circuit(
-    component: Component, model_factory: Dict[str, Callable] = component_factory,
+    component: Component,
+    model_factory: Dict[str, Callable] = component_factory,
 ) -> Subcircuit:
     """Returns Simphony circuit from a gdsfactory component netlist.
 
@@ -117,6 +117,7 @@ def demo_print_transmission():
 
 def demo_plot_transmission():
     import matplotlib.pyplot as plt
+
     from gdslib import plot_circuit
 
     c = pp.c.mzi(delta_length=100)
