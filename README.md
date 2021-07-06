@@ -2,11 +2,11 @@
 
 Frequency domain Circuit simulations for Photonic components based on Sparameters.
 
-Gdslib adapts simphony and SIPANN to create Sparameter models for the generic technology library for [gdsfactory](https://gdsfactory.readthedocs.io/en/latest/)
+Gdslib extends simphony and SIPANN to create Sparameter models for the generic technology library for [gdsfactory](https://gdsfactory.readthedocs.io/en/latest/)
 
 You can leverage:
 
-- Compact models for photonic components from FDTD Sparameter simulations
+- Compact models for photonic components from FDTD simulations
 - Compact models from Neural networks thanks to [SiPANN package](https://sipann.readthedocs.io/en/latest/?badge=latest)
 - Circits simulations thanks to [simphony](https://simphonyphotonics.readthedocs.io/en/stable/) which provides a linear circuit solver for [Sparameters](https://en.wikipedia.org/wiki/Scattering_parameters). It allows you to compute frequency response of a circuit made of different components connected together.
 

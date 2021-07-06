@@ -1,7 +1,9 @@
 # CHANGELOG
 
 ## 0.3.0
-- compatible with latest gdsfactory
+
+- compatible with gdsfactory 2.6.1
+- moved
 
 ## 0.2.1
 
