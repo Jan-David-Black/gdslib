@@ -12,15 +12,13 @@ setup(
     version="0.2.2",
     url="https://github.com/gdsfactory/gdslib",
     license="MIT",
-    author="Joaquin",
+    author="gdslib community",
     description="library of component models",
-    packages=find_packages(exclude=("tests",)),
+    packages=find_packages(),
     python_requires=">=3.6",
     install_requires=get_install_requires(),
     classifiers=[
-        "Development Status :: 2 - Pre-Alpha",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3.7",
     ],
 )
