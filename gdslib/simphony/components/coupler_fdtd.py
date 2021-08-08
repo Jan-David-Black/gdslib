@@ -1,11 +1,11 @@
-import pp
+import gdsfactory as gf
 
 from gdslib.autoname import autoname
 from gdslib.simphony.model_from_gdsfactory import model_from_gdsfactory
 
 
 @autoname
-def coupler_fdtd(c=pp.c.coupler, width=0.5, length=20, gap=0.224):
+def coupler_fdtd(c=gf.c.coupler, width=0.5, length=20, gap=0.224):
     r"""Coupler for half a ring based on Lumerical 3D FDTD simulations.
 
     Args:
@@ -38,7 +38,7 @@ if __name__ == "__main__":
 
     wav = np.linspace(1520, 1570, 1024) * 1e-9
     f = 3e8 / wav
-    c = pp.c.coupler(length=20, gap=0.224)
+    c = gf.c.coupler(length=20, gap=0.224)
     m = coupler_fdtd(c=c)
     s = m.s_parameters(freq=f)
 

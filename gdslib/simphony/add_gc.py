@@ -1,4 +1,4 @@
-import pp
+import gdsfactory as gf
 from simphony.library import siepic
 from simphony.netlist import Subcircuit
 
@@ -22,7 +22,7 @@ def add_gc(circuit, gc=gc1550te, cpi="input", cpo="output", gpi="port 1", gpo="p
         gpi-> gpo--|cpi cpo|--gpo <-gpi
                    |_______|
     """
-    gc = pp.call_if_func(gc)
+    gc = gf.call_if_func(gc)
     c = Subcircuit(f"{circuit.name}_{gc.name}")
     c.add([(gc, "gci"), (gc, "gco"), (circuit, "circuit")])
     c.connect_many([("gci", gpo, "circuit", cpi), ("gco", gpo, "circuit", cpo)])
@@ -41,7 +41,7 @@ def add_gc_siepic(circuit, gc=siepic.ebeam_gc_te1550):
         gc: grating coupler
     """
     c = Subcircuit(f"{circuit}_gc")
-    gc = pp.call_if_func(gc)
+    gc = gf.call_if_func(gc)
     c.add([(gc, "gci"), (gc, "gco"), (circuit, "circuit")])
     c.connect_many(
         [("gci", "n1", "circuit", "input"), ("gco", "n1", "circuit", "output")]

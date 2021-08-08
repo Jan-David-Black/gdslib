@@ -36,10 +36,10 @@ def mzi(
     .. plot::
       :include-source:
 
-      import pp
+      import gdsfactory as gf
 
-      c = pp.c.mzi(L0=0.1, DL=0, L2=10)
-      pp.plotgds(c)
+      c = gf.c.mzi(L0=0.1, DL=0, L2=10)
+      gf.plotgds(c)
 
 
     .. plot::

@@ -43,9 +43,8 @@ def coupler_ring(
     .. plot::
         :include-source:
 
-        import pp
-
-        c = pp.components.coupler_ring()
+        import gdsfactory as gf
+        c = gf.components.coupler_ring()
         c.plot()
 
 

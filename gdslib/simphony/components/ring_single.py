@@ -49,9 +49,9 @@ def ring_single(
     .. plot::
       :include-source:
 
-      import pp
+      import gdsfactory as gf
 
-      c = pp.components.ring_single(width=0.5, gap=0.2, length_x=4, radius=5, length_y=2)
+      c = gf.components.ring_single(width=0.5, gap=0.2, length_x=4, radius=5, length_y=2)
       c.plot()
 
 

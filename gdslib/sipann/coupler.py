@@ -45,9 +45,9 @@ def coupler(
     .. plot::
         :include-source:
 
-        import pp
+        import gdsfactory as gf
 
-        c = pp.components.coupler(gap=0.2, length=10)
+        c = gf.components.coupler(gap=0.2, length=10)
         c.plot()
 
     .. plot::

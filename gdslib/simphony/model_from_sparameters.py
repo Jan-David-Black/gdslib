@@ -1,9 +1,9 @@
 from pathlib import PosixPath
 from typing import Tuple
 
+import gdsfactory as gf
+import gdsfactory.sp as sp
 import numpy as np
-import pp
-import pp.sp as sp
 from scipy.constants import speed_of_light
 from simphony.elements import Model
 from simphony.tools import freq2wl, interpolate, wl2freq
@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
     from gdslib.plot_model import plot_model
 
-    filepath = pp.CONFIG["sp"] / "mmi1x2" / "mmi1x2_S220.dat"
+    filepath = gf.CONFIG["sp"] / "mmi1x2" / "mmi1x2_S220.dat"
     numports = 3
     c = model_from_filepath(filepath=filepath, numports=numports)
     plot_model(c)

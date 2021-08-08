@@ -2,8 +2,8 @@ from recommonmark.transform import AutoStructify
 
 project = "gdslib"
 version = "0.3.0"
-copyright = "2019, Joaquin"
-author = "Joaquin"
+copyright = "2019, gdsfactory community"
+author = "gdsfactory community"
 
 master_doc = "index"
 html_theme = "sphinx_rtd_theme"

@@ -1,7 +1,7 @@
 background_material: sio2
 component:
   function_name: mmi1x2
-  module: pp.components.mmi1x2
+  module: gf.components.mmi1x2
   name: mmi1x2
   settings:
     cladding_offset: 3.0

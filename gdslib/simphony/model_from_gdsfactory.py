@@ -1,7 +1,7 @@
+import gdsfactory as gf
+import gdsfactory.sp as sp
 import numpy as np
-import pp
-import pp.sp as sp
-from pp.component import Component
+from gdsfactory.component import Component
 from scipy.constants import speed_of_light
 from simphony.elements import Model
 from simphony.tools import interpolate
@@ -18,7 +18,7 @@ def model_from_gdsfactory(component: Component, **kwargs) -> Model:
     """
     kwargs.pop("function_name", "")
     kwargs.pop("module", "")
-    component = pp.call_if_func(component, **kwargs)
+    component = gf.call_if_func(component, **kwargs)
     pins, f, s = sp.read_sparameters_component(component=component, dirpath=PATH.sp)
 
     def interpolate_sp(freq):
@@ -37,7 +37,7 @@ def model_from_gdsfactory(component: Component, **kwargs) -> Model:
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
 
-    c = model_from_gdsfactory(pp.c.mmi1x2())
+    c = model_from_gdsfactory(gf.c.mmi1x2())
     # wav = np.linspace(1520, 1570, 1024) * 1e-9
     # f = speed_of_light / wav
     # s = c.s_parameters(freq=f)

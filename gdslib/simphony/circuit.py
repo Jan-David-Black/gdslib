@@ -1,8 +1,8 @@
 from typing import Callable, Dict
 
+import gdsfactory as gf
 import numpy as np
-import pp
-from pp.component import Component
+from gdsfactory.component import Component
 from simphony.elements import Model
 from simphony.netlist import Subcircuit
 from simphony.simulation import SweepSimulation
@@ -85,13 +85,13 @@ def component_to_circuit(
     return circuit
 
 
-mmi_name = "mmi1x2_0cbef3fd"
+mmi_name = "mmi1x2"
 splitter = f"{mmi_name}_0p0_0p0"
 combiner = f"{mmi_name}_65p6_m0p0"
 
 
 def test_circuit_transmission(data_regression, check: bool = True):
-    component = pp.c.mzi(delta_length=100, bend="bend_circular")
+    component = gf.c.mzi(delta_length=100, bend=gf.c.bend_circular)
     circuit = component_to_circuit(component)
     for e in circuit.elements:
         print(e)
@@ -105,7 +105,7 @@ def test_circuit_transmission(data_regression, check: bool = True):
 
 
 def demo_print_transmission():
-    component = pp.c.mzi(delta_length=100)
+    component = gf.c.mzi(delta_length=100)
     c = component_to_circuit(component)
     c.elements[splitter].pins["W0"] = "input"
     c.elements[combiner].pins["W0"] = "output"
@@ -118,9 +118,9 @@ def demo_print_transmission():
 def demo_plot_transmission():
     import matplotlib.pyplot as plt
 
-    from gdslib import plot_circuit
+    from gdslib.simphony import plot_circuit
 
-    c = pp.c.mzi(delta_length=100)
+    c = gf.c.mzi(delta_length=100)
     m = component_to_circuit(c)
     m.elements[splitter].pins["W0"] = "input"
     m.elements[combiner].pins["W0"] = "output"
@@ -130,12 +130,12 @@ def demo_plot_transmission():
 
 
 if __name__ == "__main__":
-    # c = test_circuit_transmission(None, check=False)
+    c = test_circuit_transmission(None, check=False)
     # demo_print_transmission()
     # demo_plot_transmission()
 
-    c = pp.c.mzi(delta_length=100)
-    c = component_to_circuit(c)
+    # c = gf.c.mzi(delta_length=100)
+    # c = component_to_circuit(c)
     # c.elements[splitter].pins["W0"] = "input"
     # c.elements[combiner].pins["W0"] = "output"
     # r = get_transmission(c, num=3)

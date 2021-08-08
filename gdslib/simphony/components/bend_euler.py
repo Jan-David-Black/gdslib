@@ -1,5 +1,5 @@
+import gdsfactory as gf
 import numpy as np
-import pp
 from SiPANN.scee import Waveguide
 from SiPANN.scee_int import SimphonyWrapper
 
@@ -28,7 +28,7 @@ def bend_euler(
         kwargs: geometrical args that this model ignores
 
     """
-    c = pp.c.bend_euler(radius=radius, **kwargs)
+    c = gf.c.bend_euler(radius=radius, **kwargs)
     length = c.length * 1e3
     angle = np.deg2rad(angle)
     width = width * 1e3

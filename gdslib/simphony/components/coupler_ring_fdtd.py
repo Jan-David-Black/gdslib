@@ -1,4 +1,4 @@
-import pp
+import gdsfactory as gf
 
 from gdslib.autoname import autoname
 from gdslib.simphony.model_from_gdsfactory import model_from_gdsfactory
@@ -6,7 +6,7 @@ from gdslib.simphony.model_from_gdsfactory import model_from_gdsfactory
 
 @autoname
 def coupler_ring_fdtd(
-    factory=pp.c.coupler_ring, width=0.5, length_x=4.0, gap=0.2, radius=5
+    factory=gf.c.coupler_ring, width=0.5, length_x=4.0, gap=0.2, radius=5
 ):
     r"""Return half ring model based on Lumerical 3D FDTD simulations.
 

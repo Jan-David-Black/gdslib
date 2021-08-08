@@ -3,7 +3,7 @@ component:
   info:
     length: 10.0
     width: 0.5
-  module: pp.components.straight
+  module: gf.components.straight
   name: straight
   settings:
     cladding_offset: 0.0

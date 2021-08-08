@@ -1,4 +1,4 @@
-import pp
+import gdsfactory as gf
 
 from gdslib.autoname import autoname
 from gdslib.simphony.model_from_gdsfactory import model_from_gdsfactory
@@ -42,8 +42,8 @@ def mmi1x2(**kwargs):
     .. plot::
       :include-source:
 
-      import pp
-      c = pp.c.mmi1x2(width_mmi=2, length_mmi=2.8)
+      import gdsfactory as gf
+      c = gf.c.mmi1x2(width_mmi=2, length_mmi=2.8)
       c.plot()
 
     .. plot::
@@ -55,7 +55,7 @@ def mmi1x2(**kwargs):
         c = gc.mmi1x2()
         gs.plot_model(c)
     """
-    return model_from_gdsfactory(pp.c.mmi1x2, **kwargs)
+    return model_from_gdsfactory(gf.c.mmi1x2, **kwargs)
 
 
 if __name__ == "__main__":

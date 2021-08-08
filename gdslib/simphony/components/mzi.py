@@ -14,7 +14,8 @@ def mzi(
     length_x: float = 0.1,
     splitter: Callable = mmi1x2,
     combiner: Optional[Callable] = None,
-    straight: Callable = straight_function,
+    straight_top: Callable = straight_function,
+    straight_bot: Callable = straight_function,
 ):
     """Mzi circuit model.
 
@@ -48,9 +49,9 @@ def mzi(
     .. plot::
       :include-source:
 
-      import pp
+      import gdsfactory as gf
 
-      c = pp.components.mzi(delta_length=10)
+      c = gf.components.mzi(delta_length=10)
       c.plot()
 
 
@@ -68,8 +69,8 @@ def mzi(
     splitter = splitter() if callable(splitter) else splitter
     combiner = combiner() if callable(combiner) else combiner
 
-    wg_long = straight(length=2 * length_y + delta_length + length_x)
-    wg_short = straight(length=2 * length_y + length_x)
+    wg_short = straight_top(length=2 * length_y + length_x)
+    wg_long = straight_bot(length=2 * length_y + delta_length + length_x)
 
     # Create the circuit, add all individual instances
     circuit = Subcircuit("mzi")

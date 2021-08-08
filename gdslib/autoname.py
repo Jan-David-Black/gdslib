@@ -41,7 +41,7 @@ def autoname(component_function: Callable) -> Callable:
 
       @autoname
       def rectangle(size=(4,2), layer=0):
-          c = pp.Component()
+          c = gf.Component()
           w, h = size
           points = [[w, h], [w, 0], [0, 0], [0, h]]
           c.add_polygon(points, layer=layer)
