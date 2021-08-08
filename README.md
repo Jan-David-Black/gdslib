@@ -1,4 +1,4 @@
-# gdslib 0.3.0
+# gdslib 0.3.1
 
 Frequency domain Circuit simulations for Photonic components based on Sparameters.
 
