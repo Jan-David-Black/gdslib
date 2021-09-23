@@ -1,5 +1,5 @@
 import gdsfactory as gf
-import gdsfactory.sp as sp
+import gdsfactory.simulation as sim
 import numpy as np
 from gdsfactory.component import Component
 from scipy.constants import speed_of_light
@@ -19,7 +19,9 @@ def model_from_gdsfactory(component: Component, **kwargs) -> Model:
     kwargs.pop("function_name", "")
     kwargs.pop("module", "")
     component = gf.call_if_func(component, **kwargs)
-    pins, f, s = sp.read_sparameters_component(component=component, dirpath=PATH.sp)
+    pins, f, s = sim.read_sparameters_component(
+        component=component, dirpath=PATH.sparameters
+    )
 
     def interpolate_sp(freq):
         return interpolate(freq, f, s)

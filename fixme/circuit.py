@@ -90,8 +90,7 @@ splitter = f"{mmi_name}_0p0_0p0"
 combiner = f"{mmi_name}_65p6_m0p0"
 
 
-def demo_circuit_transmission(data_regression, check: bool = True):
-    """FIXME, fix function and rename it to test_circuit_transmission."""
+def test_circuit_transmission(data_regression, check: bool = True):
     component = gf.c.mzi(delta_length=100, bend=gf.c.bend_circular)
     circuit = component_to_circuit(component)
     for e in circuit.elements:
@@ -131,7 +130,7 @@ def demo_plot_transmission():
 
 
 if __name__ == "__main__":
-    c = demo_circuit_transmission(None, check=False)
+    c = test_circuit_transmission(None, check=False)
     # demo_print_transmission()
     # demo_plot_transmission()
 

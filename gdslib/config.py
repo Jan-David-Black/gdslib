@@ -11,10 +11,10 @@ repo_path = module_path.parent
 class Path:
     module = module_path
     repo = repo_path
-    sp = repo_path / "sp"
+    sparameters = repo_path / "sp"
 
 
 PATH = Path()
 
 if __name__ == "__main__":
-    print(PATH.sp)
+    print(PATH.sparameters)

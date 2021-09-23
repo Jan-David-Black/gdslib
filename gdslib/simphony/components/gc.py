@@ -5,7 +5,7 @@ from ..model_from_sparameters import model_from_filepath
 
 
 @autoname
-def gc1550te(filepath=PATH.sp / "gc2dte" / "gc1550.dat", numports=2):
+def gc1550te(filepath=PATH.sparameters / "gc2dte" / "gc1550.dat", numports=2):
     """Returns Sparameter model for 1550nm TE grating_coupler.
 
     .. plot::
