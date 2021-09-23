@@ -25,4 +25,4 @@ def json_to_csv(dirpathin, dirpathout=None):
 
 
 if __name__ == "__main__":
-    json_to_csv(PATH.sp)
+    json_to_csv(PATH.sparameters)
