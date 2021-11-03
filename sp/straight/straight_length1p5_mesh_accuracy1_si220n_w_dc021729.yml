@@ -104,12 +104,12 @@ component:
   function_name: straight
   info:
     width: 0.5
-    length: 2
+    length: 1.5
   module: gdsfactory.components.straight
-  name: straight_length2
+  name: straight_length1p5
   settings:
-    length: 2
+    length: 1.5
     npoints: 2
     with_cladding_box: true
 version: 3.2.9
-compute_time_seconds: 15.036022186279297
+compute_time_seconds: 15.557132720947266

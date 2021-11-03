@@ -19,7 +19,7 @@ def model_from_gdsfactory(component: Component, **kwargs) -> Model:
     kwargs.pop("function_name", "")
     kwargs.pop("module", "")
     component = gf.call_if_func(component, **kwargs)
-    pins, f, s = sim.read_sparameters_component(
+    pins, f, s = sim.read_sparameters_lumerical(
         component=component, dirpath=PATH.sparameters
     )
 

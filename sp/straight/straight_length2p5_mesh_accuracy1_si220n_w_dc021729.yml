@@ -103,13 +103,13 @@ simulation_settings:
 component:
   function_name: straight
   info:
+    length: 2.5
     width: 0.5
-    length: 2
   module: gdsfactory.components.straight
-  name: straight_length2
+  name: straight_length2p5
   settings:
-    length: 2
+    length: 2.5
     npoints: 2
     with_cladding_box: true
 version: 3.2.9
-compute_time_seconds: 15.036022186279297
+compute_time_seconds: 16.062291860580444

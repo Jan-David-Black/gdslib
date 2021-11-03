@@ -1,16 +1,24 @@
 simulation_settings:
   background_material: sio2
-  port_width: 3.0
-  port_height: 1.5
+  port_margin: 0.5
   port_extension: 2.0
-  mesh_accuracy: 1
+  mesh_accuracy: 2
   zmargin: 1.0
   ymargin: 2.0
   xmargin: 0.5
   pml_margin: 0.5
   wavelength_start: 1.2
   wavelength_stop: 1.6
-  wavelength_points: 200
+  wavelength_points: 500
+  simulation_time: 1.0e-11
+  simulation_temperature: 300.0
+  mode_index: 0
+  n_modes: 2
+  thickness_pml: 1.0
+  port_source_name: o1
+  distance_source_to_monitors: 0.2
+  mesh_step: 0.04
+  wavelength: 1.55
   layer_stack:
     core:
       layer:
@@ -103,13 +111,12 @@ simulation_settings:
 component:
   function_name: straight
   info:
+    length: 10
     width: 0.5
-    length: 2
   module: gdsfactory.components.straight
-  name: straight_length2
+  name: straight
   settings:
-    length: 2
+    length: 10
     npoints: 2
     with_cladding_box: true
-version: 3.2.9
-compute_time_seconds: 15.036022186279297
+version: 3.3.7

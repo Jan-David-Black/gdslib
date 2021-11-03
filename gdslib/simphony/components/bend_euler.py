@@ -29,7 +29,7 @@ def bend_euler(
 
     """
     c = gf.c.bend_euler(radius=radius, **kwargs)
-    length = c.length * 1e3
+    length = c.info.length * 1e3
     angle = np.deg2rad(angle)
     width = width * 1e3
     thickness = thickness * 1e3
