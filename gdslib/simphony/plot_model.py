@@ -15,7 +15,7 @@ def get_sparameters(c, wavelengths=None):
 
 def plot_model(
     model: Model,
-    pin_in: str = "W0",
+    pin_in: str = "o1",
     pins: Tuple[str, ...] = None,
     wavelengths=None,
     logscale=True,
@@ -74,7 +74,7 @@ def plot_model(
         else:
             y = np.abs(s[:, pin_out_index, pin_in_index]) ** 2
             y = 10 * np.log10(y) if logscale else y
-            ylabel = "|S|" if logscale else "|S (dB)|"
+            ylabel = "|S (dB)|" if logscale else "|S|"
         ax.plot(wavelengths * 1e9, y, label=pin_out)
     ax.set_xlabel("wavelength (nm)")
     ax.set_ylabel(ylabel)

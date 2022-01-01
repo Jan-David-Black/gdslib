@@ -29,7 +29,7 @@ def get_component_name(component_type: str, **kwargs) -> str:
 
 def autoname(component_function: Callable) -> Callable:
     """Decorator for auto-naming functions.
-    if no Keyword argument `name`  is passed it creates a name by concenating all Keyword arguments
+    if name  not in kwargs creates a name by concenating all Keyword arguments
 
     Args:
         name (str):
@@ -54,13 +54,13 @@ def autoname(component_function: Callable) -> Callable:
 
     @functools.wraps(component_function)
     def _autoname(*args, **kwargs):
-        args_repr = [repr(a) for a in args]
-        kwargs_repr = [f"{k}={v!r}" for k, v in kwargs.items()]
-        arguments = ", ".join(args_repr + kwargs_repr)
+        # args_repr = [repr(a) for a in args]
+        # kwargs_repr = [f"{k}={v!r}" for k, v in kwargs.items()]
+        # arguments = ", ".join(args_repr + kwargs_repr)
 
         if args:
             raise ValueError(
-                f"autoname supports only Keyword args for `{component_function.__name__}({arguments})`"
+                f"autoname supports only kwargs for {component_function.__name__}`"
             )
 
         component_type = component_function.__name__
@@ -138,10 +138,10 @@ def assert_first_letters_are_different(**kwargs):
     first_letters = [join_first_letters(k) for k in kwargs.keys() if k != "layer"]
     assert len(set(first_letters)) == len(
         first_letters
-    ), f"Possible Duplicated name because {kwargs.keys()} has repeated first letters {first_letters}"
+    ), f"Possible Duplicated name because {kwargs.keys()} repeats first letters {first_letters}"
     if not len(set(first_letters)) == len(first_letters):
         print(
-            f"Possible Duplicated name because {kwargs.keys()} has repeated first letters {first_letters}"
+            f"Possible Duplicated name {kwargs.keys()} repeats first letters {first_letters}"
         )
 
 
