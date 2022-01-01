@@ -6,4 +6,4 @@ import gdslib.sipann as sipann
 from gdslib.autoname import autoname
 
 __all__ = ["autoname", "simphony", "sipann"]
-__version__ = "0.3.3"
+__version__ = "0.3.4"
