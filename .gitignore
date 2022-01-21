@@ -2,6 +2,7 @@
 *.log
 .ipynb_checkpoints/
 *.py[cod]
+*.db
 extra/
 
 # C extensions
