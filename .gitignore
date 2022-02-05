@@ -4,6 +4,7 @@
 *.py[cod]
 *.db
 extra/
+gds/gds_run
 
 # C extensions
 *.so
