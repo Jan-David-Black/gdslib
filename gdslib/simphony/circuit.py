@@ -9,6 +9,7 @@ from simphony.simulation import SweepSimulation
 from simphony.tools import freq2wl
 
 from gdslib.simphony.components import component_factory
+from gdslib.simphony.types import ModelFactory
 
 
 def get_transmission(
@@ -40,7 +41,7 @@ def get_transmission(
 
 def component_to_circuit(
     component: Component,
-    model_factory: Dict[str, Callable] = component_factory,
+    model_factory: Dict[str, ModelFactory] = component_factory,
 ) -> Subcircuit:
     """Returns Simphony circuit from a gdsfactory component netlist.
 

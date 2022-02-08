@@ -1,4 +1,4 @@
-from typing import Iterable, Optional
+from typing import Optional, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -9,8 +9,8 @@ from simphony.tools import freq2wl
 
 def plot_circuit(
     circuit: Subcircuit,
-    pin_in: str = "input",
-    pins_out: Iterable[str] = ("output",),
+    pin_in: str = "o1",
+    pins_out: Tuple[str, ...] = ("o2",),
     start: float = 1500e-9,
     stop: float = 1600e-9,
     num: int = 2000,

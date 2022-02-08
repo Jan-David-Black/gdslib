@@ -8,7 +8,7 @@ from gdslib.simphony.model_from_gdsfactory import model_from_gdsfactory
 def mmi1x2(**kwargs):
     """Return 1x2 MultiModeInterferometer Sparameter model.
 
-    Args:
+    Keyword Args:
         width: input and output straight width
         width_taper: interface between input straights and mmi region
         length_taper: into the mmi region
@@ -19,7 +19,6 @@ def mmi1x2(**kwargs):
         layer:
         layers_cladding:
         cladding_offset
-        tech: technology
 
     .. code::
 
@@ -28,11 +27,11 @@ def mmi1x2(**kwargs):
                 ________
                |        |
                |         \__
-               |          __  E1
+               |          __  o2
             __/          /_ _ _ _
-        W0  __          | _ _ _ _| gap_mmi
+        o1  __          | _ _ _ _| gap_mmi
               \          \__
-               |          __  E0
+               |          __  o3
                |         /
                |________|
 

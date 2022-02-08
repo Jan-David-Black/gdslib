@@ -35,11 +35,11 @@ repos:
         - id: nbstripout
           files: ".ipynb"
 
-    - repo: https://github.com/pre-commit/mirrors-mypy
-      rev: "449ace5e55cb1e43057ab67349dce1208e657768"
-      hooks:
-          - id: mypy
-            exclude: ^(docs/|example-plugin/|tests/fixtures/|sp)
+    # - repo: https://github.com/pre-commit/mirrors-mypy
+    #   rev: "449ace5e55cb1e43057ab67349dce1208e657768"
+    #   hooks:
+    #       - id: mypy
+    #         exclude: ^(docs/|example-plugin/|tests/fixtures/|sp)
     # - repo: https://github.com/pycqa/pydocstyle
     #   rev: ""
     #   hooks:

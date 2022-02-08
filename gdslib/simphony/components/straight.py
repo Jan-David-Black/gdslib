@@ -1,10 +1,7 @@
 from SiPANN.scee import Waveguide
 from SiPANN.scee_int import SimphonyWrapper
 
-from gdslib.autoname import autoname
 
-
-@autoname
 def straight(
     length: float = 10.0,
     width: float = 0.5,

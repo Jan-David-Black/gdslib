@@ -2,12 +2,10 @@ from typing import Callable, Optional
 
 from simphony.netlist import Subcircuit
 
-from gdslib.autoname import autoname
 from gdslib.simphony.components.mmi1x2 import mmi1x2
 from gdslib.simphony.components.straight import straight as straight_function
 
 
-@autoname
 def mzi(
     delta_length: float = 10.0,
     length_y: float = 4.0,
@@ -98,8 +96,8 @@ def mzi(
             ("recombiner", port_name_combiner_e1, "wg_short", "o2"),
         ]
     )
-    circuit.elements["splitter"].pins[port_name_splitter_w0] = "input"
-    circuit.elements["recombiner"].pins[port_name_combiner_w0] = "output"
+    circuit.elements["splitter"].pins[port_name_splitter_w0] = "o1"
+    circuit.elements["recombiner"].pins[port_name_combiner_w0] = "o2"
     return circuit
 
 

@@ -1,21 +1,20 @@
 from simphony.netlist import Subcircuit
 
-from gdslib.autoname import autoname
 from gdslib.simphony.components.coupler_ring import coupler_ring
-from gdslib.simphony.components.straight import straight
+from gdslib.simphony.components.straight import straight as straight_function
 from gdslib.simphony.plot_circuit import plot_circuit
+from gdslib.simphony.types import ModelFactory
 
 
-@autoname
 def ring_double(
-    wg_width=0.5,
-    gap=0.2,
-    length_x=4,
-    bend_radius=5,
-    length_y=2,
-    coupler=coupler_ring,
-    straight=straight,
-):
+    wg_width: float = 0.5,
+    gap: float = 0.2,
+    length_x: float = 4,
+    bend_radius: float = 5,
+    length_y: float = 2,
+    coupler: ModelFactory = coupler_ring,
+    straight: ModelFactory = straight_function,
+) -> Subcircuit:
     r"""Return double bus ring Model made of two couplers (ct: top, cb: bottom)
     connected with two vertical straights (yl: left, wr: right)
 
@@ -31,20 +30,20 @@ def ring_double(
 
 
            ---=========---
-        E0    length_x    W0
+        o2    length_x    o3
              /         \
             /           \
            |             |
-           N1           N0 ___
+           o3           o2 ___
                             |
           wl            wr  | length_y
                            _|_
-           N0            N1
+           o2            o3
            |             |
             \           /
              \         /
            ---=========---
-        W0    length_x    E0
+        o1    length_x    o4
 
 
 
@@ -81,16 +80,16 @@ def ring_double(
     # Circuits can be connected using the elements' string names:
     circuit.connect_many(
         [
-            ("cb", "N0", "wl", "E0"),
-            ("wl", "W0", "ct", "N1"),
-            ("ct", "N0", "wr", "E0"),
-            ("wr", "W0", "cb", "N1"),
+            ("cb", "o2", "wl", "o1"),
+            ("wl", "o2", "ct", "o3"),
+            ("ct", "o2", "wr", "o2"),
+            ("wr", "o1", "cb", "o3"),
         ]
     )
-    circuit.elements["cb"].pins["W0"] = "input"
-    circuit.elements["cb"].pins["E0"] = "output"
-    circuit.elements["ct"].pins["E0"] = "drop"
-    circuit.elements["ct"].pins["W0"] = "cdrop"
+    circuit.elements["cb"].pins["o1"] = "o1"
+    circuit.elements["cb"].pins["o4"] = "o4"
+    circuit.elements["ct"].pins["o4"] = "o2"
+    circuit.elements["ct"].pins["o1"] = "o3"
     return circuit
 
 
