@@ -36,7 +36,7 @@ def bend_euler(
 
     s = Waveguide(width=width, thickness=thickness, sw_angle=sw_angle, length=length)
     model = SimphonyWrapper(s)
-    model.pins = ("W0", "N0")
+    model.pins = ("o1", "o2")
     model.sipann = s
     return model
 

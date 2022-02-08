@@ -16,6 +16,12 @@ def mzi(
     combiner: Optional[Callable] = None,
     straight_top: Callable = straight_function,
     straight_bot: Callable = straight_function,
+    port_name_splitter_w0: str = "o1",
+    port_name_splitter_e1: str = "o2",
+    port_name_splitter_e0: str = "o3",
+    port_name_combiner_w0: str = "o1",
+    port_name_combiner_e1: str = "o2",
+    port_name_combiner_e0: str = "o3",
 ):
     """Mzi circuit model.
 
@@ -86,14 +92,14 @@ def mzi(
     # Circuits can be connected using the elements' string names:
     circuit.connect_many(
         [
-            ("splitter", "E0", "wg_long", "W0"),
-            ("splitter", "E1", "wg_short", "W0"),
-            ("recombiner", "E0", "wg_long", "E0"),
-            ("recombiner", "E1", "wg_short", "E0"),
+            ("splitter", port_name_splitter_e0, "wg_long", "o1"),
+            ("splitter", port_name_splitter_e1, "wg_short", "o1"),
+            ("recombiner", port_name_combiner_e0, "wg_long", "o2"),
+            ("recombiner", port_name_combiner_e1, "wg_short", "o2"),
         ]
     )
-    circuit.elements["splitter"].pins["W0"] = "input"
-    circuit.elements["recombiner"].pins["W0"] = "output"
+    circuit.elements["splitter"].pins[port_name_splitter_w0] = "input"
+    circuit.elements["recombiner"].pins[port_name_combiner_w0] = "output"
     return circuit
 
 

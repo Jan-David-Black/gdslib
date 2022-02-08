@@ -34,13 +34,13 @@ def coupler(
                                                    H
                dx                                 dx
             |------|                           |------|
-         W1 ________                           _______E1       _ _
+         o2 ________                           _______o3       _ _
                     \                         /           |     |
                      \        length         /            |    _|_V
                       ======================= gap         | dy
                      /                       \            |
             ________/                         \_______    |
-         W0                                           E0
+         o1                                           o4
 
 
     .. plot::
@@ -80,7 +80,7 @@ def coupler(
         sw_angle=sw_angle,
     )
     model = SimphonyWrapper(s)
-    model.pins = ("W0", "W1", "E0", "E1")
+    model.pins = ("o1", "o2", "o4", "o3")
     model.sipann = s
     return model
 

@@ -18,9 +18,9 @@ def plot_model(
     pin_in: str = "o1",
     pins: Tuple[str, ...] = None,
     wavelengths=None,
-    logscale=True,
+    logscale: bool = True,
     fig=None,
-    phase=False,
+    phase: bool = False,
 ) -> None:
     """Plot simphony Sparameters for a model
 
@@ -31,6 +31,7 @@ def plot_model(
         wavelengths (m):
         logscale:
         fig: figure
+        phase: plots phase
 
     .. plot::
         :include-source:

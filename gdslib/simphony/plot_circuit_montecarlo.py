@@ -13,18 +13,19 @@ def plot_circuit_montecarlo(
     stop: float = 1600e-9,
     num: int = 2000,
     logscale: bool = True,
-    runs=10,
+    runs: int = 10,
 ):
     """Plot MonterCarlo simulations variation.
 
     Args:
         circuit:
         pin_in: input port name
-        pins_out: iterable of pins out to plot
+        pin_out: iterable of pins out to plot
         start: wavelength (m)
         stop: wavelength (m)
         num: number of sampled points
         logscale: plot in dB scale
+        runs: number of runs
 
     """
     circuit = circuit() if callable(circuit) else circuit
@@ -50,7 +51,7 @@ def plot_circuit_montecarlo(
 
 
 if __name__ == "__main__":
-    from gdslib.components.mzi import mzi
+    from gdslib.simphony.components.mzi import mzi
 
     plot_circuit_montecarlo(mzi)
     plt.show()

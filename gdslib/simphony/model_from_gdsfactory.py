@@ -1,5 +1,5 @@
 import gdsfactory as gf
-import gdsfactory.simulation as sim
+import gdsfactory.simulation.lumerical as sim
 import numpy as np
 from gdsfactory.component import Component
 from scipy.constants import speed_of_light

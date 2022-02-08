@@ -1,10 +1,7 @@
 import numpy as np
 from SiPANN.scee import Waveguide
 
-from gdslib.autoname import autoname
 
-
-@autoname
 def bend_circular(
     radius: float = 10.0,
     width: float = 0.5,

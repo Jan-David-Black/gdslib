@@ -2,8 +2,8 @@ from pathlib import PosixPath
 from typing import Tuple
 
 import gdsfactory as gf
-import gdsfactory.simulation as sim
 import numpy as np
+from gdsfactory.simulation.lumerical.read import read_sparameters_file
 from scipy.constants import speed_of_light
 from simphony.elements import Model
 from simphony.tools import freq2wl, interpolate, wl2freq
@@ -18,7 +18,7 @@ def model_from_filepath(filepath: PosixPath, numports: int, name: str = "model")
         name: model name
 
     """
-    pins, f, s = sim.read_sparameters_lumerical(filepath=filepath, numports=numports)
+    pins, f, s = read_sparameters_file(filepath=filepath, numports=numports)
     wavelengths = freq2wl(f)
     return model_from_sparameters(
         wavelengths=wavelengths, sparameters=s, pins=pins, name=name
@@ -52,9 +52,9 @@ def model_from_sparameters(
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
 
-    from gdslib.plot_model import plot_model
+    from gdslib.simphony.plot_model import plot_model
 
-    filepath = gf.CONFIG["sparameters"] / "mmi1x2" / "mmi1x2_S220.dat"
+    filepath = gf.CONFIG["sparameters"] / "mmi1x2" / "mmi1x2_si220n.dat"
     numports = 3
     c = model_from_filepath(filepath=filepath, numports=numports)
     plot_model(c)

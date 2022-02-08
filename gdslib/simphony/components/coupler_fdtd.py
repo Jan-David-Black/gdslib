@@ -6,7 +6,7 @@ from gdslib.simphony.model_from_gdsfactory import model_from_gdsfactory
 
 @autoname
 def coupler_fdtd(c=gf.c.coupler, width=0.5, length=20, gap=0.224):
-    r"""Coupler for half a ring based on Lumerical 3D FDTD simulations.
+    r"""Coupler based on Lumerical 3D FDTD simulations.
 
     Args:
         c: Coupler function

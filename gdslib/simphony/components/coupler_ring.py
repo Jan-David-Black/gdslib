@@ -27,18 +27,11 @@ def coupler_ring(
 
     .. code::
 
-           N0            N1
-           |             |
-            \           /
-             \         /
-           ---=========---
-        W0    length_x    E0
-
-
-            2 \           / 4
+           o2 \           / o3
                \         /
                 ---------
-            1---------------3
+           o1---------------o4
+                 length_x
 
     .. plot::
         :include-source:
@@ -74,7 +67,7 @@ def coupler_ring(
         sw_angle=sw_angle,
     )
     model = SimphonyWrapper(s)
-    model.pins = ("W0", "N0", "E0", "N1")
+    model.pins = ("o1", "o2", "o4", "o3")
     model.sipann = s
     return model
 
