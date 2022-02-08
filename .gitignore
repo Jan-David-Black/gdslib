@@ -5,6 +5,7 @@
 *.db
 extra/
 gds/gds_run
+sp/temp
 
 # C extensions
 *.so
