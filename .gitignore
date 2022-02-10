@@ -5,6 +5,7 @@
 *.db
 extra/
 gds/gds_run
+gds/gds_diff
 sp/temp
 
 # C extensions
