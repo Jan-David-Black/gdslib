@@ -10,7 +10,7 @@ def ring_double(
     wg_width: float = 0.5,
     gap: float = 0.2,
     length_x: float = 4,
-    bend_radius: float = 5,
+    radius: float = 5,
     length_y: float = 2,
     coupler: ModelFactory = coupler_ring,
     straight: ModelFactory = straight_function,
@@ -68,7 +68,7 @@ def ring_double(
 
     straight = straight(length=length_y) if callable(straight) else straight
     coupler = (
-        coupler(length_x=length_x, bend_radius=bend_radius, gap=gap, wg_width=wg_width)
+        coupler(length_x=length_x, radius=radius, gap=gap, wg_width=wg_width)
         if callable(coupler)
         else coupler
     )

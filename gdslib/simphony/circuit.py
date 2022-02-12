@@ -3,6 +3,7 @@ from typing import Callable, Dict
 import gdsfactory as gf
 import numpy as np
 from gdsfactory.component import Component
+from omegaconf import OmegaConf
 from simphony.elements import Model
 from simphony.netlist import Subcircuit
 from simphony.simulation import SweepSimulation
@@ -56,20 +57,22 @@ def component_to_circuit(
     circuit = Subcircuit(component.name)
     model_names = []
     model_name_tuple = []
+    component_models = list(model_factory.keys())
 
-    for name, settings in instances.items():
-        component_type = settings["component"]
+    for name, metadata in instances.items():
+        component_type = metadata.function_name
+
         if component_type is None:
             continue
 
         if component_type not in model_factory:
             raise ValueError(
-                f"Model for `{component_type}` not found in {list(model_factory.keys())}"
+                f"Model for {component_type!r} not found in {component_models}"
             )
-        component_settings = settings["settings"]
+        component_settings = OmegaConf.to_container(metadata.full)
         model_function = model_factory[component_type]
         model = model_function(**component_settings)
-        assert isinstance(model, Model), f"model {model} is not a simphony Model"
+        assert isinstance(model, Model), f"model {model!r} is not a simphony Model"
         model_names.append(name)
         model_name_tuple.append((model, name))
 
@@ -95,8 +98,6 @@ def demo_circuit_transmission(data_regression, check: bool = True):
     """FIXME, fix function and rename it to test_circuit_transmission."""
     component = gf.c.mzi(delta_length=100, bend=gf.c.bend_circular)
     circuit = component_to_circuit(component)
-    for e in circuit.elements:
-        print(e)
     circuit.elements[splitter].pins["W0"] = "input"
     circuit.elements[combiner].pins["W0"] = "output"
     r = get_transmission(circuit, num=3)

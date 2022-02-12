@@ -12,7 +12,7 @@ def ring_single(
     wg_width=0.5,
     gap=0.2,
     length_x=4,
-    bend_radius=5,
+    radius=5,
     length_y=2,
     coupler=coupler_ring,
     straight=straight,
@@ -33,16 +33,16 @@ def ring_single(
              /         \
             /           \
            |             |
-           N1           N0 ___
+           o1           o1 ___
                             |
           wl            wr  | length_y
                            _|_
-           N0            N1
+           o2            o3
            |             |
             \           /
              \         /
            ---=========---
-        W0    length_x    E0
+        o1 o1 length_x  o4 o2
 
 
 
@@ -68,9 +68,9 @@ def ring_single(
     straight = (
         straight(width=wg_width, length=length_y) if callable(straight) else straight
     )
-    bend = bend(width=wg_width, radius=bend_radius) if callable(bend) else bend
+    bend = bend(width=wg_width, radius=radius) if callable(bend) else bend
     coupler = (
-        coupler(length_x=length_x, bend_radius=bend_radius, gap=gap, wg_width=wg_width)
+        coupler(length_x=length_x, radius=radius, gap=gap, wg_width=wg_width)
         if callable(coupler)
         else coupler
     )
@@ -91,16 +91,16 @@ def ring_single(
     # Circuits can be connected using the elements' string names:
     circuit.connect_many(
         [
-            ("cb", "N0", "wl", "E0"),
-            ("wl", "W0", "bl", "N0"),
-            ("bl", "W0", "wt", "W0"),
-            ("wt", "E0", "br", "W0"),
-            ("br", "N0", "wr", "E0"),
-            ("wr", "W0", "cb", "N1"),
+            ("cb", "o2", "wl", "o2"),
+            ("wl", "o1", "bl", "o2"),
+            ("bl", "o1", "wt", "o1"),
+            ("wt", "o2", "br", "o1"),
+            ("br", "o2", "wr", "o2"),
+            ("wr", "o1", "cb", "o3"),
         ]
     )
-    circuit.elements["cb"].pins["W0"] = "input"
-    circuit.elements["cb"].pins["E0"] = "output"
+    circuit.elements["cb"].pins["o1"] = "o1"
+    circuit.elements["cb"].pins["o4"] = "o2"
     return circuit
 
 
