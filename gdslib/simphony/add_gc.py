@@ -5,7 +5,7 @@ from simphony.netlist import Subcircuit
 from gdslib.simphony.components.gc import gc1550te
 
 
-def add_gc(circuit, gc=gc1550te, cpi="input", cpo="output", gpi="port 1", gpo="port 2"):
+def add_gc(circuit, gc=gc1550te, cpi="o1", cpo="o2", gpi="port 1", gpo="port 2"):
     """add input and output gratings
 
     Args:
@@ -27,8 +27,8 @@ def add_gc(circuit, gc=gc1550te, cpi="input", cpo="output", gpi="port 1", gpo="p
     c.add([(gc, "gci"), (gc, "gco"), (circuit, "circuit")])
     c.connect_many([("gci", gpo, "circuit", cpi), ("gco", gpo, "circuit", cpo)])
 
-    c.elements["gci"].pins[gpi] = "input"
-    c.elements["gco"].pins[gpi] = "output"
+    c.elements["gci"].pins[gpi] = "o1"
+    c.elements["gco"].pins[gpi] = "o2"
 
     return c
 
@@ -37,7 +37,7 @@ def add_gc_siepic(circuit, gc=siepic.ebeam_gc_te1550):
     """add input and output gratings
 
     Args:
-        circuit: needs to have `input` and `output` pins
+        circuit: needs to have `o1` and `o2` pins
         gc: grating coupler
     """
     c = Subcircuit(f"{circuit}_gc")
@@ -49,8 +49,8 @@ def add_gc_siepic(circuit, gc=siepic.ebeam_gc_te1550):
 
     # c.elements["circuit"].pins["input"] = "input_circuit"
     # c.elements["circuit"].pins["output"] = "output_circuit"
-    c.elements["gci"].pins["n2"] = "input"
-    c.elements["gco"].pins["n2"] = "output"
+    c.elements["gci"].pins["n2"] = "o1"
+    c.elements["gco"].pins["n2"] = "o2"
 
     return c
 
