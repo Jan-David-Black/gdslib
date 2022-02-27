@@ -24,8 +24,8 @@ port_margin: 2
 port_monitor_offset: -0.1
 port_source_offset: -0.1
 dispersive: false
-ymargin_top: 0
-ymargin_bot: 0
+ymargin_top: 0.0
+ymargin_bot: 0.0
 xmargin_left: 0
 xmargin_right: 0
 layer_stack:
@@ -133,3 +133,5 @@ component:
       arm:
         function: crossing_arm
     child: null
+compute_time_seconds: 15.635887145996094
+compute_time_minutes: 0.2605981190999349

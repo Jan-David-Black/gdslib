@@ -7,8 +7,8 @@ port_margin: 2
 port_monitor_offset: -0.1
 port_source_offset: -0.1
 dispersive: false
-ymargin_top: 3
-ymargin_bot: 3
+ymargin_top: 0.0
+ymargin_bot: 0.0
 xmargin_left: 0
 xmargin_right: 0
 layer_stack:
@@ -196,5 +196,5 @@ component:
         cross_section:
           function: cross_section
       child: null
-compute_time_seconds: 8.031793117523193
-compute_time_minutes: 0.13386321862538655
+compute_time_seconds: 17.004642486572266
+compute_time_minutes: 0.2834107081095378
