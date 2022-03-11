@@ -3,6 +3,7 @@
 .ipynb_checkpoints/
 *.py[cod]
 *.db
+*.hdf5
 extra/
 gds/gds_run
 gds/gds_diff
