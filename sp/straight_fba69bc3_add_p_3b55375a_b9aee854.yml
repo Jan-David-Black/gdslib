@@ -196,5 +196,5 @@ component:
         cross_section:
           function: cross_section
       child: null
-compute_time_seconds: 2.764098882675171
-compute_time_minutes: 0.04606831471125285
+compute_time_seconds: 2.8144185543060303
+compute_time_minutes: 0.046906975905100505

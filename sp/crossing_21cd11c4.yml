@@ -133,5 +133,5 @@ component:
       arm:
         function: crossing_arm
     child: null
-compute_time_seconds: 16.659225940704346
-compute_time_minutes: 0.2776537656784058
+compute_time_seconds: 16.133610725402832
+compute_time_minutes: 0.2688935120900472
