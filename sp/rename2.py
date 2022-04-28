@@ -9,7 +9,7 @@ for extension in ["json", "yml", "dat"]:
         name = src.stem
         dirpath = src.parent
         f = name.split("_")
-        name2 = "_".join(f[:-2] + ["si" + f[-1][1:] + "n"])
+        name2 = "_".join(f[:-2] + [f"si{f[-1][1:]}n"])
         dst = dirpath / str(name2 + suffix)
         print(dst)
         # src.rename(dst)
