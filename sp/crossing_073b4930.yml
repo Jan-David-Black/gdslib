@@ -136,5 +136,5 @@ component:
         function: crossing_arm
       cross_section: strip
     child: null
-compute_time_seconds: 22.08358860015869
-compute_time_minutes: 0.36805981000264487
+compute_time_seconds: 11.958292484283447
+compute_time_minutes: 0.19930487473805744
