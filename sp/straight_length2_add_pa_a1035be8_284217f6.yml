@@ -107,7 +107,9 @@ component:
     name: straight_length2_add_pa_a1035be8
     module: gdsfactory.add_padding
     function_name: add_padding_container
-    info: {}
+    info:
+      length: 2.0
+      width: 0.5
     info_version: 2
     full:
       layers:
@@ -191,5 +193,5 @@ component:
         with_bbox: true
         cross_section: strip
       child: null
-compute_time_seconds: 2.4537172317504883
-compute_time_minutes: 0.04089528719584147
+compute_time_seconds: 2.8263165950775146
+compute_time_minutes: 0.047105276584625246
