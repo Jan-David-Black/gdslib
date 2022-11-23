@@ -145,6 +145,55 @@ layer_stack:
       mesh_order: 2
 component:
   name: straight_length2_add_pa_1ed425ca
-  settings: {}
-compute_time_seconds: 0.031842947006225586
-compute_time_minutes: 0.000530715783437093
+  settings:
+    name: straight_length2_add_pa_1ed425ca
+    module: gdsfactory.add_padding
+    function_name: add_padding_container
+    info:
+      length: 2.0
+      width: 0.5
+    info_version: 2
+    full:
+      layers:
+      - PADDING
+      component:
+        component: straight
+        settings:
+          length: 2
+      default: 0
+      top: 3
+      bottom: 3
+    changed:
+      bottom: 3
+      component:
+        component: straight
+        settings:
+          length: 2
+      default: 0
+      top: 3
+    default:
+      layers:
+      - PADDING
+    child:
+      name: straight_length2
+      module: gdsfactory.components.straight
+      function_name: straight
+      info:
+        length: 2.0
+        width: 0.5
+      info_version: 2
+      full:
+        length: 2
+        npoints: 2
+        with_bbox: true
+        cross_section: strip
+      changed:
+        length: 2
+      default:
+        length: 10.0
+        npoints: 2
+        with_bbox: true
+        cross_section: strip
+      child: null
+compute_time_seconds: 10.275739192962646
+compute_time_minutes: 0.17126231988271076
