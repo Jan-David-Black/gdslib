@@ -199,5 +199,5 @@ component:
         with_bbox: true
         cross_section: strip
       child: null
-compute_time_seconds: 2.445451021194458
-compute_time_minutes: 0.04075751701990763
+compute_time_seconds: 2.475522756576538
+compute_time_minutes: 0.04125871260960897
